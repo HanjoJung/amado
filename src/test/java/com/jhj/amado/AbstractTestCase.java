@@ -1,4 +1,4 @@
-package com.jhj.amad;
+package com.jhj.amado;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

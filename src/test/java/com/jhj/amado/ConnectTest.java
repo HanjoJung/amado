@@ -1,4 +1,4 @@
-package com.jhj.amad;
+package com.jhj.amado;
 
 import static org.junit.Assert.*;
 
