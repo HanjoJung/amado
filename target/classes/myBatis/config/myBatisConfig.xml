@@ -6,5 +6,6 @@
 <configuration>
 	<typeAliases>
 	<typeAlias type="com.jhj.product.ProductDTO" alias="ProductDTO"/>
+	<typeAlias type="com.jhj.member.MemberDTO" alias="MemberDTO"/>
 	</typeAliases>
 </configuration>

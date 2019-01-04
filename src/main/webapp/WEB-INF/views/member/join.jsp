@@ -18,11 +18,11 @@
         <div class="cart-table-area section-padding-100">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12">
                         <div class="checkout_details_area mt-50 clearfix">
 
                             <div class="cart-title">
-                                <h2>구매하기</h2>
+                                <h2>회원가입</h2>
                             </div>
 
                             <form action="#" method="post">
@@ -45,39 +45,19 @@
                                     <div class="col-12 mb-3">
                                         <input type="text" class="form-control mb-3" id="address" placeholder="주소">
                                     </div>
-                                    <div class="col-12 mb-3">
-                                        <textarea name="comment" class="form-control" id="comment" cols="30" rows="10" placeholder="배송시 참고사항"></textarea>
-                                    </div>
 
+                                    <div class="col-12">
+                                        <div class="custom-control custom-checkbox d-block">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                            <label class="custom-control-label" for="customCheck2">약관 동의</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox d-block">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                            <label class="custom-control-label" for="customCheck3">약관 동의</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="cart-summary">
-                            <h5>총금액</h5>
-                            <ul class="summary-table">
-                                <li><span>제품가 : </span> <span>$140.00</span></li>
-                                <li><span>배송비 : </span> <span>무료</span></li>
-                                <li><span>총금액 : </span> <span>$140.00</span></li>
-                            </ul>
-
-                            <div class="payment-method">
-                                <!-- Cash on delivery -->
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="cod" checked>
-                                    <label class="custom-control-label" for="cod">착불</label>
-                                </div>
-                                <!-- Paypal -->
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="paypal">
-                                    <label class="custom-control-label" for="paypal">헨드폰 결제 <img class="ml-15" src="${pageContext.request.contextPath}/resources/img/core-img/paypal.png" alt=""></label>
-                                </div>
-                            </div>
-
-                            <div class="cart-btn mt-100">
-                                <a href="#" class="btn amado-btn w-100">결제</a>
-                            </div>
                         </div>
                     </div>
                 </div>

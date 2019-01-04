@@ -9,11 +9,11 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Amado - Furniture Ecommerce Template | Home</title>
+    <title>Amado - Furniture Ecommerce Template</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/core-img/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/core-img/favicon.png">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/core-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/coreStyle.css">
 </head>

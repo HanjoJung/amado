@@ -9,25 +9,6 @@
 </head>
 
 <body>
-    <!-- Search Wrapper Area Start -->
-    <div class="search-wrapper section-padding-100">
-        <div class="search-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="search-content">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
-                            <button type="submit"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Search Wrapper Area End -->
 
     <!-- ##### Main Content Wrapper Start ##### -->
     <div class="main-content-wrapper d-flex clearfix">
@@ -89,53 +70,84 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-5">
-                        <div class="single_product_desc">
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                                <div class="line"></div>
-                                <p class="product-price">$180</p>
-                                <a href="product-details.html">
-                                    <h6>White Modern Chair</h6>
-                                </a>
-                                <!-- Ratings & Review -->
-                                <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="review">
-                                        <a href="#">Write A Review</a>
-                                    </div>
-                                </div>
-                                <!-- Avaiable -->
-                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
-                            </div>
+					<div class="col-12 col-lg-5">
+						<div class="single_product_desc">
+							<!-- Product Meta Data -->
+							<div class="product-meta-data mb-50">
+								<div class="line"></div>
+								<p class="product-price">$180</p>
+								<h4>White Modern Chair</h4>
+								<!-- Ratings & Review -->
+								<div class="ratings-review">
+									<div class="ratings"></div>
+									<div class="ratings-active"></div>
+								</div>
+								<!-- Avaiable -->
+								<p class="avaibility">
+									<i class="fa fa-circle"></i> 재고있음
+								</p>
+							</div>
 
-                            <div class="short_overview my-5">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?</p>
-                            </div>
+							<div class="short_overview my-5">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+									Aliquid quae eveniet culpa officia quidem mollitia impedit iste
+									asperiores nisi reprehenderit consequatur, autem, nostrum
+									pariatur enim?</p>
+							</div>
 
-                            <!-- Add to Cart Form -->
-                            <form class="cart clearfix" method="post">
-                                <div class="cart-btn d-flex mb-50">
-                                    <p>Qty</p>
-                                    <div class="quantity">
-                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
-                            </form>
+							<!-- Add to Cart Form -->
+							<form class="cart clearfix mb-50" method="post">
+								<div class="cart-btn d-flex mb-50">
+									<p>수량</p>
+									<div class="quantity">
+										<span class="qty-minus"
+											onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+											class="fa fa-caret-down" aria-hidden="true"></i></span> <input
+											type="number" class="qty-text" id="qty" step="1" min="1"
+											max="300" name="quantity" value="1"> <span
+											class="qty-plus"
+											onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+											class="fa fa-caret-up" aria-hidden="true"></i></span>
+									</div>
+								</div>
+								<button type="submit" name="addtocart" value="5"
+									class="btn amado-btn">장바구니 담기</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-50">
+				<div class="col-12">
+				<h4>리뷰</h4>
+					<form method="post" class="form-review col-12 mb-3">
+						<input type="hidden" class="form-control" id="writer" name="writer" value="${member.name}">
+						<div class="col-12 mt-3">
+							<div class="rating-star" id="score">
+								<div data-value="1" data-message="별로에요." class="icon-star"></div>
+								<div data-value="2" data-message="그저 그래요." class="icon-star"></div>
+								<div data-value="3" data-message="나쁘지 않아요." class="icon-star"></div>
+								<div data-value="4" data-message="마음에 들어요." class="icon-star"></div>
+								<div data-value="5" data-message="좋아요!" class="icon-star"></div>
+							</div>
+							<p class="rating-description"></p>
+						</div>
+						<div class="col-12 mb-3">
+							<input type="text" class="form-control" id="title" name="title"
+								placeholder="제목">
+						</div>
+						<div class="col-12 mb-3">
+							<textarea name="contents" class="form-control" id="contents"
+								cols="100" rows="10" placeholder="내용"></textarea>
+						</div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+						<div class="review">
+							<a href="#">리뷰 작성</a>
+						</div>
+					</form>
+					<c:import url="${pageContext.request.contextPath}/../product/review" />
+				</div>
+				</div>
+			</div>
         </div>
         <!-- Product Details Area End -->
     </div>

@@ -9,25 +9,6 @@
 </head>
 
 <body>
-    <!-- Search Wrapper Area Start -->
-    <div class="search-wrapper section-padding-100">
-        <div class="search-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="search-content">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
-                            <button type="submit"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Search Wrapper Area End -->
 
     <!-- ##### Main Content Wrapper Start ##### -->
     <div class="main-content-wrapper d-flex clearfix">
@@ -36,20 +17,20 @@
         <div class="shop_sidebar_area">
 
             <!-- ##### Single Widget ##### -->
-            <div class="widget catagory mb-50">
+            <div class="widget catagory mb-30">
                 <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Catagories</h6>
+                <h6 class="widget-title mb-15">카테고리</h6>
 
                 <!--  Catagories  -->
                 <div class="catagories-menu">
                     <ul>
-                        <li class="active"><a href="#">Chairs</a></li>
-                        <li><a href="#">Beds</a></li>
-                        <li><a href="#">Accesories</a></li>
-                        <li><a href="#">Furniture</a></li>
-                        <li><a href="#">Home Deco</a></li>
-                        <li><a href="#">Dressings</a></li>
-                        <li><a href="#">Tables</a></li>
+                        <li class="active"><a href="#">의자</a></li>
+                        <li><a href="#">침대</a></li>
+                        <li><a href="#">엑세서리</a></li>
+                        <li><a href="#">가구</a></li>
+                        <li><a href="#">홈 데코</a></li>
+                        <li><a href="#">테이블</a></li>
+                        <li><a href="#">아동</a></li>
                     </ul>
                 </div>
             </div>
@@ -57,7 +38,7 @@
             <!-- ##### Single Widget ##### -->
             <div class="widget brands mb-50">
                 <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Brands</h6>
+                <h6 class="widget-title mb-30">브랜드</h6>
 
                 <div class="widget-desc">
                     <!-- Single Form Check -->
@@ -89,32 +70,14 @@
             </div>
 
             <!-- ##### Single Widget ##### -->
-            <div class="widget color mb-50">
-                <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Color</h6>
-
-                <div class="widget-desc">
-                    <ul class="d-flex">
-                        <li><a href="#" class="color1"></a></li>
-                        <li><a href="#" class="color2"></a></li>
-                        <li><a href="#" class="color3"></a></li>
-                        <li><a href="#" class="color4"></a></li>
-                        <li><a href="#" class="color5"></a></li>
-                        <li><a href="#" class="color6"></a></li>
-                        <li><a href="#" class="color7"></a></li>
-                        <li><a href="#" class="color8"></a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ##### Single Widget ##### -->
             <div class="widget price mb-50">
                 <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Price</h6>
+                <h6 class="widget-title mb-30">가격</h6>
 
                 <div class="widget-desc">
                     <div class="slider-range">
-                        <div data-min="10" data-max="1000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="10" data-value-max="1000" data-label-result="">
+                        <div data-min="10" data-max="1000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" 
+                        data-value-min="10" data-value-max="1000" data-label-result="">
                             <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                             <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                             <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
@@ -191,13 +154,10 @@
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
+								<div class="ratings-review">
+									<div class="ratings"></div>
+									<div class="ratings-active"></div>
+								</div>
                                     <div class="cart">
                                         <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""></a>
                                     </div>
@@ -228,13 +188,10 @@
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
+								<div class="ratings-review">
+									<div class="ratings"></div>
+									<div class="ratings-active"></div>
+								</div>
                                     <div class="cart">
                                         <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""></a>
                                     </div>
@@ -265,13 +222,10 @@
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
+								<div class="ratings-review">
+									<div class="ratings"></div>
+									<div class="ratings-active"></div>
+								</div>
                                     <div class="cart">
                                         <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""></a>
                                     </div>
@@ -302,13 +256,10 @@
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
+								<div class="ratings-review">
+									<div class="ratings"></div>
+									<div class="ratings-active"></div>
+								</div>
                                     <div class="cart">
                                         <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""></a>
                                     </div>
@@ -339,13 +290,10 @@
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
+								<div class="ratings-review">
+									<div class="ratings"></div>
+									<div class="ratings-active"></div>
+								</div>
                                     <div class="cart">
                                         <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""></a>
                                     </div>
@@ -377,11 +325,11 @@
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
                                     <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        
+                                        
+                                        
+                                        
+                                        
                                     </div>
                                     <div class="cart">
                                         <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""></a>
@@ -397,10 +345,10 @@
                         <!-- Pagination -->
                         <nav aria-label="navigation">
                             <ul class="pagination justify-content-end mt-50">
-                                <li class="page-item active"><a class="page-link" href="#">01.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">04.</a></li>
+                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                <li class="page-item"><a class="page-link" href="#">04</a></li>
                             </ul>
                         </nav>
                     </div>

@@ -4,19 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="product/*")
-public class ProductController {
+@RequestMapping(value="member/*")
+public class MemberController {
 	
-	@RequestMapping("shop")
+	@RequestMapping("join")
 	public void shop() throws Exception{}
-	@RequestMapping("product")
+	@RequestMapping("list")
 	public void product() throws Exception{}
-	@RequestMapping("cart")
+	@RequestMapping("login")
 	public void cart() throws Exception{}
-	@RequestMapping("checkout")
+	@RequestMapping("myInfo")
 	public void checkout() throws Exception{}
-	@RequestMapping("wishList")
-	public void wishList() throws Exception{}
-	@RequestMapping("review")
-	public void review() throws Exception{}
 }

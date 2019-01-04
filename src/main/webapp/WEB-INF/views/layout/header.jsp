@@ -33,16 +33,24 @@
                     <li><a href="${pageContext.request.contextPath}/product/checkout">Checkout</a></li>
                 </ul>
             </nav>
-            <!-- Button Group -->
-            <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
-            </div>
             <!-- Cart Menu -->
-            <div class="cart-fav-search mb-100">
-                <a href="${pageContext.request.contextPath}/product/cart" class="cart-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-                <a href="#" class="fav-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/favorites.png" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""> Search</a>
+            <div class="cart-fav-search mb-70">
+                <a href="${pageContext.request.contextPath}/product/cart" class="cart-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""> 장바구니 <span>(0)</span></a>
+                <a href="${pageContext.request.contextPath}/product/wishList" class="fav-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/favorites.png" alt=""> 위시리스트</a>
+                <%-- <a href="#" class="search-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""> 검색</a> --%>
+            </div>
+            
+            <!-- Button Group -->
+            <div class="amado-btn-group mt-50 mb-100">
+                    <div class="search-content mb-15">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="검색">
+                            <button type="submit"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""></button>
+                        </form>
+                    </div>
+                <a href="${pageContext.request.contextPath}/member/login" class="btn amado-btn mb-15">로그인</a>
+                <a href="${pageContext.request.contextPath}/member/join" class="btn amado-btn mb-15">회원가입</a>
+                <a href="${pageContext.request.contextPath}/member/myInfo" class="btn amado-btn ">내 정보</a>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">
