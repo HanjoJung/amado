@@ -4,13 +4,15 @@ public class ProductDTO {
 
 	private String productCode;
 	private String productName;
+	private String productColor;
 	private int price;
 	private String kind;
 	private String contents;
 	private int hit;
 	private int sale;
 	private int good;
-	private String manufacturerCode;
+	private String brand;
+	private int stock;
 
 	public String getProductCode() {
 		return productCode;
@@ -26,6 +28,14 @@ public class ProductDTO {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+
+	public String getProductColor() {
+		return productColor;
+	}
+
+	public void setProductColor(String productColor) {
+		this.productColor = productColor;
 	}
 
 	public int getPrice() {
@@ -76,12 +86,20 @@ public class ProductDTO {
 		this.good = good;
 	}
 
-	public String getManufacturerCode() {
-		return manufacturerCode;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setManufacturerCode(String manufacturerCode) {
-		this.manufacturerCode = manufacturerCode;
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 }

@@ -24,23 +24,45 @@
 
                         <div class="cart-table clearfix">
                             <table class="table table-striped pc-table">
-                                <thead>
+                                <thead class="mb-15">
                                     <tr style=" height: 100%;">
                                         <th style="width: 15%;">ID</th>
-                                        <th style="width: 8%">이름</th>
+                                        <th style="width: 10%">이름</th>
                                         <th style="width: 13%">연락처</th>
-                                        <th style="width: 30%; max-width: none;">주소</th>
+                                        <th style="width: 28%; max-width: none;">주소</th>
                                         <th style="width: 13%">가입날짜</th>
                                         <th style="width: 11%">카카오</th>
                                         <th style="width: 11%">페이스북</th>
-                                    </tr>
+                                    </tr>	
                                 </thead>
-                                <thead>
+                                <thead class="mb-15">
                                     <tr style=" height: 100%;">
                                         <th style="width: 15%; word-break:break-word;">email@gmaile.com</th>
-                                        <th style="width: 8%">아무개</th>
+                                        <th style="width: 10%">아무개</th>
                                         <th style="width: 13%">010-9999-9999</th>
-                                        <th style="width: 30%; max-width: none;">서울특별시 종로구 999-999 상세주소도 들어가면 길이가 넘어가는데상세주소도 들어가면 길이가 넘어가는데</th>
+                                        <th style="width: 28%; max-width: none;">서울특별시 종로구 999-999 상세주소를 임시로 작성하였습니다</th>
+                                        <th style="width: 13%">2019-01-03</th>
+                                        <th style="width: 11%">연동</th>
+                                        <th style="width: 11%">비연동</th>
+									</tr>
+                                </thead>
+                                <thead class="mb-15">
+                                    <tr style=" height: 100%;">
+                                        <th style="width: 15%; word-break:break-word;">email@gmaile.com</th>
+                                        <th style="width: 10%">아무개</th>
+                                        <th style="width: 13%">010-9999-9999</th>
+                                        <th style="width: 28%; max-width: none;">서울특별시 종로구 999-999 상세주소를 임시로 작성하였습니다</th>
+                                        <th style="width: 13%">2019-01-03</th>
+                                        <th style="width: 11%">연동</th>
+                                        <th style="width: 11%">비연동</th>
+									</tr>
+                                </thead>
+                                <thead class="mb-15">
+                                    <tr style=" height: 100%;">
+                                        <th style="width: 15%; word-break:break-word;">email@gmaile.com</th>
+                                        <th style="width: 10%">아무개</th>
+                                        <th style="width: 13%">010-9999-9999</th>
+                                        <th style="width: 28%; max-width: none;">서울특별시 종로구 999-999 상세주소를 임시로 작성하였습니다</th>
                                         <th style="width: 13%">2019-01-03</th>
                                         <th style="width: 11%">연동</th>
                                         <th style="width: 11%">비연동</th>
@@ -48,7 +70,55 @@
                                 </thead>
                             </table>
                               <table class="table table-striped mobile-table">
-                                <thead>
+                                <thead class="mb-15">
+                                    <tr class="h-100">
+                                        <th class="w-20">ID</th>
+                                        <th class="w-80">email@gmaile.com</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">이름</th>
+                                        <th class="w-80">아무개</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">연락처</th>
+                                        <th class="w-80">010-9999-9999</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">주소</th>
+                                        <th class="w-80"">서울특별시 종로구 999-999 상세주소도 들어가면 길이가 넘어가는데상세주소도 들어가면 길이가 넘어가는데</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">가입날짜</th>
+                                        <th class="w-80">2019-01-03</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">카카오</th>
+                                        <th class="w-80">연동</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">페이스북</th>
+                                        <th class="w-80">비연동</th>
+                                    </tr>
+                                </thead>  
+                                <thead class="mb-15">
+                                    <tr class="h-100">
+                                        <th class="w-20">ID</th>
+                                        <th class="w-80">email@gmaile.com</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">이름</th>
+                                        <th class="w-80">아무개</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">연락처</th>
+                                        <th class="w-80">010-9999-9999</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">주소</th>
+                                        <th class="w-80"">서울특별시 종로구 999-999 상세주소도 들어가면 길이가 넘어가는데상세주소도 들어가면 길이가 넘어가는데</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">가입날짜</th>
+                                        <th class="w-80">2019-01-03</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">카카오</th>
+                                        <th class="w-80">연동</th>
+                                    </tr><tr class="h-100">
+                                        <th class="w-20">페이스북</th>
+                                        <th class="w-80">비연동</th>
+                                    </tr>
+                                </thead>  
+                                <thead class="mb-15">
                                     <tr class="h-100">
                                         <th class="w-20">ID</th>
                                         <th class="w-80">email@gmaile.com</th>

@@ -45,7 +45,6 @@
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
-                                                <p>수량</p>
                                                 <div class="quantity">
                                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                                     <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
@@ -66,7 +65,6 @@
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
-                                                <p>수량</p>
                                                 <div class="quantity">
                                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                                     <input type="number" class="qty-text" id="qty2" step="1" min="1" max="300" name="quantity" value="1">
@@ -87,7 +85,6 @@
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
-                                                <p>Qty</p>
                                                 <div class="quantity">
                                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                                     <input type="number" class="qty-text" id="qty3" step="1" min="1" max="300" name="quantity" value="1">

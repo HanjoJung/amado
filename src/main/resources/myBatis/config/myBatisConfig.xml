@@ -7,5 +7,6 @@
 	<typeAliases>
 	<typeAlias type="com.jhj.product.ProductDTO" alias="ProductDTO"/>
 	<typeAlias type="com.jhj.member.MemberDTO" alias="MemberDTO"/>
+	<typeAlias type="com.jhj.util.Pager" alias="Pager"/>
 	</typeAliases>
 </configuration>

@@ -9,4 +9,41 @@
 		select count(productCode) from product
 	</select>
 	
+	<select id="list" parameterType="Pager" resultType="ProductDTO">
+		select * from
+		(select ROWNUM R, p.* from
+		(select * from product) p )
+		where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="selectOne" parameterType="java.lang.String" resultType="ProductDTO">
+		select * from product where productCode = #{productCode}
+	</select>
+	
+	<insert id="insert" parameterType="ProductDTO">
+		insert into product values(#{productCode}, #{productName}, #{productColor}, #{price},
+		#{kind}, #{contents}, 0, 0, 0, #{brand}, 0)
+	</insert>
+	
+	<update id="update" parameterType="ProductDTO">
+		update product
+		<set>
+	  		<if test="productName != null &amp; productName != ''"> productName = #{productName},</if> 
+	  		<if test="productColor != null &amp; productColor != ''"> productColor = #{productColor},</if>
+	  		<if test="kind != null &amp; kind != ''"> kind = #{kind},</if>
+	  		<if test="contents != null &amp; contents != ''"> contents = #{contents},</if>
+	  		<if test="brand != null &amp; brand != ''"> brand = #{brand},</if>
+	  		<if test="price != null"> price = #{price},</if>
+	  		<if test="hit != null"> hit = #{hit},</if>
+	  		<if test="sale != null"> sale = #{sale},</if>
+	  		<if test="good != null"> good = #{good},</if>
+	  		<if test="stock != null"> stock = #{stock}</if> 
+		</set>
+		where productCode = #{productCode}
+	</update>
+	
+	<delete id="delete">
+		delete product where ProductCode = #{ProductCode}
+	</delete>
+	
 </mapper>
