@@ -1,6 +1,9 @@
 package com.jhj.product;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -35,5 +38,18 @@ public class ProductService {
 
 	public int delete(String productCode) throws Exception {
 		return productDAO.delete(productCode);
+	}
+
+	public List<ProductDTO> cart() throws Exception {
+		List<String> ar = new ArrayList<String>();
+		ar.add("1");
+		ar.add("2");
+		ar.add("3");
+		ar.add("4");
+		ar.add("5");
+		ar.add("6");
+		Map<String, List<String>> map = new HashMap<String, List<String>>();
+		map.put("cart", ar);
+		return productDAO.cart(map);
 	}
 }

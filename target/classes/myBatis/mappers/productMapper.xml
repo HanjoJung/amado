@@ -21,7 +21,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="ProductDTO">
-		insert into product values(#{productCode}, #{productName}, #{productColor}, #{price},
+		insert into product values(#{productCode}, #{productName}, #{price},
 		#{kind}, #{contents}, 0, 0, 0, #{brand}, 0)
 	</insert>
 	
@@ -29,7 +29,6 @@
 		update product
 		<set>
 	  		<if test="productName != null &amp; productName != ''"> productName = #{productName},</if> 
-	  		<if test="productColor != null &amp; productColor != ''"> productColor = #{productColor},</if>
 	  		<if test="kind != null &amp; kind != ''"> kind = #{kind},</if>
 	  		<if test="contents != null &amp; contents != ''"> contents = #{contents},</if>
 	  		<if test="brand != null &amp; brand != ''"> brand = #{brand},</if>
@@ -45,5 +44,13 @@
 	<delete id="delete">
 		delete product where ProductCode = #{ProductCode}
 	</delete>
+	
+	<select id="cart" parameterType="Map" resultType="ProductDTO">
+	select productCode, productName, price from product
+	where productCode in
+	<foreach collection="cart" item="code" open="(" close=")" separator=",">
+		#{code}
+	</foreach>
+	</select>
 	
 </mapper>

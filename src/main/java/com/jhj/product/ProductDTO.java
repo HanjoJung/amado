@@ -4,7 +4,6 @@ public class ProductDTO {
 
 	private String productCode;
 	private String productName;
-	private String productColor;
 	private int price;
 	private String kind;
 	private String contents;
@@ -28,14 +27,6 @@ public class ProductDTO {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-
-	public String getProductColor() {
-		return productColor;
-	}
-
-	public void setProductColor(String productColor) {
-		this.productColor = productColor;
 	}
 
 	public int getPrice() {
