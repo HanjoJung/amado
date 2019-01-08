@@ -17,10 +17,12 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping("shop")
-	public ModelAndView shop(Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("list", productService.list(pager));
-		mv.setViewName("product/shop");
+	public void shop(Pager pager) throws Exception {}
+	
+	@RequestMapping("product_area")
+	public ModelAndView product_area(Pager pager) throws Exception {
+		ModelAndView mv = productService.list(pager);
+		mv.setViewName("product/product_area");
 		return mv;
 	}
 

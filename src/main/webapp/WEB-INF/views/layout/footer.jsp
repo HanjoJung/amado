@@ -64,3 +64,5 @@ All rights reserved | This template is made with
     <script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="${pageContext.request.contextPath}/resources/js/active.js"></script>
+    
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>

@@ -1,5 +1,8 @@
 package com.jhj.util;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class Pager {
 
 	// page number
@@ -17,6 +20,8 @@ public class Pager {
 	// search
 	private String kind;
 	private String search;
+	private String sort;
+	private Map<String, ArrayList<String>> brand;
 
 	// pageing
 	private int startNum;
@@ -25,14 +30,10 @@ public class Pager {
 	private int totalBlock;
 
 	public Pager() {
-		this.perPage = 10;
-		this.perBlock = 5;
+		this.perBlock = 10;
 	}
 
 	public int getCurPage() {
-		if (curPage == 0) {
-			curPage = 1;
-		}
 		return curPage;
 	}
 
@@ -42,31 +43,21 @@ public class Pager {
 
 	public int getPerPage() {
 		if (perPage == 0) {
-			perPage = 10;
+			perPage = 8;
 		}
 		return perPage;
 	}
 
 	public void setPerPage(int perPage) {
-		if (perPage == 0) {
-			this.perPage = 10;
-		} else {
-			this.perPage = perPage;
-		}
+		this.perPage = perPage;
 	}
 
 	public int getPerBlock() {
-		if (perBlock == 0) {
-			perBlock = 5;
-		}
 		return perBlock;
 	}
 
 	public void setPerBlock(int perBlock) {
 		this.perBlock = perBlock;
-		if (this.perBlock == 0) {
-			this.perBlock = 5;
-		}
 	}
 
 	public int getStartRow() {
@@ -86,31 +77,35 @@ public class Pager {
 	}
 
 	public String getKind() {
-		if (kind == null || kind.equals("")) {
-			kind = "title";
-		}
 		return kind;
 	}
 
 	public void setKind(String kind) {
 		this.kind = kind;
-		if (this.kind == null || this.kind.equals("")) {
-			this.kind = "title";
-		}
 	}
 
 	public String getSearch() {
-		if (search == null) {
-			search = "";
-		}
 		return search;
 	}
 
 	public void setSearch(String search) {
 		this.search = search;
-		if (this.search == null) {
-			this.search = "";
-		}
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public Map<String, ArrayList<String>> getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Map<String, ArrayList<String>> brand) {
+		this.brand = brand;
 	}
 
 	public int getStartNum() {

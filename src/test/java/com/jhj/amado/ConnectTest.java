@@ -19,7 +19,8 @@ public class ConnectTest extends AbstractTestCase{
 	
 	@Test
 	public void test() throws Exception {
-		int n = dao.getCount();
+		Pager pager = new Pager();
+		int n = dao.getCount(pager);
 		assertEquals(2, n);
 	}
 

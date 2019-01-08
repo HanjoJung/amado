@@ -1,5 +1,7 @@
 package com.jhj.product;
 
+import java.sql.Date;
+
 public class ProductDTO {
 
 	private String productCode;
@@ -12,6 +14,7 @@ public class ProductDTO {
 	private int good;
 	private String brand;
 	private int stock;
+	private Date reg_data;
 
 	public String getProductCode() {
 		return productCode;
@@ -91,6 +94,14 @@ public class ProductDTO {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	public Date getReg_data() {
+		return reg_data;
+	}
+
+	public void setReg_data(Date reg_data) {
+		this.reg_data = reg_data;
 	}
 
 }

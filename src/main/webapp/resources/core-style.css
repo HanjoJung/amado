@@ -1,12 +1,12 @@
 /* [Master Stylesheet v-1.0.0] */
 /* :: :: 1.0 Import Fonts */
-@import url(../css/bootstrap.min.css);
-@import url(../css/owl.carousel.css);
-@import url(../css/animate.css);
-@import url(../css/magnific-popup.css);
-@import url(../css/jquery-ui.min.css);
-@import url(../css/nice-select.css);
-@import url(../css/font-awesome.min.css);
+@import url(./css/bootstrap.min.css);
+@import url(./css/owl.carousel.css);
+@import url(./css/animate.css);
+@import url(./css/magnific-popup.css);
+@import url(./css/jquery-ui.min.css);
+@import url(./css/nice-select.css);
+@import url(./css/font-awesome.min.css);
 
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
 	-webkit-appearance: none;
@@ -15,16 +15,15 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 
 @font-face {
   font-family: 'helveticaneuebold';
-  src: url("../fonts/helvetica_neu_bold-webfont.woff2") format("woff2"), url("../fonts/helvetica_neu_bold-webfont.woff") format("woff");
+  src: url("./fonts/helvetica_neu_bold-webfont.woff2") format("woff2"), url("../fonts/helvetica_neu_bold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'helveticaneuemedium';
-  src: url("../fonts/helveticaneue_medium-webfont.woff2") format("woff2"), url("../fonts/helveticaneue_medium-webfont.woff") format("woff");
+  src: url("./fonts/helveticaneue_medium-webfont.woff2") format("woff2"), url("../fonts/helveticaneue_medium-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-/* :: 2.0 custom CSS */
-
+/* :: 2.0 Import All CSS */
 .center{
 	text-align: center;
 }
@@ -339,17 +338,6 @@ img {
     font-size: 12px;
     color: #fff; }
 
-@media only screen and (min-width: 768px) {
-  .pc-table {
-    display: block; }
-  .mobile-table {
-    display: none; }  }
-@media only screen and (max-width: 767px) {
-  .pc-table {
-    display: none; }
-  .mobile-table {
-    display: block; } }
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .navbar {
     display: block; } }
@@ -427,18 +415,17 @@ img {
 .amado-btn {
   display: inline-block;
   min-width: 160px;
-  height: 40px;
+  height: 55px;
   color: #ffffff;
   border: none;
   border-radius: 0;
   padding: 0 7px;
-  font-size: 16px;
-  line-height: 42px;
+  font-size: 18px;
+  line-height: 56px;
   background-color: #fbb710;
-  font-weight: 400; 
-  font-weight: bold;}
+  font-weight: 400; }
   .amado-btn.active, .amado-btn:hover, .amado-btn:focus {
-    font-size: 16px;
+    font-size: 18px;
     color: #ffffff;
     background-color: #131212; }
 
@@ -630,21 +617,21 @@ img {
     @media only screen and (max-width: 767px) {
       .main-content-wrapper .header-area .social-info {
         margin-bottom: 75px; } }
-  .main-content-wrapper .products-categories-area {
+  .main-content-wrapper .products-catagories-area {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 calc(100% - 320px);
     flex: 0 0 calc(100% - 320px);
     width: calc(100% - 320px);
     max-width: calc(100% - 320px); }
     @media only screen and (min-width: 768px) and (max-width: 991px) {
-      .main-content-wrapper .products-categories-area {
+      .main-content-wrapper .products-catagories-area {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 calc(100% - 280px);
         flex: 0 0 calc(100% - 280px);
         width: calc(100% - 280px);
         max-width: calc(100% - 280px); } }
     @media only screen and (max-width: 767px) {
-      .main-content-wrapper .products-categories-area {
+      .main-content-wrapper .products-catagories-area {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
@@ -759,6 +746,8 @@ img {
           border-top: none;
           border-bottom: none;
           -webkit-box-flex: 0;
+          -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
           width: 25%;
           max-width: 25%;
           font-size: 12px;
@@ -780,6 +769,8 @@ img {
         .main-content-wrapper .cart-table-area table tbody tr td {
           border: none;
           -webkit-box-flex: 0;
+          -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
           width: 25%;
           max-width: 25%; }
           .main-content-wrapper .cart-table-area table tbody tr td h5 {
@@ -807,8 +798,7 @@ img {
                 padding: 0 10px; } }
           .main-content-wrapper .cart-table-area table tbody tr td .qty-btn .quantity {
             position: relative;
-            z-index: 1; 
-            padding: 0 10px;}
+            z-index: 1; }
             .main-content-wrapper .cart-table-area table tbody tr td .qty-btn .quantity input {
               text-align: center;
               background-color: #f5f7fa;
@@ -822,12 +812,13 @@ img {
               font-size: 14px; }
               @media only screen and (min-width: 768px) and (max-width: 991px) {
                 .main-content-wrapper .cart-table-area table tbody tr td .qty-btn .quantity input {
-                  width: 65px; } }
+                  width: 45px; } }
             .main-content-wrapper .cart-table-area table tbody tr td .qty-btn .quantity .qty-plus {
               position: absolute;
-              right: 16px;
+              right: 0;
               top: 0;
               line-height: 40px;
+              width: 20px;
               text-align: center;
               height: 40px;
               cursor: pointer;
@@ -836,6 +827,7 @@ img {
             .main-content-wrapper .cart-table-area table tbody tr td .qty-btn .quantity .qty-minus {
               position: absolute;
               top: 0;
+              right: 40px;
               line-height: 40px;
               width: 20px;
               height: 40px;
@@ -845,8 +837,7 @@ img {
               font-size: 10px; }
               @media only screen and (min-width: 768px) and (max-width: 991px) {
                 .main-content-wrapper .cart-table-area table tbody tr td .qty-btn .quantity .qty-minus {
-                }
-                   }
+                  right: 30px; } }
     .main-content-wrapper .cart-table-area .cart-summary {
       background-color: #f5f7fa;
       margin-top: 118px;
@@ -992,8 +983,7 @@ img {
         margin-bottom: 0;
         font-size: 12px;
         color: #6b6b6b;
-        line-height: 1; 
-    	}
+        line-height: 1; }
         .main-content-wrapper .single-product-area .single_product_desc .product-meta-data .avaibility i {
           color: #20d34a;
           font-size: 12px; }
@@ -1040,9 +1030,9 @@ img {
           cursor: pointer;
           color: #959595; }
       .main-content-wrapper .single-product-area .single_product_desc .cart .amado-btn {
-        width: 100%;
-        height: 60px;
-        line-height: 60px; }
+        width: 310px;
+        height: 80px;
+        line-height: 80px; }
         @media only screen and (min-width: 992px) and (max-width: 1199px) {
           .main-content-wrapper .single-product-area .single_product_desc .cart .amado-btn {
             width: 250px; } }
@@ -1055,30 +1045,30 @@ img {
 .search-wrapper-on .main-content-wrapper {
   margin-top: 260px; }
 
-.single-products-category {
+.single-products-catagory {
   position: relative;
   z-index: 1;
   width: 33.33333%;
   top: 0; }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .single-products-category {
+    .single-products-catagory {
       width: 50%; } }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .single-products-category {
+    .single-products-catagory {
       width: 100%; } }
   @media only screen and (max-width: 767px) {
-    .single-products-category {
+    .single-products-catagory {
       width: 100%; } }
   @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .single-products-category {
+    .single-products-catagory {
       width: 50%; } }
-  .single-products-category a {
+  .single-products-catagory a {
     display: block;
     width: 100%;
     height: 100%;
     position: relative;
     z-index: 10; }
-    .single-products-category a::after {
+    .single-products-catagory a::after {
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms;
       position: absolute;
@@ -1091,40 +1081,40 @@ img {
       z-index: 1;
       opacity: 0;
       visibility: visible; }
-    .single-products-category a img {
+    .single-products-catagory a img {
       width: 100%; }
-  .single-products-category .hover-content {
+  .single-products-catagory .hover-content {
     position: absolute;
     top: 40px;
     left: 40px;
     z-index: 10; }
     @media only screen and (max-width: 767px) {
-      .single-products-category .hover-content {
+      .single-products-catagory .hover-content {
         top: 30px;
         left: 30px; } }
-    .single-products-category .hover-content .line {
+    .single-products-catagory .hover-content .line {
       width: 80px;
       height: 3px;
       background-color: #fbb710;
       display: block;
       margin-bottom: 15px; }
-    .single-products-category .hover-content p {
+    .single-products-catagory .hover-content p {
       font-size: 16px;
       color: #6d6d6d;
       line-height: 1;
       margin-bottom: 5px;
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms; }
-    .single-products-category .hover-content h4 {
+    .single-products-catagory .hover-content h4 {
       margin-bottom: 0;
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms; }
-  .single-products-category:hover a::after, .single-products-category:focus a::after {
+  .single-products-catagory:hover a::after, .single-products-catagory:focus a::after {
     opacity: 1;
     visibility: visible; }
-  .single-products-category:hover .hover-content p,
-  .single-products-category:hover .hover-content h4, .single-products-category:focus .hover-content p,
-  .single-products-category:focus .hover-content h4 {
+  .single-products-catagory:hover .hover-content p,
+  .single-products-catagory:hover .hover-content h4, .single-products-catagory:focus .hover-content p,
+  .single-products-catagory:focus .hover-content h4 {
     color: #fff; }
 
 /* :: 6.0 Newsletter Area CSS */
@@ -1387,14 +1377,15 @@ img {
         .widget.color .widget-desc ul li a.color8 {
           background-color: #9a8777; }
   .widget.brands .form-check {
-      cursor: pointer; }
-    .widget.brands .form-check .form-check-label {
+    margin-bottom: 20px; }
+    .widget.brands .form-check label {
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms;
       font-size: 16px;
       color: #959595;
-      font-weight: 400;}
-      .widget.brands .form-check .form-check-label:hover {
+      font-weight: 400;
+      cursor: pointer; }
+      .widget.brands .form-check label:hover {
         color: #fbb710; }
     .widget.brands .form-check:last-child {
       margin-bottom: 0; }

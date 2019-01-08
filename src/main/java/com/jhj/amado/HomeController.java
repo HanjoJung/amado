@@ -48,5 +48,7 @@ public class HomeController {
 	public String footer() {
 		return "layout/footer";
 	}
+	@RequestMapping(value="/test")
+	public void test() {}
 	
 }

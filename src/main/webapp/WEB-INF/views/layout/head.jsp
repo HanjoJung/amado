@@ -16,4 +16,6 @@
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/coreStyle.css">
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>

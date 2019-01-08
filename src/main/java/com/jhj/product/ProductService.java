@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jhj.util.Pager;
 
@@ -17,11 +18,14 @@ public class ProductService {
 	@Inject
 	private ProductDAO productDAO;
 
-	public List<ProductDTO> list(Pager pager) throws Exception {
-		int totalCount = productDAO.getCount();
-		pager.makePage(totalCount);
+	public ModelAndView list(Pager pager) throws Exception {
 		pager.makeRow();
-		return productDAO.list(pager);
+		pager.makePage(productDAO.getCount(pager));
+		System.out.println(pager.getKind());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pager", pager);
+		mv.addObject("list", productDAO.list(pager));
+		return mv;
 	}
 
 	public ProductDTO selectOne(String productCode) throws Exception {

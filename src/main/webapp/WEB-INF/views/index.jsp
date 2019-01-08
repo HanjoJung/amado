@@ -14,12 +14,12 @@
     
     <c:import url="${pageContext.request.contextPath}/layout/header"/>
 
-        <!-- Product Catagories Area Start -->
-        <div class="products-catagories-area clearfix">
-            <div class="amado-pro-catagory clearfix">
+        <!-- Product categories Area Start -->
+        <div class="products-categories-area clearfix">
+            <div class="amado-pro-category clearfix">
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/1.jpg" alt="">
                         <!-- Hover Content -->
@@ -31,8 +31,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/2.jpg" alt="">
                         <!-- Hover Content -->
@@ -44,8 +44,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/3.jpg" alt="">
                         <!-- Hover Content -->
@@ -57,8 +57,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/4.jpg" alt="">
                         <!-- Hover Content -->
@@ -70,8 +70,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/5.jpg" alt="">
                         <!-- Hover Content -->
@@ -83,8 +83,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/6.jpg" alt="">
                         <!-- Hover Content -->
@@ -96,8 +96,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/7.jpg" alt="">
                         <!-- Hover Content -->
@@ -109,8 +109,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/8.jpg" alt="">
                         <!-- Hover Content -->
@@ -122,8 +122,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                <!-- Single category -->
+                <div class="single-products-category clearfix">
                     <a href="shop.html">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/9.jpg" alt="">
                         <!-- Hover Content -->
@@ -136,7 +136,7 @@
                 </div>
             </div>
         </div>
-        <!-- Product Catagories Area End -->
+        <!-- Product categories Area End -->
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
 <c:import url="${pageContext.request.contextPath}/layout/footer"/>

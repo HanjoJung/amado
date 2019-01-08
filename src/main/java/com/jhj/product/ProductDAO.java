@@ -1,6 +1,5 @@
 package com.jhj.product;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,8 +16,8 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private String NAMESPACE = "productMapper.";
 
-	public int getCount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getCount");
+	public int getCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getCount", pager);
 	}
 
 	public List<ProductDTO> list(Pager pager) throws Exception {
