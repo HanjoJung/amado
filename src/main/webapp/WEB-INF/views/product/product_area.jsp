@@ -31,7 +31,7 @@
 				<div class="ratings-cart text-right">
 					<div class="ratings-review">
 						<div class="ratings"></div>
-						<div class="ratings-active"></div>
+						<div class="ratings-active" style="width: ${dto.score}%"></div>
 					</div>
 					<div class="cart">
 						<a href="cart.html" data-toggle="tooltip" data-placement="left"

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="reviewMapper">
+
+	<select id="getCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(num) from review
+		where productCode = #{productCode}
+	</select>
+	
+	<select id="list" parameterType="HashMap" resultType="ReviewDTO">
+		select * from
+			(select rownum R, r.* from
+				(select * from review
+				where productCode = #{productCode}
+				order by num desc) r
+			)
+		where R between #{pager.startRow} and #{pager.lastRow}
+	</select>
+	
+	<insert id="insert" parameterType="ReviewDTO">
+		insert into review 
+		values(review_seq.nextval, #{productCode}, #{title}, #{contents}, #{score}, #{writer}, sysdate)
+	</insert>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete review where 
+		num = #{num}
+	</delete>
+	
+</mapper>

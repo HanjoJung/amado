@@ -15,6 +15,7 @@ public class ProductDTO {
 	private String brand;
 	private int stock;
 	private Date reg_data;
+	private int score;
 
 	public String getProductCode() {
 		return productCode;
@@ -102,6 +103,14 @@ public class ProductDTO {
 
 	public void setReg_data(Date reg_data) {
 		this.reg_data = reg_data;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 }

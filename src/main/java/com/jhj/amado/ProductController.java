@@ -29,7 +29,7 @@ public class ProductController {
 	@RequestMapping("product")
 	public ModelAndView product(String productCode) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("productDTO", productService.selectOne("1"));
+		mv.addObject("productDTO", productService.selectOne(productCode));
 		mv.setViewName("product/product");
 		return mv;
 	}

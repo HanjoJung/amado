@@ -1,4 +1,4 @@
-/*package com.jhj.util;
+package com.jhj.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,4 +51,3 @@ public class FileDown extends AbstractView {
 	}
 
 }
-*/

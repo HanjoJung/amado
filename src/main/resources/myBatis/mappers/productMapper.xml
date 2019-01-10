@@ -9,44 +9,49 @@
 		select count(productCode) from product
 		where
 			<if test="brand  != null"> brand in 
-				<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> 
-			AND 
+				<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> AND 
 			</if>
-			(productCode like '%'||#{search}||'%' or
-			productName like '%'||#{search}||'%') 
+			(productCode like '%'||#{search}||'%' or productName like '%'||#{search}||'%') 
 			<if test="kind != null and kind != ''">and kind = #{kind} </if>
 	</select>
 	
 	<select id="list" parameterType="Pager" resultType="ProductDTO">
 		select * from
 			(select ROWNUM R, p.* from
-			(select productCode, productName, price, kind from product 
-			where
-				<if test="brand  != null and brand  != ''"> brand in 
-					<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> 
-				AND 
-				</if>
-				(productCode like '%'||#{search}||'%' or
-				productName like '%'||#{search}||'%') 
-				<if test="kind != null and kind != ''">and kind = #{kind} </if>
-				order by 
-			<choose>
-				<when test="sort == 'priceAsc'"> price asc, </when>
-				<when test="sort == 'priceDesc'"> price desc, </when>
-				<when test="sort == 'good'"> good desc, </when>
-			</choose>
-			reg_date desc
-			) p )
+				(select productCode, productName, price, kind, score from 
+					(select * from product 
+					where
+					<if test="brand  != null and brand  != ''"> brand in 
+						<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> AND 
+					</if>
+					(productCode like '%'||#{search}||'%' or productName like '%'||#{search}||'%') 
+					<if test="kind != null and kind != ''">and kind = #{kind} </if>
+					order by 
+					<choose>
+						<when test="sort == 'priceAsc'"> price asc, </when>
+						<when test="sort == 'priceDesc'"> price desc, </when>
+						<when test="sort == 'good'"> good desc, </when>
+					</choose>
+					reg_date desc)
+					left join 
+					(select avg(score)*20 score, productcode from review group by productcode) 
+					using (productCode)
+				) p 
+			)
 		where R between #{startRow} and #{lastRow}
 	</select>
 	
 	<select id="selectOne" parameterType="java.lang.String" resultType="ProductDTO">
-		select * from product where productCode = #{productCode}
+		select * from (select * from product) p
+		left join 
+		(select avg(score)*20 score, productCode from review group by productCode)r 
+		using (productCode)
+		where productCode = #{productCode}
 	</select>
 	
 	<insert id="insert" parameterType="ProductDTO">
-		insert into product values(#{productCode}, #{productName}, #{price},
-		#{kind}, #{contents}, 0, 0, 0, #{brand}, 0, sysdate)
+		insert into product 
+		values(#{productCode}, #{productName}, #{price}, #{kind}, #{contents}, 0, 0, 0, #{brand}, 0, sysdate)
 	</insert>
 	
 	<update id="update" parameterType="ProductDTO">
@@ -66,15 +71,14 @@
 	</update>
 	
 	<delete id="delete">
-		delete product where ProductCode = #{ProductCode}
+		delete product 
+		where ProductCode = #{ProductCode}
 	</delete>
 	
 	<select id="cart" parameterType="Map" resultType="ProductDTO">
 	select productCode, productName, price from product
 	where productCode in
-	<foreach collection="cart" item="code" open="(" close=")" separator=",">
-		#{code}
-	</foreach>
+	<foreach collection="cart" item="code" open="(" close=")" separator=","> #{code} </foreach>
 	</select>
 	
 </mapper>
