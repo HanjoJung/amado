@@ -1,8 +1,5 @@
 package com.jhj.util;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 public class Pager {
 
 	// page number
@@ -21,7 +18,7 @@ public class Pager {
 	private String kind;
 	private String search;
 	private String sort;
-	private Map<String, ArrayList<String>> brand;
+	private String[] brand;
 
 	// pageing
 	private int startNum;
@@ -103,11 +100,11 @@ public class Pager {
 		this.sort = sort;
 	}
 
-	public Map<String, ArrayList<String>> getBrand() {
+	public String[] getBrand() {
 		return brand;
 	}
 
-	public void setBrand(Map<String, ArrayList<String>> brand) {
+	public void setBrand(String[] brand) {
 		this.brand = brand;
 	}
 

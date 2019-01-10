@@ -18,7 +18,7 @@
 	<select id="list" parameterType="Pager" resultType="ProductDTO">
 		select * from
 			(select ROWNUM R, p.* from
-				(select productCode, productName, price, kind, score from 
+				(select productCode, productName, price, kind, score, good, reg_date from 
 					(select * from product 
 					where
 					<if test="brand  != null and brand  != ''"> brand in 
@@ -26,16 +26,17 @@
 					</if>
 					(productCode like '%'||#{search}||'%' or productName like '%'||#{search}||'%') 
 					<if test="kind != null and kind != ''">and kind = #{kind} </if>
+					)
+					left join 
+					(select avg(score)*20 score, productcode from review group by productcode) 
+					using (productCode)
 					order by 
 					<choose>
 						<when test="sort == 'priceAsc'"> price asc, </when>
 						<when test="sort == 'priceDesc'"> price desc, </when>
 						<when test="sort == 'good'"> good desc, </when>
 					</choose>
-					reg_date desc)
-					left join 
-					(select avg(score)*20 score, productcode from review group by productcode) 
-					using (productCode)
+					reg_date desc
 				) p 
 			)
 		where R between #{startRow} and #{lastRow}

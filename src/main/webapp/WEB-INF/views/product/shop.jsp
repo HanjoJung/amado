@@ -7,30 +7,31 @@
 <head>
 <c:import url="${pageContext.request.contextPath}/layout/head" />
 <script type="text/javascript">
-function product_list() {
-	$.ajax({
-		url : "./product_area",
-		data : {
+	function product_list() {
+			jQuery.ajaxSettings.traditional = true;
+
+		$.ajax({
+			url : "./product_area",
+			data : {
 				curPage : dataCurPage,
 				perPage : dataView,
 				sort : dataSort,
 				kind : dataCategorie,
 				search : dataSearch,
-				/* brand : dataBrand */
+				brand : dataBrand
 			}, 
-		success : function(data) {
-			$(".product-area").html(data);
-		}
-	})
-}
+			success : function(data) {
+				$(".product-area").html(data);
+			}
+		})
+	}
 	$(function() {
 		dataCurPage = 1;
 		dataView = 8;
 		dataSort = "";
 		dataCategorie = "";
 		dataSearch = "";
-		arr = []
-		dataBrand = {"brand": arr};
+		dataBrand = [];
 		
 		product_list();
 		
@@ -47,33 +48,52 @@ function product_list() {
 		
 		$("#sortBydate + .nice-select .list .option").click(function() {
 			dataSort = $(this).attr("data-value");
+			console.log(dataSort)
 			product_list();
 		})
 
 		$(".categorie").click(function() {
-			datacategorie = $(this).attr("data-categorie");
+			dataCategorie = $(this).attr("data-categorie");
 			product_list();
 			$(".categories-menu .active").attr("class","");
 			$(this).parent().attr("class","active");
 		})
 		
-	/* 	$(".form-check").click(function() {
-			var temp = $(this).children(".form-check-input").attr("id");
-			console.log(dataBrand);
-			console.log(dataBrand.employees(0));
-			console.log(dataBrand.employees(0).indexOf(temp));
-			if(dataBrand.get("brand").indexOf(temp) == -1){
-				dataBrand.get("brand").push(temp);
+		$("#BrandAll").click(function() {
+			if($("#BrandAll").prop("checked")){
+				$(".form-check-input").prop("checked", true);
+			}else{
+				$(".form-check-input").prop("checked", false);
 			}
-			
-			$.each(dataBrand, function(index, value) {
-				console.log(value);
+		})
+		
+		$(".form-check-input").click(function() {
+				var check = true;
+				$("#BrandAll").prop("checked", true);
+			$(".form-check-input").each(function() {
+				if(!$(this).prop("checked")){
+					check = false;
+				}
+				if(!check){
+					$("#BrandAll").prop("checked", false);
+					return false;
+				}
 			})
+		})
+		
+		$(".form-check").click(function() {
+			dataBrand = [];
+			$(".form-check-input").each(function() {
+				if($(this).prop("checked")){
+					dataBrand.push($(this).attr("id"));
+				}
+			})
+			console.log(dataBrand);
 			product_list();
-		}) */
+		}) 
 		
 	})
-	</script>
+</script>
 </head>
 
 <body>
@@ -110,6 +130,11 @@ function product_list() {
 				<h6 class="widget-title mb-30">브랜드</h6>
 
 				<div class="widget-desc">
+					<!-- Single Form Check -->
+					<div class="form-check mb-15">
+						<input class="form-check-input" type="checkbox" id="BrandAll">
+						<label class="form-check-label" for="BrandAll">ALL</label>
+					</div>
 					<!-- Single Form Check -->
 					<div class="form-check mb-15">
 						<input class="form-check-input" type="checkbox" id="Amado">
