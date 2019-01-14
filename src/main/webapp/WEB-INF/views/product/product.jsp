@@ -47,8 +47,9 @@ $(function() {
 				contents : $("#contents").val(),
 				score : $(".icon-star.active:last").attr("data-value")
 			},
-			success : function(review) {
-				$(".review-view").html(review);
+			success : function(result) {
+				alert(result);
+				review();
 			}
 		})
 		$("#title").val("");
@@ -192,7 +193,7 @@ $(function() {
 						<h4>리뷰</h4>
 						<form class="form-review col-12">
 							<input type="hidden" class="form-control" id="writer"
-								value="temp${member.name}">
+								value="temp@gmeil.com${member.name}">
 							<div class="col-12 mt-3">
 								<div class="rating-star" id="score">
 									<div data-value="1" data-message="별로에요."

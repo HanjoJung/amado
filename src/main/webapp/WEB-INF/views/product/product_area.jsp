@@ -45,26 +45,37 @@
 	</div>
 	<!-- Single Product Area End -->
 </c:forEach>
+<c:if test="${empty list}">
+	<div class="col-12" style="text-align: center;">
+		<h4 style="line-height: 10;">상품이 없습니다</h4>
+	</div>
+</c:if>
 
-<div class="col-12">
-						<!-- Pagination -->
-						<nav aria-label="navigation">
-							<ul class="pagination justify-content-end mt-50">
-							
-								<c:if test="${pager.curBlock > 1}">
-									<li class="page-item"><a class="page-link" data-curPage="${pager.startNum-1}">◀</a></li>
-								</c:if>
-								<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-									<c:if test="${pager.curPage eq i}">
-										<li class="page-item active"><a class="page-link" data-curPage="${i}">${i}</a></li>
-									</c:if>
-									<c:if test="${pager.curPage ne i}">
-										<li class="page-item"><a class="page-link" data-curPage="${i}">${i}</a></li>
-									</c:if>
-								</c:forEach>
-								<c:if test="${pager.curBlock<pager.totalBlock}">
-									<li class="page-item"><a class="page-link" data-curPage="${pager.lastNum+1}">▶</a></li>
-		`						</c:if>
-							</ul>
-						</nav>
-					</div>
+<c:if test="${not empty list}">
+	<div class="col-12">
+		<!-- Pagination -->
+		<nav aria-label="navigation">
+			<ul class="pagination justify-content-end mt-50">
+
+				<c:if test="${pager.curBlock > 1}">
+					<li class="page-item"><a class="page-link"
+						data-curPage="${pager.startNum-1}">◀</a></li>
+				</c:if>
+				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+					<c:if test="${pager.curPage eq i}">
+						<li class="page-item active"><a class="page-link"
+							data-curPage="${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${pager.curPage ne i}">
+						<li class="page-item"><a class="page-link"
+							data-curPage="${i}">${i}</a></li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pager.curBlock<pager.totalBlock}">
+					<li class="page-item"><a class="page-link"
+						data-curPage="${pager.lastNum+1}">▶</a></li>
+				</c:if>
+			</ul>
+		</nav>
+	</div>
+</c:if>

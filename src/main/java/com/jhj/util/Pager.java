@@ -19,6 +19,8 @@ public class Pager {
 	private String search;
 	private String sort;
 	private String[] brand;
+	private int minPrice;
+	private int maxPrice;
 
 	// pageing
 	private int startNum;
@@ -106,6 +108,22 @@ public class Pager {
 
 	public void setBrand(String[] brand) {
 		this.brand = brand;
+	}
+
+	public int getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	public int getMaxPrice() {
+		return maxPrice;
+	}
+
+	public void setMaxPrice(int maxPrice) {
+		this.maxPrice = maxPrice;
 	}
 
 	public int getStartNum() {

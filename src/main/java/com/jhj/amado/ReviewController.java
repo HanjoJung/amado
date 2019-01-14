@@ -26,14 +26,14 @@ public class ReviewController {
 	@RequestMapping("insert")
 	public ModelAndView insert(ReviewDTO reviewDTO) throws Exception {
 		ModelAndView mv = reviewService.insert(reviewDTO);
-		mv.setViewName("redirect:review/list");
+		mv.setViewName("common/result");
 		return mv;
 	}
 	
 	@RequestMapping("delete")
 	public ModelAndView delete(int num) throws Exception {
 		ModelAndView mv = reviewService.delete(num);
-		mv.setViewName("redirect:review/list");
+		mv.setViewName("common/result");
 		return mv;
 	}
 }

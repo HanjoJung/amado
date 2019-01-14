@@ -8,8 +8,7 @@
 <c:import url="${pageContext.request.contextPath}/layout/head" />
 <script type="text/javascript">
 	function product_list() {
-			jQuery.ajaxSettings.traditional = true;
-
+		jQuery.ajaxSettings.traditional = true;
 		$.ajax({
 			url : "./product_area",
 			data : {
@@ -18,13 +17,16 @@
 				sort : dataSort,
 				kind : dataCategorie,
 				search : dataSearch,
-				brand : dataBrand
+				brand : dataBrand,
+				minPrice : dataMinPrice,
+				maxPrice : dataMaxPrice
 			}, 
 			success : function(data) {
 				$(".product-area").html(data);
 			}
 		})
-	}
+	};
+	
 	$(function() {
 		dataCurPage = 1;
 		dataView = 8;
@@ -32,6 +34,8 @@
 		dataCategorie = "";
 		dataSearch = "";
 		dataBrand = [];
+		dataMinPrice = 10000;
+		dataMaxPrice = 1000000;
 		
 		product_list();
 		
@@ -39,25 +43,24 @@
 			dataCurPage = $(this).attr("data-curPage");
 			product_list();
 			$('body,html').animate({ scrollTop: 0 }, 0);
-		})
+		});
 		
 		$("#viewProduct + .nice-select .list .option").click(function() {
 			dataView = $(this).attr("data-value");
 			product_list();
-		})
+		});
 		
 		$("#sortBydate + .nice-select .list .option").click(function() {
 			dataSort = $(this).attr("data-value");
-			console.log(dataSort)
 			product_list();
-		})
+		});
 
 		$(".categorie").click(function() {
 			dataCategorie = $(this).attr("data-categorie");
 			product_list();
 			$(".categories-menu .active").attr("class","");
 			$(this).parent().attr("class","active");
-		})
+		});
 		
 		$("#BrandAll").click(function() {
 			if($("#BrandAll").prop("checked")){
@@ -65,7 +68,7 @@
 			}else{
 				$(".form-check-input").prop("checked", false);
 			}
-		})
+		});
 		
 		$(".form-check-input").click(function() {
 				var check = true;
@@ -79,7 +82,7 @@
 					return false;
 				}
 			})
-		})
+		});
 		
 		$(".form-check").click(function() {
 			dataBrand = [];
@@ -88,11 +91,39 @@
 					dataBrand.push($(this).attr("id"));
 				}
 			})
-			console.log(dataBrand);
 			product_list();
-		}) 
+		});
 		
-	})
+	
+    // :: 11.0 Slider Range Price Active Code
+    $('.slider-range-price').each(function () {
+        var min = jQuery(this).data('min');
+        var max = jQuery(this).data('max');
+        var unit = jQuery(this).data('unit');
+        var value_min = jQuery(this).data('value-min');
+        var value_max = jQuery(this).data('value-max');
+        var label_result = jQuery(this).data('label-result');
+        var t = $(this);
+        $(this).slider({
+            range: true,
+            min: min,
+            max: max,
+            values: [value_min, value_max],
+            slide: function (event, ui) {
+                var result = label_result + " "+ ui.values[0]  + unit + ' - ' + ui.values[1] + unit;
+        		dataMinPrice = ui.values[0]*10000;
+        		dataMaxPrice = ui.values[1]*10000;
+                t.closest('.slider-range').find('.range-price').html(result);
+                t.closest('.slider-range').find('.range-price-value').val(result);
+            }
+        });
+    });
+    
+     $(".price, .shop_sidebar_area").mouseleave(function() {
+    	product_list();
+	}) 
+		
+	});
 </script>
 </head>
 
@@ -152,12 +183,12 @@
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check mb-15">
-						<input class="form-check-input" type="checkbox" id="The factory" checked="checked">
+						<input class="form-check-input" type="checkbox" id="The factory">
 						<label class="form-check-label" for="The factory">The factory</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check mb-15">
-						<input class="form-check-input" type="checkbox" id="Artdeco" checked="checked">
+						<input class="form-check-input" type="checkbox" id="Artdeco">
 						<label class="form-check-label" for="Artdeco">Artdeco</label>
 					</div>
 				</div>
@@ -167,19 +198,23 @@
 			<div class="widget price mb-50">
 				<!-- Widget Title -->
 				<h6 class="widget-title mb-30">가격</h6>
-
 				<div class="widget-desc">
 					<div class="slider-range">
-						<div data-min="10" data-max="1000" data-unit="$"
-							class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-							data-value-min="10" data-value-max="1000" data-label-result="">
+						<div 
+						class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+						data-min="1" 
+						data-max="100" 
+						data-unit="만원"
+						data-value-min="1" 
+						data-value-max="100" 
+						data-label-result="">
 							<div class="ui-slider-range ui-widget-header ui-corner-all"></div>
 							<span class="ui-slider-handle ui-state-default ui-corner-all"
 								tabindex="0"></span> <span
 								class="ui-slider-handle ui-state-default ui-corner-all"
 								tabindex="0"></span>
 						</div>
-						<div class="range-price">$10 - $1000</div>
+						<div class="range-price">1만원 - 100만원</div>
 					</div>
 				</div>
 			</div>
@@ -208,7 +243,7 @@
 											<option value="default">최신순</option>
 											<option value="priceAsc">낮은 가격순</option>
 											<option value="priceDesc">높은 가격순</option>
-											<option value="good">추천순</option>
+											<option value="score">높은 점수순</option>
 										</select>
 								</div>
 								<div class="view-product d-flex align-items-center">

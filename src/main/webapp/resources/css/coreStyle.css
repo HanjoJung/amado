@@ -1398,10 +1398,11 @@ img {
   .widget .categories-menu li a {
     text-transform: capitalize;
     font-size: 16px;
-    padding: 12px 0 12px 20px;
+    padding: 10px 0 10px 20px;
     display: block;
     font-weight: 400;
-    color: #959595; }
+    color: #959595; 
+    cursor: pointer;}
     .widget .categories-menu li a:hover, .widget .categories-menu li a:focus {
       color: #fbb710; }
   .widget .categories-menu li.active a {
@@ -1470,7 +1471,8 @@ img {
       transition-duration: 500ms;
       font-size: 16px;
       color: #959595;
-      font-weight: 400;}
+      font-weight: 400;
+      cursor: pointer;}
       .widget.brands .form-check .form-check-label:hover {
         color: #fbb710; }
     .widget.brands .form-check:last-child {

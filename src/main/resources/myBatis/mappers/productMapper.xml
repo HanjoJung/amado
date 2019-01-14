@@ -7,12 +7,13 @@
 
 	<select id="getCount" parameterType="Pager" resultType="java.lang.Integer">
 		select count(productCode) from product
-		where
+		where 
 			<if test="brand  != null"> brand in 
 				<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> AND 
 			</if>
 			(productCode like '%'||#{search}||'%' or productName like '%'||#{search}||'%') 
 			<if test="kind != null and kind != ''">and kind = #{kind} </if>
+			and price between #{minPrice} and #{maxPrice}
 	</select>
 	
 	<select id="list" parameterType="Pager" resultType="ProductDTO">
@@ -20,7 +21,8 @@
 			(select ROWNUM R, p.* from
 				(select productCode, productName, price, kind, score, good, reg_date from 
 					(select * from product 
-					where
+					where price between #{minPrice} and #{maxPrice}
+					and
 					<if test="brand  != null and brand  != ''"> brand in 
 						<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> AND 
 					</if>
@@ -34,7 +36,7 @@
 					<choose>
 						<when test="sort == 'priceAsc'"> price asc, </when>
 						<when test="sort == 'priceDesc'"> price desc, </when>
-						<when test="sort == 'good'"> good desc, </when>
+						<when test="sort == 'score'"> score desc NULLS LAST, </when>
 					</choose>
 					reg_date desc
 				) p 

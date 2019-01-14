@@ -16,6 +16,12 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private String NAMESPACE = "productMapper.";
 
+	public int maxPrice(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "maxPrice", pager);
+	}
+	public int minPrice(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "minPrice", pager);
+	}
 	public int getCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getCount", pager);
 	}

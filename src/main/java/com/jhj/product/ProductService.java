@@ -19,12 +19,12 @@ public class ProductService {
 	private ProductDAO productDAO;
 
 	public ModelAndView list(Pager pager) throws Exception {
-		System.out.println(pager.getBrand());
 		pager.makeRow();
 		pager.makePage(productDAO.getCount(pager));
 		ModelAndView mv = new ModelAndView();
+		List<ProductDTO> list = productDAO.list(pager);
 		mv.addObject("pager", pager);
-		mv.addObject("list", productDAO.list(pager));
+		mv.addObject("list", list);
 		return mv;
 	}
 
