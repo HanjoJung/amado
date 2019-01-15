@@ -13,15 +13,16 @@ $(function() {
 		if(comparison){
 			data.next(".message").css({display : "none"});	
 			data.next(".message").attr("class", "message");
-			return true;
+			return false;
 		}else{
 			data.next(".message").css({display : "block"});
 			data.next(".message").attr("class", "message focus");
 			data.next(".message").text(message);
-			return false;
+			return true;
 		}
 	};
 	
+	resultId = true;
 	function checkId() {
 		data = $("#id");
 		$.ajax({
@@ -31,7 +32,7 @@ $(function() {
 			},
 			success : function(result) {
 				result = result.trim();
-				return check(data, result.length == 0, result);
+				resultId = check(data, result.length == 0, result);
 			}
 		})
 	};
@@ -61,19 +62,20 @@ $(function() {
 	function submitForm() {
 		var checkForm = true;
 		$(".form-control").each(function() {
-			if(!checkNull($(this))){
+			if(checkNull($(this))){
 				checkForm = false;
-			}else if(!checkPattern($(this))){
+			}else if(checkPattern($(this))){
 				checkForm = false;
 			}
 		})
 		if(checkForm){
-			if(checkPassword() && checkClause() && checkId()){
+			if(checkPassword() || checkClause() || resultId){
 				checkForm = false;
+				checkId();
 			}
 		}
 		if(checkForm){
-			console.log("success");
+			$(".join-form").submit();
 		}else{
 			$(".focus:first").prev().focus();
 		}
@@ -155,7 +157,7 @@ $(function() {
 										<p class="message"></p>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="number" class="form-control" 
+                                        <input type="text" class="form-control" 
                                         name="phone" placeholder="전화번호 ( - 없이)" draggable="false"
 										data-parsley-pattern="^(01[0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$"
 										data-parsley-message="-없이 번호로만 전부 입력해주세요.">

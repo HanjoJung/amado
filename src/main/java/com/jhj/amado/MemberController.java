@@ -1,6 +1,7 @@
 package com.jhj.amado;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public ModelAndView shop(MemberDTO memberDTO) throws Exception {
-		ModelAndView mv = memberService.join(memberDTO);
+	public ModelAndView shop(MemberDTO memberDTO, HttpSession session) throws Exception {
+		ModelAndView mv = memberService.join(memberDTO, session);
 		mv.setViewName("redirect:/");
 		return mv;
 	}

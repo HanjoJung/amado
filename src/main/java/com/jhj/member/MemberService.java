@@ -1,6 +1,7 @@
 package com.jhj.member;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,12 +34,13 @@ public class MemberService {
 		return mv;
 	}
 
-	public ModelAndView join(MemberDTO memberDTO) throws Exception {
+	public ModelAndView join(MemberDTO memberDTO, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String msg = "가입하지 못하였습니다.";
 		int result = memberDAO.join(memberDTO);
 		if(result > 0) {
-			msg = "amado에 가입하신걸 축하합니다.";
+			msg = "amado에 가입하신걸 환영합니다 " + memberDTO.getName() + "님";
+			session.setAttribute("member", memberDTO);
 		}
 		mv.addObject("msg", msg);
 		return mv;
