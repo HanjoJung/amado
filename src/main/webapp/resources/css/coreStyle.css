@@ -1576,6 +1576,12 @@ img {
   padding: 30px;
   color: #6b6b6b;
   font-size: 14px; }
+.checkout_details_area form .message{
+    color: red;
+    margin: 2px 30px -14px;
+    font-size: 11px;
+    display: none;
+}
 .checkout_details_area form textarea.form-control {
   height: 210px; }
 .checkout_details_area form .custom-control label {

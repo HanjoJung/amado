@@ -8,8 +8,8 @@ public class MemberDTO {
 	private String phone;
 	private String address;
 	private String join_date;
-	private String kakaoID;
-	private String facebookID;
+	private String kakao;
+	private String facebook;
 
 	public String getId() {
 		return id;
@@ -59,19 +59,25 @@ public class MemberDTO {
 		this.join_date = join_date;
 	}
 
-	public String getKakaoID() {
-		return kakaoID;
+	public String getKakao() {
+		if(kakao==null) {
+			kakao="";
+		}
+		return kakao;
 	}
 
-	public void setKakaoID(String kakaoID) {
-		this.kakaoID = kakaoID;
+	public void setKakao(String kakao) {
+		this.kakao = kakao;
 	}
 
-	public String getFacebookID() {
-		return facebookID;
+	public String getFacebook() {
+		if(facebook==null) {
+			facebook="";
+		}
+		return facebook;
 	}
 
-	public void setFacebookID(String facebookID) {
-		this.facebookID = facebookID;
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
 	}
 }

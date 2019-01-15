@@ -49,6 +49,8 @@ public class HomeController {
 		return "layout/footer";
 	}
 	@RequestMapping(value="*/common/result")
-	public void result() {}
+	public String result() {
+		return "common/result";
+	}
 	
 }

@@ -97,12 +97,12 @@
 	
     // :: 11.0 Slider Range Price Active Code
     $('.slider-range-price').each(function () {
-        var min = jQuery(this).data('min');
-        var max = jQuery(this).data('max');
-        var unit = jQuery(this).data('unit');
-        var value_min = jQuery(this).data('value-min');
-        var value_max = jQuery(this).data('value-max');
-        var label_result = jQuery(this).data('label-result');
+        var min = $(this).data('min');
+        var max = $(this).data('max');
+        var unit = $(this).data('unit');
+        var value_min = $(this).data('value-min');
+        var value_max = $(this).data('value-max');
+        var label_result = $(this).data('label-result');
         var t = $(this);
         $(this).slider({
             range: true,
@@ -119,7 +119,10 @@
         });
     });
     
-     $(".price, .shop_sidebar_area").mouseleave(function() {
+     $(".price").mouseleave(function() {
+    	product_list();
+	}) 
+     $(".ui-slider-handle").mouseup(function() {
     	product_list();
 	}) 
 		

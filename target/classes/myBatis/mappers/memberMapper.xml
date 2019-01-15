@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="memberMapper">
+
+	<select id="getCount" parameterType="Pager" resultType="java.lang.Integer">
+		select count(id) from member
+	</select>
+	
+	<select id="list" parameterType="Pager" resultType="MemberDTO">
+		select * from
+			(select ROWNUM R, m.* from
+				(select * from 
+					order by join_date desc
+				) m 
+			)
+		where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from member
+		where id = #{id} and password = #{password} 
+			or id = #{id} and kakao = #{kakao} 
+			or id = #{id} and facebook = #{facebook}
+	</select>
+
+	<select id="selectOne" parameterType="java.lang.String" resultType="MemberDTO">
+		select * from member
+		where id = #{id}
+	</select>
+	
+	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(id) from member
+		where id = #{id}
+	</select>
+	
+	<insert id="join" parameterType="MemberDTO">
+		insert into member 
+		values(#{id}, #{password}, #{name}, #{phone}, #{address}, sysdate, #{kakao}, #{facebook})
+	</insert>
+	
+	<update id="update" parameterType="MemberDTO">
+		update member
+		<set>
+	  		<if test="password != null and password != ''"> password = #{password},</if> 
+	  		<if test="name != null and name != ''"> name = #{name},</if>
+	  		<if test="phone != null and phone != ''"> phone = #{phone},</if>
+	  		<if test="address != null and address != ''"> address = #{address},</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete member
+		where id = #{id}
+	</delete>
+	
+</mapper>
