@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:forEach items="#{list}" var="dto">
+<c:forEach items="${list}" var="dto">
 	<!-- Single Product Area -->
 	<div class="col-12 col-sm-6 col-md-12 col-xl-6">
 		<div class="single-product-wrapper">

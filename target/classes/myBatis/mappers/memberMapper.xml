@@ -12,7 +12,7 @@
 	<select id="list" parameterType="Pager" resultType="MemberDTO">
 		select * from
 			(select ROWNUM R, m.* from
-				(select * from 
+				(select * from member
 					order by join_date desc
 				) m 
 			)
@@ -21,9 +21,12 @@
 	
 	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
 		select * from member
-		where id = #{id} and password = #{password} 
-			or id = #{id} and kakao = #{kakao} 
-			or id = #{id} and facebook = #{facebook}
+		where id = #{id}
+		<choose>
+			<when test="kakao != null and kakao != ''"> and kakao = #{kakao} </when>
+			<when test="facebook != null and facebook != ''"> and facebook = #{facebook} </when>
+			<otherwise> and password = #{password} </otherwise>
+		</choose>
 	</select>
 
 	<select id="selectOne" parameterType="java.lang.String" resultType="MemberDTO">
@@ -54,7 +57,7 @@
 	
 	<delete id="delete">
 		delete member
-		where id = #{id}
+		where id = #{id} and password = #{password}
 	</delete>
 	
 </mapper>

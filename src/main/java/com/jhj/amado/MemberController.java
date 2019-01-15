@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jhj.member.MemberDTO;
 import com.jhj.member.MemberService;
+import com.jhj.util.Pager;
 
 @Controller
 @RequestMapping(value = "member/*")
@@ -37,7 +38,10 @@ public class MemberController {
 	}
 
 	@RequestMapping("list")
-	public void product() throws Exception {
+	public ModelAndView product(Pager pager) throws Exception {
+		ModelAndView mv = memberService.list(pager);
+		mv.setViewName("member/list");
+		return mv;
 	}
 
 	@RequestMapping("login")
@@ -45,30 +49,33 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public void login(MemberDTO memberDTO) throws Exception {
+	public ModelAndView login(MemberDTO memberDTO, HttpSession session) throws Exception {
+		ModelAndView mv = memberService.login(memberDTO, session);
+		mv.setViewName("./common/result");
+		return mv;
 	}
 
 	@RequestMapping("logout")
-	public void logout() throws Exception {
+	public String logout(HttpSession session) throws Exception {
+		session.invalidate();
+		return "redirect:/";
 	}
 
 	@RequestMapping("myInfo")
 	public void myInfo() throws Exception {
 	}
 
-	@RequestMapping("update")
-	public void update() throws Exception {
-	}
-
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public void update(MemberDTO memberDTO) throws Exception {
-	}
-
-	@RequestMapping("delete")
-	public void delete() throws Exception {
+	public ModelAndView update(MemberDTO memberDTO, HttpSession session) throws Exception {
+		ModelAndView mv = memberService.update(memberDTO, session);
+		mv.setViewName("redirect:/");
+		return mv;
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public void delete(MemberDTO memberDTO) throws Exception {
+	public ModelAndView delete(MemberDTO memberDTO, HttpSession session) throws Exception {
+		ModelAndView mv = memberService.delete(memberDTO, session);
+		mv.setViewName("./common/result");
+		return mv;
 	}
 }

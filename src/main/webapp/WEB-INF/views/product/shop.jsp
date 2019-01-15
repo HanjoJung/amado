@@ -7,7 +7,7 @@
 <head>
 <c:import url="${pageContext.request.contextPath}/layout/head" />
 <script type="text/javascript">
-	function product_list() {
+	function product_list(dataCurPage) {
 		jQuery.ajaxSettings.traditional = true;
 		$.ajax({
 			url : "./product_area",
@@ -28,7 +28,6 @@
 	};
 	
 	$(function() {
-		dataCurPage = 1;
 		dataView = 8;
 		dataSort = "";
 		dataCategorie = "";
@@ -37,27 +36,27 @@
 		dataMinPrice = 10000;
 		dataMaxPrice = 1000000;
 		
-		product_list();
+		product_list(1);
 		
 		$(".product-area").on("click",".page-link", function() {
 			dataCurPage = $(this).attr("data-curPage");
-			product_list();
+			product_list(dataCurPage);
 			$('body,html').animate({ scrollTop: 0 }, 0);
 		});
 		
 		$("#viewProduct + .nice-select .list .option").click(function() {
 			dataView = $(this).attr("data-value");
-			product_list();
+			product_list(1);
 		});
 		
 		$("#sortBydate + .nice-select .list .option").click(function() {
 			dataSort = $(this).attr("data-value");
-			product_list();
+			product_list(1);
 		});
 
 		$(".categorie").click(function() {
 			dataCategorie = $(this).attr("data-categorie");
-			product_list();
+			product_list(1);
 			$(".categories-menu .active").attr("class","");
 			$(this).parent().attr("class","active");
 		});
@@ -91,7 +90,7 @@
 					dataBrand.push($(this).attr("id"));
 				}
 			})
-			product_list();
+			product_list(1);
 		});
 		
 	
@@ -120,10 +119,10 @@
     });
     
      $(".price").mouseleave(function() {
-    	product_list();
+    	product_list(1);
 	}) 
      $(".ui-slider-handle").mouseup(function() {
-    	product_list();
+    	product_list(1);
 	}) 
 		
 	});

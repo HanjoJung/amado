@@ -30,6 +30,8 @@ public class Pager {
 
 	public Pager() {
 		this.perBlock = 10;
+		this.perPage = 10;
+		this.curPage = 1;
 	}
 
 	public int getCurPage() {
@@ -44,13 +46,13 @@ public class Pager {
 	}
 
 	public int getPerPage() {
-		if (perPage == 0) {
-			perPage = 8;
-		}
 		return perPage;
 	}
 
 	public void setPerPage(int perPage) {
+		if (perPage == 0) {
+			perPage = 8;
+		}
 		this.perPage = perPage;
 	}
 
