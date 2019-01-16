@@ -21,10 +21,12 @@ public class MemberController {
 
 	@RequestMapping("join")
 	public void shop() throws Exception {
+		System.out.println("join");
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public ModelAndView shop(MemberDTO memberDTO, HttpSession session) throws Exception {
+		System.out.println("join post");
 		ModelAndView mv = memberService.join(memberDTO, session);
 		mv.setViewName("redirect:/");
 		return mv;
@@ -46,12 +48,14 @@ public class MemberController {
 
 	@RequestMapping("login")
 	public void login() throws Exception {
+		System.out.println("login");
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public ModelAndView login(MemberDTO memberDTO, HttpSession session) throws Exception {
+		System.out.println("login post");
 		ModelAndView mv = memberService.login(memberDTO, session);
-		mv.setViewName("./common/result");
+		mv.setViewName("common/result");
 		return mv;
 	}
 
@@ -75,7 +79,7 @@ public class MemberController {
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public ModelAndView delete(MemberDTO memberDTO, HttpSession session) throws Exception {
 		ModelAndView mv = memberService.delete(memberDTO, session);
-		mv.setViewName("./common/result");
+		mv.setViewName("common/result");
 		return mv;
 	}
 }

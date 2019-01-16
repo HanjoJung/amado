@@ -87,7 +87,9 @@ $(function() {
 			type : "POST",
 			data : {
 				id : $("#login-id").val(),
-				password : $("#login-password").val()
+				password : $("#login-password").val(),
+				kakao : $("#login-kakao").val(),
+				facebook : $("#login-facebook").val()
 			},
 			success : function(data) {
 				alert(data);
@@ -102,8 +104,8 @@ $(function() {
 			}
 		})
 	}
+	
 	$(".form-login-btn").click(function() {
-
 		var checkForm = true;
 		$(".form-control").each(function() {
 			if(checkNull($(this))){

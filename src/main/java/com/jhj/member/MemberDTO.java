@@ -28,6 +28,9 @@ public class MemberDTO {
 	}
 
 	public String getName() {
+		if (name == null) {
+			name = "";
+		}
 		return name;
 	}
 
@@ -36,6 +39,9 @@ public class MemberDTO {
 	}
 
 	public String getPhone() {
+		if (phone == null) {
+			phone = "";
+		}
 		return phone;
 	}
 
@@ -44,6 +50,9 @@ public class MemberDTO {
 	}
 
 	public String getAddress() {
+		if (address == null) {
+			address = "";
+		}
 		return address;
 	}
 
@@ -60,8 +69,8 @@ public class MemberDTO {
 	}
 
 	public String getKakao() {
-		if(kakao==null) {
-			kakao="";
+		if (kakao == null) {
+			kakao = "";
 		}
 		return kakao;
 	}
@@ -71,8 +80,8 @@ public class MemberDTO {
 	}
 
 	public String getFacebook() {
-		if(facebook==null) {
-			facebook="";
+		if (facebook == null) {
+			facebook = "";
 		}
 		return facebook;
 	}

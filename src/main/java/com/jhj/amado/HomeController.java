@@ -52,5 +52,12 @@ public class HomeController {
 	public String result() {
 		return "common/result";
 	}
+
+	@RequestMapping(value="/kakao")
+	public void kakao() {
+	}
+	@RequestMapping(value="/facebook")
+	public void facebook() {
+	}
 	
 }

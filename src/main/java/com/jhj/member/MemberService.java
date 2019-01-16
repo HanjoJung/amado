@@ -22,21 +22,34 @@ public class MemberService {
 		return mv;
 	}
 
+	public ModelAndView checkId(String id) throws Exception {
+		int result = memberDAO.checkId(id);
+		ModelAndView mv = new ModelAndView();
+		if(result > 0) {
+			mv.addObject("msg", "이미 존제하는 아이디입니다.");
+		}
+		return mv;
+	}
 	public ModelAndView login(MemberDTO memberDTO, HttpSession session) throws Exception {
-		memberDTO = memberDAO.login(memberDTO);
+		String kakao = memberDTO.getKakao();
+		String facebook  = memberDTO.getFacebook();
+		memberDTO = memberDAO.selectOne(memberDTO);
 		ModelAndView mv = new ModelAndView();
 		if (memberDTO != null) {
+			memberDTO.setKakao(kakao);
+			memberDTO.setFacebook(facebook);
+			memberDAO.update(memberDTO);
 			session.setAttribute("member", memberDTO);
 			mv.addObject("msg", "로그인 하였습니다.");
-		}else {
+		} else {
 			throw new Exception();
 		}
 		return mv;
 	}
 
-	public ModelAndView selectOne(String id) throws Exception {
+	public ModelAndView selectOne(MemberDTO memberDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject(memberDAO.selectOne(id));
+		mv.addObject(memberDAO.selectOne(memberDTO));
 		return mv;
 	}
 
@@ -45,17 +58,17 @@ public class MemberService {
 		String msg = "가입하지 못하였습니다.";
 		int result = memberDAO.join(memberDTO);
 		if (result > 0) {
-			msg = "amado에 가입하신걸 환영합니다." + memberDTO.getName() + "님";
 			session.setAttribute("member", memberDTO);
+			msg = "amado에 가입하신걸 환영합니다." + memberDTO.getName() + "님";
 		}
 		mv.addObject("msg", msg);
 		return mv;
 	}
 
-	public ModelAndView checkId(String id) throws Exception {
+	public ModelAndView checkId(MemberDTO memberDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = memberDAO.checkId(id);
-		if (result == 1) {
+		memberDTO = memberDAO.selectOne(memberDTO);
+		if (memberDTO != null) {
 			String str = "이미 존제하는 아이디입니다.";
 			mv.addObject("msg", str);
 		}

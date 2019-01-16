@@ -200,18 +200,51 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	}
 }
 @media only screen and (max-width: 767px) {
-  .main-content-wrapper .cart-table-area .container-fluid table .pc-table {
-    display: none; }
-  .main-content-wrapper .cart-table-area .container-fluid table .mobile-table {
-    display: block; } 
+  	.main-content-wrapper .cart-table-area .container-fluid table .pc-table {
+    	display: none; 
+    }
+  	.main-content-wrapper .cart-table-area .container-fluid table .mobile-table {
+    	display: block; 
+    } 
 
-  .main-content-wrapper .cart-table-area .container-fluid table .review-summary .review-rihgt {
-	width: 100%;
-    text-align: left;
+  	.main-content-wrapper .cart-table-area .container-fluid table .review-summary .review-rihgt {
+		width: 100%;
+    	text-align: left;
+	}
+  	.main-content-wrapper .cart-table-area .container-fluid table .review-summary .review-left {
+		width: 100%;
+	}	
 }
-  .main-content-wrapper .cart-table-area .container-fluid table .review-summary .review-left {
-	width: 100%;
-}	
+
+.login .kakao-btn {
+  display: inline-block;
+  min-width: 160px;
+  height: 40px;
+  color: #000000;
+  border: none;
+  padding: 0 7px;
+  font-size: 16px;
+  line-height: 42px;
+  background-color: #ffeb00;
+  font-weight: 400; 
+  font-weight: bold;
+}
+.login .btn img{
+  display: inline-block;
+  height: 30px;
+}
+.login .facebook-btn {
+  display: inline-block;
+  min-width: 160px;
+  height: 40px;
+  color: #ffffff;
+  border: none;
+  padding: 0 7px;
+  font-size: 16px;
+  line-height: 42px;
+  background-color: #3b5998;
+  font-weight: 400; 
+  font-weight: bold;
 }
 /* :: 3.0 Base CSS */
 * {
