@@ -163,6 +163,7 @@ function snsLogin(id, snsid, name, sns) {
 		data : params,
 		success : function(data) {
 			alert(data);
+			location.reload();
 		},
 		error : function() {
 			$.ajax({
