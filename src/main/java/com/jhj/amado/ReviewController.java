@@ -13,7 +13,7 @@ import com.jhj.review.ReviewServise;
 import com.jhj.util.Pager;
 
 @Controller
-@RequestMapping(value = "review/*")
+@RequestMapping(value = "product/review/*")
 public class ReviewController {
 	@Inject
 	private ReviewServise reviewService;
@@ -28,11 +28,6 @@ public class ReviewController {
 	@RequestMapping(value = "insert", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String insert(ReviewDTO reviewDTO) throws Exception {
-		System.out.println("review insert");
-		System.out.println(reviewDTO.getWriter());
-		System.out.println(reviewDTO.getProductCode());
-		System.out.println(reviewDTO.getTitle());
-		System.out.println(reviewDTO.getContents());
 		return reviewService.insert(reviewDTO);
 	}
 	

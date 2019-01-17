@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript">
-	$(".user").each(function() {
-		var email = $(this).attr("data-writer");
-		var userId = email.substring(0, email.indexOf("@"));
-		var blind = "*";
-		for(i = 4; i < userId.length; i++){
-			blind += "*";
-		}
-		var domain = email.substring(email.indexOf("@"), email.length);
-		$(this).children().text(email.substring(0, 3) + blind + domain);
-	});
-</script>
 <div class="col-12">
 	<c:choose>
 		<c:when test="${empty reviewList}">
@@ -22,7 +10,7 @@
 			<span style="float: right;">(${reviewCount})</span>
 			<c:forEach items="${reviewList}" var="dto">
 				<div class="review-summary">
-					<div id="num" data-reviewid="${dto.num}"></div>
+					<div data-reviewid="${dto.num}"></div>
 					<div class="review-left">
 						<span class="review-star"> 
 							<c:forEach begin="1" end="${dto.score}">
@@ -33,7 +21,7 @@
 						<p class="mt-15">${dto.contents}</p>
 					</div>
 					<div class="review-rihgt">
-						<div class="user" data-writer="${dto.writer}">
+						<div class="user" data-writer="${dto.name}">
 							<span></span>
 						</div>
 						<p>${dto.reg_date}</p>
@@ -49,3 +37,22 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+<script type="text/javascript">
+	$(".user").each(function() {
+		var email = $(this).attr("data-writer");
+		var userId = email.substring(0, email.indexOf("@"));
+		var blind = "*";
+		for(i = 4; i < userId.length; i++){
+			blind += "*";
+		}
+		var domain = email.substring(email.indexOf("@"), email.length);
+		$(this).children().text(email.substring(0, 3) + blind + domain);
+	});
+
+	$(function() {
+		message = "${param.msg}";
+		if(message != ""){
+			alert(message);
+		}
+	})
+</script>

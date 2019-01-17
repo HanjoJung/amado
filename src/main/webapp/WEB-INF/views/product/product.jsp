@@ -139,37 +139,44 @@
 				<div class="row mt-50">
 					<div class="col-12">
 						<h4>리뷰</h4>
-						<div class="form-review col-12">
-							<input type="hidden" id="writer" value="${member.id}">
-							<div class="col-12 mt-3">
-								<div class="rating-star" id="score">
-									<div data-value="1" data-message="별로에요."
-										class="icon-star active"></div>
-									<div data-value="2" data-message="그저 그래요."
-										class="icon-star active"></div>
-									<div data-value="3" data-message="나쁘지 않아요."
-										class="icon-star active"></div>
-									<div data-value="4" data-message="마음에 들어요."
-										class="icon-star active"></div>
-									<div data-value="5" data-message="좋아요!"
-										class="icon-star active"></div>
+						<c:choose>
+							<c:when test="${empty member}">
+								<h6 class="col-12"> 로그인 후 리뷰를 작성하실 수 있습니다.</h6>
+							</c:when>
+							<c:otherwise>
+								<div class="form-review mt-3">
+									<input type="hidden" id="writer" value="${member.id}">
+									<div class="col-12 ">
+										<div class="rating-star" id="score">
+											<div data-value="1" data-message="별로에요."
+												class="icon-star active"></div>
+											<div data-value="2" data-message="그저 그래요."
+												class="icon-star active"></div>
+											<div data-value="3" data-message="나쁘지 않아요."
+												class="icon-star active"></div>
+											<div data-value="4" data-message="마음에 들어요."
+												class="icon-star active"></div>
+											<div data-value="5" data-message="좋아요!"
+												class="icon-star active"></div>
+										</div>
+										<p class="rating-description">좋아요!</p>
+									</div>
+									<div class="col-12 mb-3 tool-message">
+										<input type="text" class="form-control" id="title" placeholder="제목">
+		  								<span class="tooltiptext">제목을 입력해주세요.</span>
+									</div>
+									<div class="col-12 mb-3 tool-message">
+										<textarea class="form-control" id="contents" placeholder="내용" 
+										onkeyup="autoSize(this)" style="height: 53px;"></textarea>
+										<span class="tooltiptext">내용을 입력해주세요.</span>
+									</div>
+									<div class="col-12 mb-3">
+										<a class="review-write">리뷰 작성</a>
+									</div>
 								</div>
-								<p class="rating-description">좋아요!</p>
-							</div>
-							<div class="col-12 mb-3 tool-message">
-								<input type="text" class="form-control" id="title" placeholder="제목">
-  								<span class="tooltiptext">제목을 입력해주세요.</span>
-							</div>
-							<div class="col-12 mb-3 tool-message">
-								<textarea class="form-control" id="contents" placeholder="내용" 
-								cols="100" rows="10" onkeyup="autoSize(this)"></textarea>
-								<span class="tooltiptext">내용을 입력해주세요.</span>
-							</div>
-							<div class="col-12 mb-3">
-								<a class="review-write">리뷰 작성</a>
-							</div>
-						</div>
-						<div class="review-view col-12"></div>
+							</c:otherwise>
+						</c:choose>
+						<div class="review-view"></div>
 					</div>
 				</div>
 			</div>
@@ -187,7 +194,7 @@
 	
 	function review() {
 		$.ajax({
-			url : "../review/list",
+			url : "./review/list",
 			data : {
 				productCode : "${productDTO.productCode}",
 				perPage : page
@@ -212,10 +219,6 @@
 	})
 	
 	$(".review-write").click(function() {
-		console.log($("#title").val());
-		console.log($("#title").val().length);
-		console.log($("#contents").val());
-		console.log($("#contents").val().length);
 		checkNull = true;
 		$(".form-control").each(function() {
 			if($(this).val().length == 0){
@@ -229,7 +232,7 @@
 		})
 		if(checkNull){
 			$.ajax({
-				url : "../review/insert",
+				url : "./review/insert",
 				type : "POST",
 				data : {
 					productCode : "${productDTO.productCode}",
@@ -259,9 +262,20 @@ function autoSize(obj) {
 	obj.style.height = (12+obj.scrollHeight)+"px";
 }
 
+$(".review-view").on("click",".review-delete",function() {
+	$.ajax({
+		url : "./review/delete",
+		type : "POST",
+		data : {
+			num : $(this).parent().siblings("[data-reviewid]").attr("data-reviewid")
+		},
+		success : function() {
+			review();
+		}
+	})
+})
 $(".cart-btn").click(function() {
 	console.log("cart-btn");
-	
 })
 </script>
 </html>

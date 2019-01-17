@@ -48,11 +48,4 @@ public class ProductController {
 		mv.setViewName("product/wishList");
 		return mv;
 	}
-
-	@RequestMapping("review")
-	public ModelAndView review() throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("product/review");
-		return mv;
-	}
 }
