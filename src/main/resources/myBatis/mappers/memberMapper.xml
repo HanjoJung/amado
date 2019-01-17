@@ -18,9 +18,10 @@
 			)
 		where R between #{startRow} and #{lastRow}
 	</select>
-	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">
+	<select id="checkId" parameterType="MemberDTO" resultType="java.lang.Integer">
 		select count(id) from member
 		where id = #{id}
+		<if test="password != null and password != ''"> and password = #{password}</if>
 	</select>
 
 	<select id="selectOne" parameterType="MemberDTO" resultType="MemberDTO">

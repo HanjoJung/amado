@@ -52,7 +52,7 @@
 							<form class="frm" action="./update" method="post">
 								<div class="row">
 									<div class="col-12 mb-3">
-										<input type="email" class="form-control" name="id"
+										<input type="email" class="form-control" id="id" name="id"
 											placeholder="이메일(ID)" data-parsley-message="이메일 형태로 입력해주세요."
 											data-parsley-pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 											value="${member.id}" readonly="readonly">
@@ -83,10 +83,10 @@
 							</form>
 							<form action="./delete" method="post" id="frm-delete">
 								<input type="hidden" name="id" value="${member.id}"> 
-								<input type="hidden" name="password">
 							</form>
 							<div style="text-align: right;">
-								<a href="./" class="btn amado-btn mb-3">비밀번호 변경</a>
+								<a data-toggle="modal" data-target="#myModal" 
+								href="${pageContext.request.contextPath}/member/password" class="btn amado-btn mb-3">비밀번호 변경</a>
 								<button type="button" class="btn amado-btn mb-3 form-btn">정보수정</button>
 								<button type="button" class="btn amado-btn mb-3 form-btn-delete">회원탈퇴</button>
 							</div>

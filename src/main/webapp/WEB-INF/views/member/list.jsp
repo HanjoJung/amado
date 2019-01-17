@@ -39,7 +39,7 @@
 										<tr style="height: 100%;">
 											<th style="width: 15%; word-break: break-word;">${dto.id}</th>
 											<th style="width: 10%">${dto.name}</th>
-											<th style="width: 12%">${dto.phone}</th>
+											<th style="width: 12%; word-break: break-word;">${dto.phone}</th>
 											<th style="width: 28%; max-width: none;">${dto.address}</th>
 											<th style="width: 13%">${dto.join_date}</th>
 											<th style="width: 11%"><c:choose>

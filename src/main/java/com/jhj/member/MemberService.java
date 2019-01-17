@@ -22,17 +22,22 @@ public class MemberService {
 		return mv;
 	}
 
-	public ModelAndView checkId(String id) throws Exception {
-		int result = memberDAO.checkId(id);
+	public ModelAndView checkId(MemberDTO memberDTO) throws Exception {
+		int result = memberDAO.checkId(memberDTO);
 		ModelAndView mv = new ModelAndView();
-		if(result > 0) {
+		if (result > 0) {
 			mv.addObject("msg", "이미 존제하는 아이디입니다.");
 		}
 		return mv;
 	}
+
+	public int rewordPassword(MemberDTO memberDTO) throws Exception {
+		return memberDAO.checkId(memberDTO);
+	}
+
 	public ModelAndView login(MemberDTO memberDTO, HttpSession session) throws Exception {
 		String kakao = memberDTO.getKakao();
-		String facebook  = memberDTO.getFacebook();
+		String facebook = memberDTO.getFacebook();
 		memberDTO = memberDAO.selectOne(memberDTO);
 		ModelAndView mv = new ModelAndView();
 		if (memberDTO != null) {
@@ -47,10 +52,8 @@ public class MemberService {
 		return mv;
 	}
 
-	public ModelAndView selectOne(MemberDTO memberDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject(memberDAO.selectOne(memberDTO));
-		return mv;
+	public int selectOne(MemberDTO memberDTO) throws Exception {
+		return memberDAO.checkId(memberDTO);
 	}
 
 	public ModelAndView join(MemberDTO memberDTO, HttpSession session) throws Exception {
@@ -65,23 +68,15 @@ public class MemberService {
 		return mv;
 	}
 
-	public ModelAndView checkId(MemberDTO memberDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		memberDTO = memberDAO.selectOne(memberDTO);
-		if (memberDTO != null) {
-			String str = "이미 존제하는 아이디입니다.";
-			mv.addObject("msg", str);
-		}
-		return mv;
-	}
-
 	public ModelAndView update(MemberDTO memberDTO, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String msg = "수정하지 못하였습니다.";
 		int result = memberDAO.update(memberDTO);
 		if (result > 0) {
 			msg = "수정 되었습니다.";
-			session.setAttribute("member", memberDTO);
+			if (memberDTO.getPassword() == null) {
+				session.setAttribute("member", memberDTO);
+			}
 		}
 		mv.addObject("msg", msg);
 		return mv;

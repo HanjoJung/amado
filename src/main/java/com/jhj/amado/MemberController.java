@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jhj.member.MemberDTO;
@@ -20,34 +21,45 @@ public class MemberController {
 	private MemberService memberService;
 
 	@RequestMapping("join")
-	public void shop() throws Exception {
+	public void join() throws Exception {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public ModelAndView shop(MemberDTO memberDTO, HttpSession session) throws Exception {
+	public ModelAndView join(MemberDTO memberDTO, HttpSession session) throws Exception {
 		ModelAndView mv = memberService.join(memberDTO, session);
 		mv.setViewName("redirect:/");
 		return mv;
 	}
 
 	@RequestMapping("checkId")
-	public ModelAndView checkId(String id) throws Exception {
-		ModelAndView mv = memberService.checkId(id);
+	public ModelAndView checkId(MemberDTO memberDTO) throws Exception {
+		ModelAndView mv = memberService.checkId(memberDTO);
 		mv.setViewName("common/result");
 		return mv;
 	}
 
 	@RequestMapping("list")
-	public ModelAndView product(Pager pager) throws Exception {
+	public ModelAndView list(Pager pager) throws Exception {
 		ModelAndView mv = memberService.list(pager);
 		mv.setViewName("member/list");
 		return mv;
 	}
 
+	@RequestMapping("password")
+	public void password() throws Exception {
+	}
+
+	@RequestMapping(value = "rewordPassword", method = RequestMethod.POST)
+	@ResponseBody
+	public int rewordPassword(MemberDTO memberDTO) throws Exception {
+		int result = memberService.rewordPassword(memberDTO);
+		return result;
+	}
+
 	@RequestMapping("login")
 	public void login() throws Exception {
 	}
-	
+
 	@RequestMapping("loginForm")
 	public void loginForm() throws Exception {
 	}

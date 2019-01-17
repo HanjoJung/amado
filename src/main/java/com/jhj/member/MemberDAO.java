@@ -28,8 +28,8 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE + "selectOne", memberDTO);
 	}
 
-	public int checkId(String id) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "checkId", id);
+	public int checkId(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "checkId", memberDTO);
 	}
 	
 	public int join(MemberDTO memberDTO) throws Exception {
