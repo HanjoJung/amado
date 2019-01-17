@@ -76,9 +76,7 @@ $(function() {
 		}
 	}
 	
-	$(".form-btn").click(function() {
-		submitJoinForm();
-	});
+	$(".form-btn").click(submitJoinForm);
 	
 // 로그인 폼 체크 후 세션활성화
 	function login() {
@@ -117,9 +115,7 @@ $(function() {
 		}
 	}
 	
-	$(".form-login-btn").click(function() {
-		checkLoginForm();
-	})
+	$(".form-login-btn").click(checkLoginForm);
 	
 // 패스워드 폼 체크 후 패스워드 수정
 function checkPasswordFrom() {
@@ -165,7 +161,7 @@ function checkPasswordFrom() {
 		}
 	}
 	
-$(".password-btn").click(passwordUpdate)
+$(".password-btn").click(passwordUpdate);
 
 // 폼에서 엔터키 누르면 실행
 	$('.form-control').keyup(function(e){
@@ -183,6 +179,7 @@ $(".password-btn").click(passwordUpdate)
 			}
 		}
 	});
+
 //	폼 값변동시 체크
 	$(".form-control").change(function() {
 		if($(this).attr("id") == "id"){

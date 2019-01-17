@@ -25,13 +25,18 @@ public class ReviewController {
 		return mv;
 	}
 
-	@RequestMapping(value = "insert", method = RequestMethod.POST)
+	@RequestMapping(value = "insert", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String insert(ReviewDTO reviewDTO) throws Exception {
+		System.out.println("review insert");
+		System.out.println(reviewDTO.getWriter());
+		System.out.println(reviewDTO.getProductCode());
+		System.out.println(reviewDTO.getTitle());
+		System.out.println(reviewDTO.getContents());
 		return reviewService.insert(reviewDTO);
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	@RequestMapping(value = "delete", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String delete(int num) throws Exception {
 		return reviewService.delete(num);

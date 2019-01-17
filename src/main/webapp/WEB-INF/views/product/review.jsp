@@ -29,15 +29,15 @@
 								<img src="${pageContext.request.contextPath}/resources/img/iconfinder_star_active.png">
 							</c:forEach>
 						</span>
-						<span class="review-title">${dto.title}title</span>
-						<p class="mt-15">${dto.contents}contents</p>
+						<span class="review-title">${dto.title}</span>
+						<p class="mt-15">${dto.contents}</p>
 					</div>
 					<div class="review-rihgt">
 						<div class="user" data-writer="${dto.writer}">
 							<span></span>
 						</div>
 						<p>${dto.reg_date}</p>
-						<c:if test="${dto.writer eq member.name}">
+						<c:if test="${dto.writer eq member.id}">
 							<button class="btn review-delete">삭제</button>
 						</c:if>
 					</div>

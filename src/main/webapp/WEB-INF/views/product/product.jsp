@@ -6,63 +6,6 @@
 
 <head>
 <c:import url="${pageContext.request.contextPath}/layout/head" />
-<script type="text/javascript">
-
-$(function() {
-	var page = 3;
-	
-	function review() {
-		$.ajax({
-			url : "../review/list",
-			data : {
-				productCode : "${productDTO.productCode}",
-				perPage : page
-			},
-			success : function(review) {
-				$(".review-view").html(review);
-			}
-		})
-	}
-	
-	review()
-	
-	$(".review-view").on("click",".btn-more-review",function() {
-		page += 3;
-		review();
-	})
-	$(".icon-star").click(function() {
-		$(this).nextAll().attr("class", "icon-star");
-		$(this).prevAll().attr("class", "icon-star active");
-		$(this).attr("class", "icon-star active");
-		$(".rating-description").html($(this).attr("data-message"));
-	})
-	
-	$(".review-write").click(function() {
-		$.ajax({
-			url : "../review/insert",
-			type : "POST",
-			data : {
-				productCode : "${productDTO.productCode}",
-				writer : $("#writer").val(),
-				title : $("#title").val(),
-				contents : $("#contents").val(),
-				score : $(".icon-star.active:last").attr("data-value")
-			},
-			success : function(result) {
-				alert(result);
-				review();
-			}
-		})
-		$("#title").val("");
-		$("#contents").val("");
-	})
-	
-})
-$(".cart-btn").click(function() {
-	console.log("cart-btn");
-	
-})
-</script>
 </head>
 
 <body>
@@ -196,9 +139,8 @@ $(".cart-btn").click(function() {
 				<div class="row mt-50">
 					<div class="col-12">
 						<h4>리뷰</h4>
-						<form class="form-review col-12">
-							<input type="hidden" class="form-control" id="writer"
-								value="${member.id}">
+						<div class="form-review col-12">
+							<input type="hidden" id="writer" value="${member.id}">
 							<div class="col-12 mt-3">
 								<div class="rating-star" id="score">
 									<div data-value="1" data-message="별로에요."
@@ -214,18 +156,19 @@ $(".cart-btn").click(function() {
 								</div>
 								<p class="rating-description">좋아요!</p>
 							</div>
-							<div class="col-12 mb-3">
-								<input type="text" class="form-control" id="title"
-									placeholder="제목">
+							<div class="col-12 mb-3 tool-message">
+								<input type="text" class="form-control" id="title" placeholder="제목">
+  								<span class="tooltiptext">제목을 입력해주세요.</span>
 							</div>
-							<div class="col-12 mb-3">
-								<textarea class="form-control" id="contents" cols="100"
-									rows="10" placeholder="내용"></textarea>
+							<div class="col-12 mb-3 tool-message">
+								<textarea class="form-control" id="contents" placeholder="내용" 
+								cols="100" rows="10" onkeyup="autoSize(this)"></textarea>
+								<span class="tooltiptext">내용을 입력해주세요.</span>
 							</div>
 							<div class="col-12 mb-3">
 								<a class="review-write">리뷰 작성</a>
 							</div>
-						</form>
+						</div>
 						<div class="review-view col-12"></div>
 					</div>
 				</div>
@@ -238,4 +181,87 @@ $(".cart-btn").click(function() {
 	<c:import url="${pageContext.request.contextPath}/layout/footer" />
 </body>
 
+<script type="text/javascript">
+
+	var page = 3;
+	
+	function review() {
+		$.ajax({
+			url : "../review/list",
+			data : {
+				productCode : "${productDTO.productCode}",
+				perPage : page
+			},
+			success : function(review) {
+				$(".review-view").html(review);
+			}
+		})
+	}
+	
+	review()
+	
+	$(".review-view").on("click",".btn-more-review",function() {
+		page += 3;
+		review();
+	})
+	$(".icon-star").click(function() {
+		$(this).nextAll().attr("class", "icon-star");
+		$(this).prevAll().attr("class", "icon-star active");
+		$(this).attr("class", "icon-star active");
+		$(".rating-description").html($(this).attr("data-message"));
+	})
+	
+	$(".review-write").click(function() {
+		console.log($("#title").val());
+		console.log($("#title").val().length);
+		console.log($("#contents").val());
+		console.log($("#contents").val().length);
+		checkNull = true;
+		$(".form-control").each(function() {
+			if($(this).val().length == 0){
+				$(this).focus();
+				$(this).next(".tooltiptext").css({
+					visibility: "visible",
+			  		opacity: 1});
+				checkNull = false;
+				return checkNull;
+			}
+		})
+		if(checkNull){
+			$.ajax({
+				url : "../review/insert",
+				type : "POST",
+				data : {
+					productCode : "${productDTO.productCode}",
+					writer : $("#writer").val(),
+					title : $("#title").val(),
+					contents : $("#contents").val(),
+					score : $(".icon-star.active:last").attr("data-value")
+				},
+				success : function(result) {
+					alert(result);
+					review();
+				}
+			})
+		}
+		$("#title").val("");
+		$("#contents").val("");
+	})
+	$(".form-control").keydown(function() {
+		$(".tooltiptext").css({
+			visibility: "hidden",
+		  	opacity: 0});
+	})
+	
+
+function autoSize(obj) {
+	obj.style.height = "1px";
+	obj.style.height = (12+obj.scrollHeight)+"px";
+}
+
+$(".cart-btn").click(function() {
+	console.log("cart-btn");
+	
+})
+</script>
 </html>
