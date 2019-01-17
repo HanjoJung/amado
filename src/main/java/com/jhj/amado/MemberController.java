@@ -31,11 +31,10 @@ public class MemberController {
 		return mv;
 	}
 
-	@RequestMapping("checkId")
-	public ModelAndView checkId(MemberDTO memberDTO) throws Exception {
-		ModelAndView mv = memberService.checkId(memberDTO);
-		mv.setViewName("common/result");
-		return mv;
+	@RequestMapping(value = "checkId", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String checkId(MemberDTO memberDTO) throws Exception {
+		return memberService.checkId(memberDTO);
 	}
 
 	@RequestMapping("list")
@@ -52,25 +51,25 @@ public class MemberController {
 	@RequestMapping(value = "rewordPassword", method = RequestMethod.POST)
 	@ResponseBody
 	public int rewordPassword(MemberDTO memberDTO) throws Exception {
-		int result = memberService.rewordPassword(memberDTO);
-		return result;
+		return memberService.rewordPassword(memberDTO);
 	}
 
-	@RequestMapping("login")
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void login() throws Exception {
+		System.out.println("login get");
 	}
 
 	@RequestMapping("loginForm")
 	public void loginForm() throws Exception {
 	}
 
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ModelAndView login(MemberDTO memberDTO, HttpSession session) throws Exception {
-		ModelAndView mv = memberService.login(memberDTO, session);
-		mv.setViewName("common/result");
-		return mv;
+	@RequestMapping(value = "login", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String login(MemberDTO memberDTO, HttpSession session) throws Exception {
+		System.out.println("login post");
+		return memberService.login(memberDTO, session);
 	}
-
+	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
@@ -81,17 +80,15 @@ public class MemberController {
 	public void myInfo() throws Exception {
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update(MemberDTO memberDTO, HttpSession session) throws Exception {
-		ModelAndView mv = memberService.update(memberDTO, session);
-		mv.setViewName("redirect:/");
-		return mv;
+	@RequestMapping(value = "update", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String update(MemberDTO memberDTO, HttpSession session) throws Exception {
+		return memberService.update(memberDTO, session);
 	}
 
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public ModelAndView delete(MemberDTO memberDTO, HttpSession session) throws Exception {
-		ModelAndView mv = memberService.delete(memberDTO, session);
-		mv.setViewName("common/result");
-		return mv;
+	@RequestMapping(value = "delete", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String delete(MemberDTO memberDTO, HttpSession session) throws Exception {
+		return memberService.delete(memberDTO, session);
 	}
 }

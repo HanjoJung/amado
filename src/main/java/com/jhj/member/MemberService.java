@@ -22,34 +22,34 @@ public class MemberService {
 		return mv;
 	}
 
-	public ModelAndView checkId(MemberDTO memberDTO) throws Exception {
+	public String checkId(MemberDTO memberDTO) throws Exception {
 		int result = memberDAO.checkId(memberDTO);
-		ModelAndView mv = new ModelAndView();
+		String str = "";
 		if (result > 0) {
-			mv.addObject("msg", "이미 존제하는 아이디입니다.");
+			str = "이미 존제하는 아이디입니다.";
 		}
-		return mv;
+		return str;
 	}
 
 	public int rewordPassword(MemberDTO memberDTO) throws Exception {
 		return memberDAO.checkId(memberDTO);
 	}
 
-	public ModelAndView login(MemberDTO memberDTO, HttpSession session) throws Exception {
+	public String login(MemberDTO memberDTO, HttpSession session) throws Exception {
 		String kakao = memberDTO.getKakao();
 		String facebook = memberDTO.getFacebook();
 		memberDTO = memberDAO.selectOne(memberDTO);
-		ModelAndView mv = new ModelAndView();
+		String str = "";
 		if (memberDTO != null) {
 			memberDTO.setKakao(kakao);
 			memberDTO.setFacebook(facebook);
 			memberDAO.update(memberDTO);
 			session.setAttribute("member", memberDTO);
-			mv.addObject("msg", "로그인 하였습니다.");
-		} else {
+			str = "로그인 하였습니다.";
+/*		} else {
 			throw new Exception();
-		}
-		return mv;
+*/		}
+		return str;
 	}
 
 	public int selectOne(MemberDTO memberDTO) throws Exception {
@@ -68,8 +68,7 @@ public class MemberService {
 		return mv;
 	}
 
-	public ModelAndView update(MemberDTO memberDTO, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public String update(MemberDTO memberDTO, HttpSession session) throws Exception {
 		String msg = "수정하지 못하였습니다.";
 		int result = memberDAO.update(memberDTO);
 		if (result > 0) {
@@ -78,19 +77,16 @@ public class MemberService {
 				session.setAttribute("member", memberDTO);
 			}
 		}
-		mv.addObject("msg", msg);
-		return mv;
+		return msg;
 	}
 
-	public ModelAndView delete(MemberDTO memberDTO, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public String delete(MemberDTO memberDTO, HttpSession session) throws Exception {
 		String msg = "탈퇴하지 못하였습니다.";
 		int result = memberDAO.delete(memberDTO);
 		if (result > 0) {
 			msg = "탈퇴 되었습니다.";
 			session.invalidate();
 		}
-		mv.addObject("msg", msg);
-		return mv;
+		return msg;
 	}
 }

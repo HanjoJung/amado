@@ -24,7 +24,7 @@
 							<form class="frm-login" action="./login" method="post">
 								<div class="row">
 									<div class="col-12 mb-3">
-										<input type="text" class="form-control" id="login-id"
+										<input type="text" class="form-control login-form-control" id="login-id"
 											name="id" placeholder="이메일(ID)"
 											data-parsley-message="이메일 형태로 입력해주세요."
 											data-parsley-pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
@@ -32,7 +32,7 @@
 										<p class="message"></p>
 									</div>
 									<div class="col-12 mb-3">
-										<input type="password" class="form-control"
+										<input type="password" class="form-control login-form-control"
 											id="login-password" name="password" placeholder="비밀번호"
 											data-parsley-message="영문/숫자/특수문자 조합 8~16자 조합으로 입력해주세요."
 											data-parsley-pattern="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,16}$">
@@ -60,6 +60,7 @@
 		</div>
 	<!-- ##### Main Content Wrapper End ##### -->
 </body>	
+    <script src="${pageContext.request.contextPath}/resources/js/frmCheck.js"></script>
 <script type="text/javascript">
 //kakao
 $(".kakao-btn").click(loginWithKakao)
@@ -69,7 +70,6 @@ function loginWithKakao() {
 	// 로그인 창을 띄웁니다.
 	Kakao.Auth.login({
 		success : function(authObj) {
-			console.log(JSON.stringify(authObj));
 			Kakao.API.request({
 				url : '/v2/user/me',
 				success : function(res) {
@@ -89,7 +89,6 @@ function loginWithKakao() {
 		},
 		fail : function(err) {
 			alert("로그인에 실패하였습니다");
-			console.log(JSON.stringify(err));
 		}
 	});
 };
@@ -171,7 +170,6 @@ function snsLogin(id, snsid, name, sns) {
 								+ sns + "=" + snsid + "&id=" + id; 
 					} else {
 						if (confirm("연동된 계정이 없습니다.\n가입하시겠습니까?")) {
-							console.log("yes");
 							location.href = "${pageContext.request.contextPath}/member/join?"
 								+ sns + "=" + snsid
 								+ "&id=" + id
@@ -179,12 +177,14 @@ function snsLogin(id, snsid, name, sns) {
 						}
 					}
 				},
-				error : function() {
-					console.log("error 발생");
+				error : function(error) {
+					alert("Error가 발생했습니다.");
+					console.log(error);
 				}
 			});
 		}
 	})
 }
 </script>
+
 </html>

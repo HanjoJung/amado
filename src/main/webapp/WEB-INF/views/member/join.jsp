@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-12 mb-15">
                                         <input type="text" class="form-control" 
-                                        id="join" name="address" placeholder="주소"
+                                        name="address" placeholder="주소"
 										data-parsley-pattern="^[]*.{10,}$"
 										data-parsley-message="너무 짧습니다.">
 										<p class="message"></p>

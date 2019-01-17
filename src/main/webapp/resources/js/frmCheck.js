@@ -83,7 +83,7 @@ $(function() {
 // 로그인 폼 체크 후 세션활성화
 	function login() {
 		$.ajax({
-			url : "./login",
+			url : "${pageContext.request.contestPath}/../member/login",
 			type : "POST",
 			data : {
 				id : $("#login-id").val(),
@@ -105,18 +105,20 @@ $(function() {
 		})
 	}
 	
-	$(".form-login-btn").click(function() {
+	function checkLoginForm() {
 		var checkForm = true;
-		$(".form-control").each(function() {
+		$(".login-form-control").each(function() {
 			if(!checkNull($(this))){
-				checkForm = false;
-			}else if(!checkPattern($(this))){
 				checkForm = false;
 			}
 		})
 		if(checkForm){
 			login();
 		}
+	}
+	
+	$(".form-login-btn").click(function() {
+		checkLoginForm();
 	})
 	
 // 패스워드 폼 체크 후 패스워드 수정
@@ -140,7 +142,7 @@ function checkPasswordFrom() {
 							password : $("#password2").val()
 						},
 						success : function(result) {
-							alert("비밀번호가 수정되었습니다.")
+							alert(result)
 							location.reload();
 						}
 					})
@@ -151,7 +153,7 @@ function checkPasswordFrom() {
 }
 	function passwordUpdate() {
 		checkForm = true;
-		$(".form-control").each(function() {
+		$(".password-form-control").each(function() {
 			if(!checkNull($(this))){
 				checkForm = false;
 			}else if(!checkPattern($(this))){
@@ -169,10 +171,10 @@ $(".password-btn").click(passwordUpdate)
 	$('.form-control').keyup(function(e){
 		if(e.keyCode == 13){
 			if($(this).attr("id") == $(".form-control:last").attr("id")){
-				if($(this).attr("id") == "join"){
+				if($(".frm") == "join"){
 					submitJoinForm();
 				}else if($(this).attr("id") == "login-password"){
-					login();
+					checkLoginForm();
 				}else if($(this).attr("id") == "password2"){
 					passwordUpdate();
 				}
