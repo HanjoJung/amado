@@ -47,6 +47,10 @@ public class MemberController {
 	@RequestMapping("login")
 	public void login() throws Exception {
 	}
+	
+	@RequestMapping("loginForm")
+	public void loginForm() throws Exception {
+	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public ModelAndView login(MemberDTO memberDTO, HttpSession session) throws Exception {

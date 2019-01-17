@@ -16,9 +16,12 @@
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/coreStyle.css">
-    
-    
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Kakao API -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    
+    
 	<script type="text/javascript">
 	$(function() {
 		message = "${param.msg}";

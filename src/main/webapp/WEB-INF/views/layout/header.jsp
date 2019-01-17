@@ -49,7 +49,8 @@
                     </div>
                 <c:choose>
                 	<c:when test="${empty member}">
-		            	<a href="${pageContext.request.contextPath}/member/login" class="btn amado-btn mb-15">로그인</a>
+		            	<a data-toggle="modal" data-target="#myModal" 
+		            	href="${pageContext.request.contextPath}/member/loginForm" class="btn amado-btn mb-15">로그인</a>
         		        <a href="${pageContext.request.contextPath}/member/join" class="btn amado-btn mb-15">회원가입</a>
                 	</c:when>
                 	<c:otherwise>
