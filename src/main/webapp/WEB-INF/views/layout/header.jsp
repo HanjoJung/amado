@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <!-- Mobile Nav (max width 767px)-->
         <div class="mobile-nav">
             <!-- Navbar Brand -->
@@ -46,9 +47,17 @@
                             <button type="submit"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""></button>
                         </form>
                     </div>
-                <a href="${pageContext.request.contextPath}/member/login" class="btn amado-btn mb-15">로그인</a>
-                <a href="${pageContext.request.contextPath}/member/join" class="btn amado-btn mb-15">회원가입</a>
-                <a href="${pageContext.request.contextPath}/member/myInfo" class="btn amado-btn ">내 정보</a>
+                <c:choose>
+                	<c:when test="${empty member}">
+		            	<a data-toggle="modal" data-target="#myModal" 
+		            	href="${pageContext.request.contextPath}/member/loginForm" class="btn amado-btn mb-15">로그인</a>
+        		        <a href="${pageContext.request.contextPath}/member/join" class="btn amado-btn mb-15">회원가입</a>
+                	</c:when>
+                	<c:otherwise>
+               			<a href="${pageContext.request.contextPath}/member/myInfo" class="btn amado-btn mb-15">내 정보</a>
+               			<a href="${pageContext.request.contextPath}/member/logout" class="btn amado-btn mb-15">로그아웃</a>
+                	</c:otherwise>
+                </c:choose>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">

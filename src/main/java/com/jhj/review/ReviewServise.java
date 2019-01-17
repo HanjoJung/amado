@@ -34,24 +34,22 @@ public class ReviewServise {
 		return mv;
 	}
 
-	public ModelAndView insert(ReviewDTO reviewDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public String insert(ReviewDTO reviewDTO) throws Exception {
 		int result = reviewDAO.insert(reviewDTO);
-		mv.addObject("msg", "후기를 작성하지 못하였습니다");
+		String msg = "후기를 작성하지 못하였습니다";
 		if(result > 0) {
-			mv.addObject("msg", "후기가 작성되었습니다");
+			msg = "후기가 작성되었습니다";
 		}
-		return mv;
+		return msg;
 	}
 
-	public ModelAndView delete(int num) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public String delete(int num) throws Exception {
 		int result = reviewDAO.delete(num);
-		mv.addObject("msg", "후기를 삭제하지 못하였습니다");
+		String msg = "후기를 삭제하지 못하였습니다";
 		if(result > 0) {
-			mv.addObject("msg", "후기가 삭제되었습니다");
+			msg = "후기가 삭제되었습니다";
 		}
-		return mv;
+		return msg;
 	}
 
 }

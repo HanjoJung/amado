@@ -4,16 +4,16 @@ $(function() {
 		if(comparison){
 			data.next(".message").css({display : "none"});	
 			data.next(".message").attr("class", "message");
-			return false;
+			return true;
 		}else{
 			data.next(".message").css({display : "block"});
 			data.next(".message").attr("class", "message focus");
 			data.next(".message").text(message);
-			return true;
+			return false;
 		}
 	};
 // id 중복체크
-	resultCheckId = true;
+	resultCheckId = false;
 	function checkId() {
 		data = $("#id");
 		$.ajax({
@@ -50,21 +50,21 @@ $(function() {
 		return check(data, clause1.prop("checked") && clause2.prop("checked"), "약관에 동의해주세요");
 	}
 	
-// 모든체크여부 확인 후 일반폼 submit()
-	function submitForm() {
+// 가입 폼 체크 후 submit()
+	function submitJoinForm() {
 		var checkForm = true;
 		$(".form-control").each(function() {
-			if(checkNull($(this))){
+			if(!checkNull($(this))){
 				checkForm = false;
-			}else if(checkPattern($(this))){
+			}else if(!checkPattern($(this))){
 				checkForm = false;
 			}
 		})
-		if(checkPassword()){
+		if(!checkPassword()){
 			checkForm = false;
 		}
 		if($(".frm").attr("id") == "join" && checkForm){
-			if(checkClause() || resultCheckId){
+			if(!checkClause() || !resultCheckId){
 				checkForm = false;
 				checkId();
 			}
@@ -77,17 +77,19 @@ $(function() {
 	}
 	
 	$(".form-btn").click(function() {
-		submitForm();
+		submitJoinForm();
 	});
 	
-// 로그인 폼 체크 후 submit()
+// 로그인 폼 체크 후 세션활성화
 	function login() {
 		$.ajax({
-			url : "./login",
+			url : "${pageContext.request.contestPath}/../member/login",
 			type : "POST",
 			data : {
 				id : $("#login-id").val(),
-				password : $("#login-password").val()
+				password : $("#login-password").val(),
+				kakao : $("#login-kakao").val(),
+				facebook : $("#login-facebook").val()
 			},
 			success : function(data) {
 				alert(data);
@@ -102,28 +104,79 @@ $(function() {
 			}
 		})
 	}
-	$(".form-login-btn").click(function() {
-
+	
+	function checkLoginForm() {
 		var checkForm = true;
-		$(".form-control").each(function() {
-			if(checkNull($(this))){
-				checkForm = false;
-			}else if(checkPattern($(this))){
+		$(".login-form-control").each(function() {
+			if(!checkNull($(this))){
 				checkForm = false;
 			}
 		})
 		if(checkForm){
 			login();
 		}
+	}
+	
+	$(".form-login-btn").click(function() {
+		checkLoginForm();
 	})
+	
+// 패스워드 폼 체크 후 패스워드 수정
+function checkPasswordFrom() {
+	$.ajax({
+		url : "./rewordPassword",
+		type : "POST",
+		data : {
+			id : $("#id").val(),
+			password : $("#curPassword").val()
+		},
+		success : function(result) {
+			checkResult = check($("#curPassword"), result != 0, "비밀번호가 맞지 않습니다.");
+			if(checkResult){
+				if(checkPassword()){
+					$.ajax({
+						url : "./update",
+						type : "POST",
+						data : {
+							id : $("#id").val(),
+							password : $("#password2").val()
+						},
+						success : function(result) {
+							alert(result)
+							location.reload();
+						}
+					})
+				}
+			}
+		}
+	})
+}
+	function passwordUpdate() {
+		checkForm = true;
+		$(".password-form-control").each(function() {
+			if(!checkNull($(this))){
+				checkForm = false;
+			}else if(!checkPattern($(this))){
+				checkForm = false;
+			}
+		})
+		if(checkForm){
+			checkPasswordFrom();
+		}
+	}
+	
+$(".password-btn").click(passwordUpdate)
+
 // 폼에서 엔터키 누르면 실행
 	$('.form-control').keyup(function(e){
 		if(e.keyCode == 13){
 			if($(this).attr("id") == $(".form-control:last").attr("id")){
-				if($(this).attr("id") != "login-password"){
-					submitForm();
-				}else{
-					login();
+				if($(".frm") == "join"){
+					submitJoinForm();
+				}else if($(this).attr("id") == "login-password"){
+					checkLoginForm();
+				}else if($(this).attr("id") == "password2"){
+					passwordUpdate();
 				}
 			}else{
 				$(this).parent().next().find(".form-control").focus();

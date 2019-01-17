@@ -52,6 +52,11 @@ All rights reserved | This template is made with
             </div>
         </div>
     </footer>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content" style="padding: 10px;"></div>
+		</div>
+	</div>
     <!-- ##### Footer Area End ##### -->
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
@@ -67,3 +72,4 @@ All rights reserved | This template is made with
     
     <script src="${pageContext.request.contextPath}/resources/js/frmCheck.js"></script>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    

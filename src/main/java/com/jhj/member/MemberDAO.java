@@ -24,20 +24,16 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 
-	public MemberDTO login(MemberDTO memberDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "login", memberDTO);
+	public MemberDTO selectOne(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "selectOne", memberDTO);
 	}
 
-	public MemberDTO selectOne(String id) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "selectOne", id);
+	public int checkId(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "checkId", memberDTO);
 	}
-
+	
 	public int join(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "join", memberDTO);
-	}
-
-	public int checkId(String id) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "checkId", id);
 	}
 
 	public int update(MemberDTO memberDTO) throws Exception {

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jhj.member.MemberDTO;
@@ -20,41 +21,55 @@ public class MemberController {
 	private MemberService memberService;
 
 	@RequestMapping("join")
-	public void shop() throws Exception {
+	public void join() throws Exception {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public ModelAndView shop(MemberDTO memberDTO, HttpSession session) throws Exception {
+	public ModelAndView join(MemberDTO memberDTO, HttpSession session) throws Exception {
 		ModelAndView mv = memberService.join(memberDTO, session);
 		mv.setViewName("redirect:/");
 		return mv;
 	}
 
-	@RequestMapping("checkId")
-	public ModelAndView checkId(String id) throws Exception {
-		ModelAndView mv = memberService.checkId(id);
-		mv.setViewName("common/result");
-		return mv;
+	@RequestMapping(value = "checkId", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String checkId(MemberDTO memberDTO) throws Exception {
+		return memberService.checkId(memberDTO);
 	}
 
 	@RequestMapping("list")
-	public ModelAndView product(Pager pager) throws Exception {
+	public ModelAndView list(Pager pager) throws Exception {
 		ModelAndView mv = memberService.list(pager);
 		mv.setViewName("member/list");
 		return mv;
 	}
 
-	@RequestMapping("login")
+	@RequestMapping("password")
+	public void password() throws Exception {
+	}
+
+	@RequestMapping(value = "rewordPassword", method = RequestMethod.POST)
+	@ResponseBody
+	public int rewordPassword(MemberDTO memberDTO) throws Exception {
+		return memberService.rewordPassword(memberDTO);
+	}
+
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void login() throws Exception {
+		System.out.println("login get");
 	}
 
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ModelAndView login(MemberDTO memberDTO, HttpSession session) throws Exception {
-		ModelAndView mv = memberService.login(memberDTO, session);
-		mv.setViewName("./common/result");
-		return mv;
+	@RequestMapping("loginForm")
+	public void loginForm() throws Exception {
 	}
 
+	@RequestMapping(value = "login", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String login(MemberDTO memberDTO, HttpSession session) throws Exception {
+		System.out.println("login post");
+		return memberService.login(memberDTO, session);
+	}
+	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
@@ -65,17 +80,15 @@ public class MemberController {
 	public void myInfo() throws Exception {
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update(MemberDTO memberDTO, HttpSession session) throws Exception {
-		ModelAndView mv = memberService.update(memberDTO, session);
-		mv.setViewName("redirect:/");
-		return mv;
+	@RequestMapping(value = "update", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String update(MemberDTO memberDTO, HttpSession session) throws Exception {
+		return memberService.update(memberDTO, session);
 	}
 
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public ModelAndView delete(MemberDTO memberDTO, HttpSession session) throws Exception {
-		ModelAndView mv = memberService.delete(memberDTO, session);
-		mv.setViewName("./common/result");
-		return mv;
+	@RequestMapping(value = "delete", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String delete(MemberDTO memberDTO, HttpSession session) throws Exception {
+		return memberService.delete(memberDTO, session);
 	}
 }

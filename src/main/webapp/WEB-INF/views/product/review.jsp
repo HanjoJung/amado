@@ -2,18 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-	$(function() {
-		$(".user").each(function() {
-			var email = $(this).attr("data-writer");
-			var userId = email.substring(0, email.indexOf("@"));
-			var blind = "*";
-			for(i = 4; i < userId.length; i++){
-				blind += "*";
-			}
-			var domain = email.substring(email.indexOf("@"), email.length);
-			$(this).children().text(email.substring(0, 3) + blind + domain);
-		});
-	})
+	$(".user").each(function() {
+		var email = $(this).attr("data-writer");
+		var userId = email.substring(0, email.indexOf("@"));
+		var blind = "*";
+		for(i = 4; i < userId.length; i++){
+			blind += "*";
+		}
+		var domain = email.substring(email.indexOf("@"), email.length);
+		$(this).children().text(email.substring(0, 3) + blind + domain);
+	});
 </script>
 <div class="col-12">
 	<c:choose>
@@ -40,7 +38,7 @@
 						</div>
 						<p>${dto.reg_date}</p>
 						<c:if test="${dto.writer eq member.name}">
-							<button class="btn btn-del">삭제</button>
+							<button class="btn review-delete">삭제</button>
 						</c:if>
 					</div>
 				</div>

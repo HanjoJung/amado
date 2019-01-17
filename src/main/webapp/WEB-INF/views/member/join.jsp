@@ -31,7 +31,8 @@
                                         <input type="email" class="form-control" 
                                         id="id" name="id" placeholder="이메일(ID)"
 										data-parsley-message="이메일 형태로 입력해주세요."
-										data-parsley-pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$">
+										data-parsley-pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
+										value="${param.id}">
 										<p class="message"></p>
                                     </div>
                                     <div class="col-12 mb-3">
@@ -53,7 +54,8 @@
                                         <input type="text" class="form-control" 
                                         name="name" placeholder="이름"
 										data-parsley-pattern="^[가-힣|a-z|A-Z].{1,}$"
-										data-parsley-message="한글과 영문만 입력 가능합니다.">
+										data-parsley-message="한글과 영문만 입력 가능합니다."
+										value="${param.name}">
 										<p class="message"></p>
                                     </div>
                                     <div class="col-12 mb-3">
@@ -65,7 +67,7 @@
                                     </div>
                                     <div class="col-12 mb-15">
                                         <input type="text" class="form-control" 
-                                        id="address" name="address" placeholder="주소"
+                                        name="address" placeholder="주소"
 										data-parsley-pattern="^[]*.{10,}$"
 										data-parsley-message="너무 짧습니다.">
 										<p class="message"></p>
@@ -82,8 +84,8 @@
                                         </div>
 										<p class="message"></p>
                                     </div>
-                                    <input type="hidden" name="kakao" value="">
-                                    <input type="hidden" name="facebook" value="">
+                                    <input type="hidden" name="kakao" value="${param.kakao}">
+                                    <input type="hidden" name="facebook" value="${param.facebook}">
                                 </div>
                                 <button type="button" class="btn amado-btn form-btn col-12">회원가입</button>
                             </form>

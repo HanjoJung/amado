@@ -40,6 +40,7 @@ $(function() {
 	$(".review-write").click(function() {
 		$.ajax({
 			url : "../review/insert",
+			type : "POST",
 			data : {
 				productCode : "${productDTO.productCode}",
 				writer : $("#writer").val(),
@@ -55,6 +56,10 @@ $(function() {
 		$("#title").val("");
 		$("#contents").val("");
 	})
+	
+})
+$(".cart-btn").click(function() {
+	console.log("cart-btn");
 	
 })
 </script>
@@ -182,8 +187,8 @@ $(function() {
 											class="fa fa-caret-up" aria-hidden="true"></i></span>
 									</div>
 								</div>
-								<button type="button" class="btn amado-btn cart-btn mb-15">장바구니 담기</button>
-								<button type="button" class="btn amado-btn checkout-btn">구매하기</button>
+								<button type="button" class="btn amado-btn cart-btn mt-15">장바구니 담기</button>
+								<button type="button" class="btn amado-btn checkout-btn mt-15">구매하기</button>
 							</form>
 						</div>
 					</div>
@@ -193,7 +198,7 @@ $(function() {
 						<h4>리뷰</h4>
 						<form class="form-review col-12">
 							<input type="hidden" class="form-control" id="writer"
-								value="temp@gmeil.com${member.name}">
+								value="${member.id}">
 							<div class="col-12 mt-3">
 								<div class="rating-star" id="score">
 									<div data-value="1" data-message="별로에요."

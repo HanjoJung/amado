@@ -17,8 +17,9 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping("shop")
-	public void shop(Pager pager) throws Exception {}
-	
+	public void shop(Pager pager) throws Exception {
+	}
+
 	@RequestMapping("product_area")
 	public ModelAndView product_area(Pager pager) throws Exception {
 		ModelAndView mv = productService.list(pager);
@@ -34,15 +35,7 @@ public class ProductController {
 		return mv;
 	}
 
-	@RequestMapping("cart")
-	public ModelAndView cart() throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("list", productService.cart());
-		mv.setViewName("product/cart");
-		return mv;
-	}
-
-	@RequestMapping(value="checkout", method=RequestMethod.GET)
+	@RequestMapping(value = "checkout", method = RequestMethod.GET)
 	public ModelAndView checkout() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("product/checkout");
