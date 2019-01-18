@@ -1,15 +1,21 @@
 package com.jhj.product;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jhj.file.FileDAO;
+import com.jhj.file.FileDTO;
+import com.jhj.util.FileSaver;
 import com.jhj.util.Pager;
 
 @Service
@@ -17,6 +23,8 @@ public class ProductService {
 
 	@Inject
 	private ProductDAO productDAO;
+	@Inject
+	private FileDAO imageDAO;
 
 	public ModelAndView list(Pager pager) throws Exception {
 		pager.makeRow();
@@ -32,8 +40,33 @@ public class ProductService {
 		return productDAO.selectOne(productCode);
 	}
 
-	public int insert(ProductDTO productDTO) throws Exception {
-		return productDAO.insert(productDTO);
+	public ModelAndView insert(ProductDTO productDTO,  List<MultipartFile> f1, HttpSession session) throws Exception {
+		int result = productDAO.insert(productDTO);
+
+		FileSaver fs = new FileSaver();
+		String realPath = session.getServletContext().getRealPath("resources/img");
+		
+		if(result > 0) {
+			for (MultipartFile data : f1) {
+				if (data.isEmpty()) {
+					continue;
+				}
+				FileDTO fileDTO = new FileDTO();
+				fileDTO.setProductCode(productDTO.getProductCode());
+				fileDTO.setOname(data.getOriginalFilename());
+				fileDTO.setFname(fs.saveFile(realPath, data));
+				fileDTO.setKind("p");
+
+				result = imageDAO.insert(fileDTO);
+
+				if (result < 1) {
+					throw new SQLException();
+				}
+			}
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("msg", "작성 성공");
+		return mv;
 	}
 
 	public int update(ProductDTO productDTO) throws Exception {

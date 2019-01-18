@@ -28,6 +28,16 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></constructor-arg>
 	</bean>
 	
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<!-- 파일 당 size -->
+		<property name="maxUploadSizePerFile" value="10485760"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
 	<context:component-scan base-package="com.jhj.product">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
@@ -35,6 +45,9 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	<context:component-scan base-package="com.jhj.review">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<context:component-scan base-package="com.jhj.file">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	

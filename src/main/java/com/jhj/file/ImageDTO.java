@@ -2,7 +2,7 @@ package com.jhj.file;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class PhotoDTO {
+public class ImageDTO {
 	private String callback;
 	private String callback_func;
 	private MultipartFile Filedata;

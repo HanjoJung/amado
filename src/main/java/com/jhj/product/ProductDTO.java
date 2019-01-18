@@ -1,6 +1,7 @@
 package com.jhj.product;
 
 import java.sql.Date;
+import java.util.UUID;
 
 public class ProductDTO {
 
@@ -18,6 +19,9 @@ public class ProductDTO {
 	private int score;
 
 	public String getProductCode() {
+		if(productCode == null || productCode == "") {
+			productCode = UUID.randomUUID().toString();
+		}
 		return productCode;
 	}
 

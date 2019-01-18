@@ -208,6 +208,10 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   opacity: 0;
   transition: opacity 0.3s;
 }
+.file{
+	width: 24%;
+	font-size: 15px;
+}
 
 @media only screen and (min-width: 768px) {
 	.main-content-wrapper .cart-table-area .container-fluid table .pc-table {

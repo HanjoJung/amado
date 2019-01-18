@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="fileMapper">
+	
+	<select id="list" parameterType="FileDTO" resultType="FileDTO">
+	</select>
+	
+	<insert id="insert" parameterType="FileDTO">
+		insert into image
+		values(image_seq.nextval, #{num}, #{productCode}, #{fname}, #{oname}, #{kind})
+	</insert>
+	
+	<delete id="delete" parameterType="FileDTO">
+	</delete>
+	
+</mapper>

@@ -29,16 +29,17 @@ public class FileService {
 		return mv;
 	}
 
-	public String se2(PhotoDTO photoDTO, HttpSession session) throws Exception{
+	public String se2(ImageDTO imageDTO, HttpSession session) throws Exception{
 		FileSaver fs = new FileSaver();
 		String realPath = session.getServletContext().getRealPath("resources/upload"); 
 		System.out.println(realPath);
-		String fname = fs.saveFile3(realPath, photoDTO.getFiledata());
+		String fname = fs.saveFile(realPath, imageDTO.getFiledata());
 		String conTextName = session.getServletContext().getContextPath();
-		String result = "&bNewLine=true&sFileName=" + URLEncoder.encode(photoDTO.getFiledata().getOriginalFilename(), "UTF-8");
+		String result = "&bNewLine=true&sFileName=" 
+		+ URLEncoder.encode(imageDTO.getFiledata().getOriginalFilename(), "UTF-8");
 		result += "&sFileURL=" + conTextName + "/resources/upload/" + URLEncoder.encode(fname, "UTF-8"); 
 
-		return "redirect:" + photoDTO.getCallback() + "?callback_func=" + photoDTO.getCallback_func() + result;
+		return "redirect:" + imageDTO.getCallback() + "?callback_func=" + imageDTO.getCallback_func() + result;
 	}
 
 }

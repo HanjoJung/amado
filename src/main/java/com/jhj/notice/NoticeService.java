@@ -78,7 +78,7 @@ public class NoticeService implements BoardService{
 			// 4. Files table insert
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setOname(mFile.getOriginalFilename());
-			fileDTO.setFname(fs.saveFile3(realPath, mFile));
+			fileDTO.setFname(fs.saveFile(realPath, mFile));
 			fileDTO.setKind("n");
 			fileDTO.setNum(num);
 
@@ -113,7 +113,7 @@ public class NoticeService implements BoardService{
 
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setOname(mFile.getOriginalFilename());
-			fileDTO.setFname(fs.saveFile3(realPath, mFile));
+			fileDTO.setFname(fs.saveFile(realPath, mFile));
 			fileDTO.setNum(boardDTO.getNum());
 			fileDTO.setKind("n");
 			result = fileDAO.insert(fileDTO);

@@ -81,7 +81,7 @@ public class QnaService implements BoardService {
 			// 4. Files table insert
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setOname(mFile.getOriginalFilename());
-			fileDTO.setFname(fs.saveFile3(realPath, mFile));
+			fileDTO.setFname(fs.saveFile(realPath, mFile));
 			fileDTO.setKind("q");
 			fileDTO.setNum(num);
 
@@ -115,7 +115,7 @@ public class QnaService implements BoardService {
 
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setOname(mFile.getOriginalFilename());
-			fileDTO.setFname(fs.saveFile3(realPath, mFile));
+			fileDTO.setFname(fs.saveFile(realPath, mFile));
 			fileDTO.setNum(boardDTO.getNum());
 			fileDTO.setKind("q");
 			result = fileDAO.insert(fileDTO);
@@ -196,7 +196,7 @@ public class QnaService implements BoardService {
 			// 4. Files table insert
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setOname(mFile.getOriginalFilename());
-			fileDTO.setFname(fs.saveFile3(realPath, mFile));
+			fileDTO.setFname(fs.saveFile(realPath, mFile));
 			fileDTO.setKind("q");
 			fileDTO.setNum(num);
 
