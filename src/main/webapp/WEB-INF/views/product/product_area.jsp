@@ -8,11 +8,9 @@
 		<div class="single-product-wrapper">
 			<!-- Product Image -->
 			<div class="product-img">
-				<a href="product?productCode=${dto.productCode}"> <img
-					src="${pageContext.request.contextPath}/resources/img/product-img/product1.jpg"
-					alt=""> <!-- Hover Thumb --> <img class="hover-img"
-					src="${pageContext.request.contextPath}/resources/img/product-img/product2.jpg"
-					alt="">
+				<a href="product?productCode=${dto.productCode}"> 
+					<img src="${pageContext.request.contextPath}/resources/img/product-img/${dto.file.get(0).fname}"> <!-- Hover Thumb --> 
+					<img class="hover-img" src="${pageContext.request.contextPath}/resources/img/product-img/${dto.file.get(1).fname}">
 				</a>
 			</div>
 

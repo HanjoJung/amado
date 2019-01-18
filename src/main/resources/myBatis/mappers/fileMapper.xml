@@ -6,6 +6,13 @@
 <mapper namespace="fileMapper">
 	
 	<select id="list" parameterType="FileDTO" resultType="FileDTO">
+	select * from image
+	where kind = #{kind}
+	<choose>
+		<when test="num != null and num != 0"> and num = #{num}</when>
+		<when test="productCode != null and productCode != ''"> and productCode = #{productCode}</when>
+	</choose>
+	order by fnum asc
 	</select>
 	
 	<insert id="insert" parameterType="FileDTO">

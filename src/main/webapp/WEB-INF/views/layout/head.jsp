@@ -21,13 +21,4 @@
     <!-- Kakao API -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     
-    
-	<script type="text/javascript">
-	$(function() {
-		message = "${param.msg}";
-		if(message != ""){
-			alert(message);
-		}
-	})
-</script>
 </head>

@@ -34,10 +34,7 @@ public class ProductController {
 
 	@RequestMapping("product")
 	public ModelAndView product(String productCode) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("productDTO", productService.selectOne(productCode));
-		mv.setViewName("product/product");
-		return mv;
+		return productService.selectOne(productCode);
 	}
 
 	@RequestMapping("insert")

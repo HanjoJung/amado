@@ -24,8 +24,7 @@
 							<ol class="breadcrumb mt-50">
 								<li class="breadcrumb-item"><a href="/">Home</a></li>
 								<li class="breadcrumb-item"><a href="./shop">Shop</a></li>
-								<li class="breadcrumb-item"><a href="./shop">${productDTO.kind}</a></li>
-								<li class="breadcrumb-item active" aria-current="page">${productDTO.productName}</li>
+								<li class="breadcrumb-item active">${productDTO.productName}</li>
 							</ol>
 						</nav>
 					</div>
@@ -37,53 +36,47 @@
 							<div id="product_details_slider" class="carousel slide"
 								data-ride="carousel">
 								<ol class="carousel-indicators">
-									<li class="active" data-target="#product_details_slider"
-										data-slide-to="0"
-										style="background-image: url(${pageContext.request.contextPath}/resources/img/product-img/pro-big-1.jpg);">
-									</li>
-									<li data-target="#product_details_slider" data-slide-to="1"
-										style="background-image: url(${pageContext.request.contextPath}/resources/img/product-img/pro-big-2.jpg);">
-									</li>
-									<li data-target="#product_details_slider" data-slide-to="2"
-										style="background-image: url(${pageContext.request.contextPath}/resources/img/product-img/pro-big-3.jpg);">
-									</li>
-									<li data-target="#product_details_slider" data-slide-to="3"
-										style="background-image: url(${pageContext.request.contextPath}/resources/img/product-img/pro-big-4.jpg);">
-									</li>
+									<c:forEach items="${fileList}" var="file" varStatus="i">
+										<c:choose>
+											<c:when test="${i.index eq 0}">
+												<li class="active" data-target="#product_details_slider"
+													data-slide-to="${i.index}"
+													style="background-image: url(${pageContext.request.contextPath}/resources/img/product-img/${file.fname});">
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li data-target="#product_details_slider"
+													data-slide-to="${i.index}"
+													style="background-image: url(${pageContext.request.contextPath}/resources/img/product-img/${file.fname});">
+												</li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
 								</ol>
+								
 								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<a class="gallery_img"
-											href="${pageContext.request.contextPath}/resources/img/product-img/pro-big-1.jpg">
-											<img class="d-block w-100"
-											src="${pageContext.request.contextPath}/resources/img/product-img/pro-big-1.jpg"
-											alt="First slide">
-										</a>
-									</div>
-									<div class="carousel-item">
-										<a class="gallery_img"
-											href="${pageContext.request.contextPath}/resources/img/product-img/pro-big-2.jpg">
-											<img class="d-block w-100"
-											src="${pageContext.request.contextPath}/resources/img/product-img/pro-big-2.jpg"
-											alt="Second slide">
-										</a>
-									</div>
-									<div class="carousel-item">
-										<a class="gallery_img"
-											href="${pageContext.request.contextPath}/resources/img/product-img/pro-big-3.jpg">
-											<img class="d-block w-100"
-											src="${pageContext.request.contextPath}/resources/img/product-img/pro-big-3.jpg"
-											alt="Third slide">
-										</a>
-									</div>
-									<div class="carousel-item">
-										<a class="gallery_img"
-											href="${pageContext.request.contextPath}/resources/img/product-img/pro-big-4.jpg">
-											<img class="d-block w-100"
-											src="${pageContext.request.contextPath}/resources/img/product-img/pro-big-4.jpg"
-											alt="Fourth slide">
-										</a>
-									</div>
+									<c:forEach items="${fileList}" var="file" varStatus="i">
+										<c:choose>
+											<c:when test="${i.index eq 0}">
+												<div class="carousel-item active">
+													<a class="gallery_img"
+														href="${pageContext.request.contextPath}/resources/img/product-img/${file.fname}">
+														<img class="d-block w-100"
+														src="${pageContext.request.contextPath}/resources/img/product-img/${file.fname}">
+													</a>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="carousel-item">
+													<a class="gallery_img"
+														href="${pageContext.request.contextPath}/resources/img/product-img/${file.fname}">
+														<img class="d-block w-100"
+														src="${pageContext.request.contextPath}/resources/img/product-img/${file.fname}">
+													</a>
+												</div>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -130,7 +123,8 @@
 											class="fa fa-caret-up" aria-hidden="true"></i></span>
 									</div>
 								</div>
-								<button type="button" class="btn amado-btn cart-btn mt-15">장바구니 담기</button>
+								<button type="button" class="btn amado-btn cart-btn mt-15">장바구니
+									담기</button>
 								<button type="button" class="btn amado-btn checkout-btn mt-15">구매하기</button>
 							</form>
 						</div>
@@ -141,7 +135,7 @@
 						<h4>리뷰</h4>
 						<c:choose>
 							<c:when test="${empty member}">
-								<h6 class="col-12"> 로그인 후 리뷰를 작성하실 수 있습니다.</h6>
+								<h6 class="col-12">로그인 후 리뷰를 작성하실 수 있습니다.</h6>
 							</c:when>
 							<c:otherwise>
 								<div class="form-review mt-3">
@@ -162,12 +156,13 @@
 										<p class="rating-description">좋아요!</p>
 									</div>
 									<div class="col-12 mb-3 tool-message">
-										<input type="text" class="form-control" id="title" placeholder="제목">
-		  								<span class="tooltiptext">제목을 입력해주세요.</span>
+										<input type="text" class="form-control" id="title"
+											placeholder="제목"> <span class="tooltiptext">제목을
+											입력해주세요.</span>
 									</div>
 									<div class="col-12 mb-3 tool-message">
-										<textarea class="form-control" id="contents" placeholder="내용" 
-										onkeyup="autoSize(this)" style="height: 53px;"></textarea>
+										<textarea class="form-control" id="contents" placeholder="내용"
+											onkeyup="autoSize(this)" style="height: 53px;"></textarea>
 										<span class="tooltiptext">내용을 입력해주세요.</span>
 									</div>
 									<div class="col-12 mb-3">

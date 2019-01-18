@@ -24,29 +24,49 @@ public class ProductService {
 	@Inject
 	private ProductDAO productDAO;
 	@Inject
-	private FileDAO imageDAO;
+	private FileDAO fileDAO;
 
 	public ModelAndView list(Pager pager) throws Exception {
 		pager.makeRow();
 		pager.makePage(productDAO.getCount(pager));
 		ModelAndView mv = new ModelAndView();
 		List<ProductDTO> list = productDAO.list(pager);
+		FileDTO fileDTO = new FileDTO();
+		for (ProductDTO productDTO : list) {
+			fileDTO.setProductCode(productDTO.getProductCode());
+			fileDTO.setKind("p");
+			productDTO.setFile(fileDAO.list(fileDTO));
+		}
 		mv.addObject("pager", pager);
 		mv.addObject("list", list);
 		return mv;
 	}
 
-	public ProductDTO selectOne(String productCode) throws Exception {
-		return productDAO.selectOne(productCode);
+	public ModelAndView selectOne(String productCode) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		ProductDTO productDTO = productDAO.selectOne(productCode);
+		if (productDTO != null) {
+			FileDTO fileDTO = new FileDTO();
+			fileDTO.setProductCode(productCode);
+			fileDTO.setKind("p");
+			mv.addObject("fileList", fileDAO.list(fileDTO));
+			mv.addObject("productDTO", productDTO);
+			mv.setViewName("product/product");
+		}else {
+			mv.addObject("msg", "존제하지 않는 상품입니다.");
+			mv.setViewName("redirect:./shop");
+		}
+		return mv;
 	}
 
-	public ModelAndView insert(ProductDTO productDTO,  List<MultipartFile> f1, HttpSession session) throws Exception {
+	public ModelAndView insert(ProductDTO productDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
 		int result = productDAO.insert(productDTO);
 
 		FileSaver fs = new FileSaver();
-		String realPath = session.getServletContext().getRealPath("resources/img");
-		
-		if(result > 0) {
+		String realPath = session.getServletContext().getRealPath("resources/img/product-img");
+		System.out.println(realPath);
+
+		if (result > 0) {
 			for (MultipartFile data : f1) {
 				if (data.isEmpty()) {
 					continue;
@@ -57,7 +77,7 @@ public class ProductService {
 				fileDTO.setFname(fs.saveFile(realPath, data));
 				fileDTO.setKind("p");
 
-				result = imageDAO.insert(fileDTO);
+				result = fileDAO.insert(fileDTO);
 
 				if (result < 1) {
 					throw new SQLException();

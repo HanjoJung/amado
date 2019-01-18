@@ -163,6 +163,19 @@ function checkPasswordFrom() {
 	
 $(".password-btn").click(passwordUpdate);
 
+$(".porduct-insert-form-btn").click(porductForm);
+function porductForm() {
+	checkForm = true;
+	$(".porduct-insert-form").each(function() {
+		if(!checkNull($(this))){
+			checkForm = false;
+		}
+	})
+	if(checkForm){
+		$(".frm").submit();
+	}
+}
+
 // 폼에서 엔터키 누르면 실행
 	$('.form-control').keyup(function(e){
 		if(e.keyCode == 13){

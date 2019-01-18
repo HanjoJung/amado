@@ -1,7 +1,10 @@
 package com.jhj.product;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.UUID;
+
+import com.jhj.file.FileDTO;
 
 public class ProductDTO {
 
@@ -17,9 +20,10 @@ public class ProductDTO {
 	private int stock;
 	private Date reg_data;
 	private int score;
+	private List<FileDTO> file;
 
 	public String getProductCode() {
-		if(productCode == null || productCode == "") {
+		if (productCode == null || productCode == "") {
 			productCode = UUID.randomUUID().toString();
 		}
 		return productCode;
@@ -115,6 +119,14 @@ public class ProductDTO {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public List<FileDTO> getFile() {
+		return file;
+	}
+
+	public void setFile(List<FileDTO> file) {
+		this.file = file;
 	}
 
 }

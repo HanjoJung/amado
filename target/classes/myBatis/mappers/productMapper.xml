@@ -54,7 +54,7 @@
 	
 	<insert id="insert" parameterType="ProductDTO">
 		insert into product 
-		values(#{productCode}, #{productName}, #{price}, #{kind}, #{contents}, 0, 0, 0, #{brand}, 0, sysdate)
+		values(#{productCode}, #{productName}, #{price}, #{kind}, #{contents}, 0, 0, 0, #{brand}, #{stock}, sysdate)
 	</insert>
 	
 	<update id="update" parameterType="ProductDTO">
