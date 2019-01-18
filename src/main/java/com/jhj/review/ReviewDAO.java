@@ -15,8 +15,8 @@ public class ReviewDAO {
 	private SqlSession sqlSession;
 	private String NAMESPACE = "reviewMapper.";
 
-	public int getCount(String productCode) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getCount", productCode);
+	public int getCount(int productNum) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getCount", productNum);
 	}
 
 	public List<ReviewDTO> list(HashMap<String, Object> map) throws Exception {

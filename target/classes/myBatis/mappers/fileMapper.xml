@@ -7,17 +7,13 @@
 	
 	<select id="list" parameterType="FileDTO" resultType="FileDTO">
 	select * from image
-	where kind = #{kind}
-	<choose>
-		<when test="num != null and num != 0"> and num = #{num}</when>
-		<when test="productCode != null and productCode != ''"> and productCode = #{productCode}</when>
-	</choose>
+	where kind = #{kind} and num = #{num}
 	order by fnum asc
 	</select>
 	
 	<insert id="insert" parameterType="FileDTO">
 		insert into image
-		values(image_seq.nextval, #{num}, #{productCode}, #{fname}, #{oname}, #{kind})
+		values(image_seq.nextval, #{num}, #{fname}, #{oname}, #{kind})
 	</insert>
 	
 	<delete id="delete" parameterType="FileDTO">

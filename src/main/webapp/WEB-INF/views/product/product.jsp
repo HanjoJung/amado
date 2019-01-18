@@ -180,7 +180,7 @@
 	</div>
 	<!-- ##### Main Content Wrapper End ##### -->
 
-	<c:import url="${pageContext.request.contextPath}/layout/footer" />
+	<c:import url="${pageContext.request.contextPath}/layout/footer"/>
 </body>
 
 <script type="text/javascript">
@@ -191,7 +191,7 @@
 		$.ajax({
 			url : "./review/list",
 			data : {
-				productCode : "${productDTO.productCode}",
+				productNum : "${productDTO.productNum}",
 				perPage : page
 			},
 			success : function(review) {
@@ -230,8 +230,8 @@
 				url : "./review/insert",
 				type : "POST",
 				data : {
-					productCode : "${productDTO.productCode}",
-					writer : $("#writer").val(),
+					productNum : "${productDTO.productNum}",
+					id : $("#writer").val(),
 					title : $("#title").val(),
 					contents : $("#contents").val(),
 					score : $(".icon-star.active:last").attr("data-value")
@@ -264,7 +264,8 @@ $(".review-view").on("click",".review-delete",function() {
 		data : {
 			num : $(this).parent().siblings("[data-reviewid]").attr("data-reviewid")
 		},
-		success : function() {
+		success : function(result) {
+			alert(result);
 			review();
 		}
 	})

@@ -8,7 +8,7 @@
 		<div class="single-product-wrapper">
 			<!-- Product Image -->
 			<div class="product-img">
-				<a href="product?productCode=${dto.productCode}"> 
+				<a href="product?productNum=${dto.productNum}"> 
 					<img src="${pageContext.request.contextPath}/resources/img/product-img/${dto.file.get(0).fname}"> <!-- Hover Thumb --> 
 					<img class="hover-img" src="${pageContext.request.contextPath}/resources/img/product-img/${dto.file.get(1).fname}">
 				</a>
@@ -21,7 +21,7 @@
 				<div class="product-meta-data">
 					<div class="line"></div>
 					<p class="product-price">${dto.price}원</p>
-					<a href="product?productCode=${dto.productCode}">
+					<a href="product?productNum=${dto.productNum}">
 						<h6>${dto.productName}</h6>
 					</a>
 				</div>

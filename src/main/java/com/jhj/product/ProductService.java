@@ -33,7 +33,7 @@ public class ProductService {
 		List<ProductDTO> list = productDAO.list(pager);
 		FileDTO fileDTO = new FileDTO();
 		for (ProductDTO productDTO : list) {
-			fileDTO.setProductCode(productDTO.getProductCode());
+			fileDTO.setNum(productDTO.getProductNum());
 			fileDTO.setKind("p");
 			productDTO.setFile(fileDAO.list(fileDTO));
 		}
@@ -42,17 +42,17 @@ public class ProductService {
 		return mv;
 	}
 
-	public ModelAndView selectOne(String productCode) throws Exception {
+	public ModelAndView selectOne(int productNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		ProductDTO productDTO = productDAO.selectOne(productCode);
+		ProductDTO productDTO = productDAO.selectOne(productNum);
 		if (productDTO != null) {
 			FileDTO fileDTO = new FileDTO();
-			fileDTO.setProductCode(productCode);
+			fileDTO.setNum(productDTO.getProductNum());
 			fileDTO.setKind("p");
 			mv.addObject("fileList", fileDAO.list(fileDTO));
 			mv.addObject("productDTO", productDTO);
 			mv.setViewName("product/product");
-		}else {
+		} else {
 			mv.addObject("msg", "존제하지 않는 상품입니다.");
 			mv.setViewName("redirect:./shop");
 		}
@@ -60,6 +60,8 @@ public class ProductService {
 	}
 
 	public ModelAndView insert(ProductDTO productDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
+		int seq = productDAO.seqNext();
+		productDTO.setProductNum(seq);
 		int result = productDAO.insert(productDTO);
 
 		FileSaver fs = new FileSaver();
@@ -72,7 +74,7 @@ public class ProductService {
 					continue;
 				}
 				FileDTO fileDTO = new FileDTO();
-				fileDTO.setProductCode(productDTO.getProductCode());
+				fileDTO.setNum(productDTO.getProductNum());
 				fileDTO.setOname(data.getOriginalFilename());
 				fileDTO.setFname(fs.saveFile(realPath, data));
 				fileDTO.setKind("p");
@@ -93,8 +95,8 @@ public class ProductService {
 		return productDAO.update(productDTO);
 	}
 
-	public int delete(String productCode) throws Exception {
-		return productDAO.delete(productCode);
+	public int delete(int productNum) throws Exception {
+		return productDAO.delete(productNum);
 	}
 
 	public List<ProductDTO> cart() throws Exception {

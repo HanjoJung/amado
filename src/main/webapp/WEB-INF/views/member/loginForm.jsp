@@ -45,10 +45,10 @@
 									<button type="button" class="btn amado-btn form-login-btn col-12 mb-15">로그인</button>
 									<c:if test="${empty param.kakao and empty param.facebook}">
 										<button type="button" class="btn kakao-btn col-12 mb-15">
-										<img class="kakao-img" src="${pageContext.request.contextPath}/resources/img/kakao.jpg">
+										<img class="kakao-img" src="${pageContext.request.contextPath}/resources/img/core-img/kakao.jpg">
 										카카오로 로그인</button>
 										<button type="button" class="btn facebook-btn col-12 mb-15">
-										<img class="facebook-img" src="${pageContext.request.contextPath}/resources/img/facebook.png">
+										<img class="facebook-img" src="${pageContext.request.contextPath}/resources/img/core-img/facebook.png">
 										페이스북으로 로그인</button>
 									</c:if>
 								</div>

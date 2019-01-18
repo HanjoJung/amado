@@ -4,9 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="productMapper">
+	<select id="seqNext" resultType="java.lang.Integer">
+		select product_seq.nextval from dual
+	</select>
 
 	<select id="getCount" parameterType="Pager" resultType="java.lang.Integer">
-		select count(productCode) from product
+		select count(productNum) from product
 		where 
 			<if test="brand  != null"> brand in 
 				<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> AND 
@@ -19,7 +22,7 @@
 	<select id="list" parameterType="Pager" resultType="ProductDTO">
 		select * from
 			(select ROWNUM R, p.* from
-				(select productCode, productName, price, kind, score, good, reg_date from 
+				(select productNum, productCode, productName, price, kind, score, good, reg_date from 
 					(select * from product 
 					where price between #{minPrice} and #{maxPrice}
 					and
@@ -30,8 +33,8 @@
 					<if test="kind != null and kind != ''">and kind = #{kind} </if>
 					)
 					left join 
-					(select avg(score)*20 score, productcode from review group by productcode) 
-					using (productCode)
+					(select avg(score)*20 score, productNum from review group by productNum)
+					using (productNum)
 					order by 
 					<choose>
 						<when test="sort == 'priceAsc'"> price asc, </when>
@@ -44,23 +47,24 @@
 		where R between #{startRow} and #{lastRow}
 	</select>
 	
-	<select id="selectOne" parameterType="java.lang.String" resultType="ProductDTO">
-		select * from (select * from product) p
+	<select id="selectOne" parameterType="java.lang.Integer" resultType="ProductDTO">
+		select * from (select * from product)
 		left join 
-		(select avg(score)*20 score, productCode from review group by productCode)r 
-		using (productCode)
-		where productCode = #{productCode}
+		(select avg(score)*20 score, productNum from review group by productNum)
+		using (productNum)
+		where productNum = #{productNum}
 	</select>
 	
 	<insert id="insert" parameterType="ProductDTO">
 		insert into product 
-		values(#{productCode}, #{productName}, #{price}, #{kind}, #{contents}, 0, 0, 0, #{brand}, #{stock}, sysdate)
+		values(#{productNum}, #{productName}, #{price}, #{kind}, #{contents}, 0, 0, 0, #{brand}, #{stock}, sysdate, #{productCode})
 	</insert>
 	
 	<update id="update" parameterType="ProductDTO">
 		update product
 		<set>
 	  		<if test="productName != null and productName != ''"> productName = #{productName},</if> 
+	  		<if test="productCode != null and productCode != ''"> productCode = #{productCode},</if> 
 	  		<if test="kind != null and kind != ''"> kind = #{kind},</if>
 	  		<if test="contents != null and contents != ''"> contents = #{contents},</if>
 	  		<if test="brand != null and brand != ''"> brand = #{brand},</if>
@@ -70,17 +74,17 @@
 	  		<if test="good != null"> good = #{good},</if>
 	  		<if test="stock != null"> stock = #{stock}</if> 
 		</set>
-		where productCode = #{productCode}
+		where productNum = #{productNum}
 	</update>
 	
 	<delete id="delete">
 		delete product 
-		where ProductCode = #{ProductCode}
+		where productNum = #{productNum}
 	</delete>
 	
 	<select id="cart" parameterType="Map" resultType="ProductDTO">
-	select productCode, productName, price from product
-	where productCode in
+	select productNum, productName, price from product
+	where productNum in
 	<foreach collection="cart" item="code" open="(" close=")" separator=","> #{code} </foreach>
 	</select>
 	

@@ -69,7 +69,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     width: 15px;
     height: 15px;
     margin: 0;
-	background-image: url("/amado/resources/img/iconfinder_star.png");
+	background-image: url("/amado/resources/img/core-img/iconfinder_star.png");
 	background-repeat: no-repeat;
 	background-size: 15px;
 	display: inline-block;
@@ -79,7 +79,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     width: 15px;
     height: 15px;
     margin: 0;
-	background-image: url("/amado/resources/img/iconfinder_star_active.png");
+	background-image: url("/amado/resources/img/core-img/iconfinder_star_active.png");
 	background-repeat: no-repeat;
 	background-size: 15px;
 	display: inline-block;
@@ -100,7 +100,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     width: 100%;
     height: 20px;
     margin: 0;
-	background-image: url("/amado/resources/img/iconfinder_star-5.png");
+	background-image: url("/amado/resources/img/core-img/iconfinder_star-5.png");
 	background-repeat: no-repeat;
 	background-size: 70px;
 	display: inline-block;
@@ -118,7 +118,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     width: 100%;
     height: 20px;
     margin: 0;
-	background-image: url("/amado/resources/img/iconfinder_star_active-5.png");
+	background-image: url("/amado/resources/img/core-img/iconfinder_star_active-5.png");
 	background-repeat: no-repeat;
 	background-size: 70px;
 	display: inline-block;
@@ -149,6 +149,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     position: relative;
 }
 .review-summary .review-left {
+	width : 84%;
 	display: inline-block;
 	float: left;
 	padding-right: 6px;
@@ -165,6 +166,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	height: 15px;
 }
 .review-summary .review-rihgt {
+	width : 15%;
 	display: inline-block;
 	float: right;
 }

@@ -19,19 +19,25 @@ public class ProductDAO {
 	public int maxPrice(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "maxPrice", pager);
 	}
+
 	public int minPrice(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "minPrice", pager);
 	}
+
 	public int getCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getCount", pager);
+	}
+
+	public int seqNext() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "seqNext");
 	}
 
 	public List<ProductDTO> list(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 
-	public ProductDTO selectOne(String productCode) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "selectOne", productCode);
+	public ProductDTO selectOne(int productNum) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "selectOne", productNum);
 	}
 
 	public int insert(ProductDTO productDTO) throws Exception {
@@ -42,11 +48,11 @@ public class ProductDAO {
 		return sqlSession.update(NAMESPACE + "update", productDTO);
 	}
 
-	public int delete(String productCode) throws Exception {
-		return sqlSession.delete(NAMESPACE + "delete", productCode);
+	public int delete(int productNum) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", productNum);
 	}
-	
-	public List<ProductDTO> cart(Map<String, List<String>> cart) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"cart", cart);
+
+	public List<ProductDTO> cart(Map<String, List<String>> cart) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "cart", cart);
 	}
 }

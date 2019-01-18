@@ -76,7 +76,7 @@
 									</div>
 									<div class="col-12 mb-3">
 										<input type="number" class="form-control porduct-insert-form" name="stock"
-											placeholder="재고량 ">
+											placeholder="재고량">
 										<p class="message"></p>
 									</div>
 								</div>

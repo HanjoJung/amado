@@ -6,11 +6,12 @@ import com.jhj.util.Pager;
 
 public class ReviewDTO {
 	private int num;
-	private String productCode;
+	private int productNum;
+	private String id;
 	private String title;
 	private String contents;
 	private int score;
-	private String writer;
+	private String name;
 	private Date reg_date;
 	private Pager pager;
 
@@ -22,12 +23,20 @@ public class ReviewDTO {
 		this.num = num;
 	}
 
-	public String getProductCode() {
-		return productCode;
+	public int getProductNum() {
+		return productNum;
 	}
 
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
+	public void setProductNum(int productNum) {
+		this.productNum = productNum;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -54,12 +63,16 @@ public class ReviewDTO {
 		this.score = score;
 	}
 
-	public String getWriter() {
-		return writer;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setWriter(String writer) {
-		this.writer = writer;
+		this.name = writer;
 	}
 
 	public Date getReg_date() {

@@ -4,7 +4,6 @@ public class FileDTO {
 
 	private int fnum;
 	private int num;
-	private String productCode;
 	private String fname;
 	private String oname;
 	private String kind;
@@ -23,17 +22,6 @@ public class FileDTO {
 
 	public void setNum(int num) {
 		this.num = num;
-	}
-
-	public String getProductCode() {
-		if(productCode == null) {
-			productCode = "";
-		}
-		return productCode;
-	}
-
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
 	}
 
 	public String getFname() {

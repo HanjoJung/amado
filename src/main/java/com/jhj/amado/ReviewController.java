@@ -19,8 +19,8 @@ public class ReviewController {
 	private ReviewServise reviewService;
 
 	@RequestMapping("list")
-	public ModelAndView list(String productCode, Pager pager) throws Exception {
-		ModelAndView mv = reviewService.list(productCode, pager);
+	public ModelAndView list(int productNum, Pager pager) throws Exception {
+		ModelAndView mv = reviewService.list(productNum, pager);
 		mv.setViewName("product/review");
 		return mv;
 	}

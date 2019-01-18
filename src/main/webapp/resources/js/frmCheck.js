@@ -27,6 +27,7 @@ $(function() {
 			}
 		})
 	};
+
 // 패턴 체크
 	function checkPattern(data) {
 		pat = (RegExp)(data.attr("data-parsley-pattern"));

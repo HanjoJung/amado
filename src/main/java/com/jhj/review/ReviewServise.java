@@ -15,14 +15,14 @@ public class ReviewServise {
 	@Inject
 	private ReviewDAO reviewDAO;
 
-	public ModelAndView list(String productCode, Pager pager) throws Exception {
+	public ModelAndView list(int productNum, Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = reviewDAO.getCount(productCode);
+		int result = reviewDAO.getCount(productNum);
 		mv.addObject("reviewCount", result);
 		pager.makePage(result);
 		pager.makeRow();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("productCode", productCode);
+		map.put("productNum", productNum);
 		map.put("pager", pager);
 		List<ReviewDTO> list = reviewDAO.list(map);
 		boolean next = true;
@@ -36,20 +36,20 @@ public class ReviewServise {
 
 	public String insert(ReviewDTO reviewDTO) throws Exception {
 		int result = reviewDAO.insert(reviewDTO);
-		String msg = "후기를 작성하지 못하였습니다";
+		String reviewResult = "후기를 작성하지 못하였습니다";
 		if(result > 0) {
-			msg = "후기가 작성되었습니다";
+			reviewResult = "후기가 작성되었습니다";
 		}
-		return msg;
+		return reviewResult;
 	}
 
 	public String delete(int num) throws Exception {
 		int result = reviewDAO.delete(num);
-		String msg = "후기를 삭제하지 못하였습니다";
+		String reviewResult = "후기를 삭제하지 못하였습니다";
 		if(result > 0) {
-			msg = "후기가 삭제되었습니다";
+			reviewResult = "후기가 삭제되었습니다";
 		}
-		return msg;
+		return reviewResult;
 	}
 
 }

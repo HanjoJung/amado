@@ -2,12 +2,12 @@ package com.jhj.product;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.UUID;
 
 import com.jhj.file.FileDTO;
 
 public class ProductDTO {
 
+	private int productNum;
 	private String productCode;
 	private String productName;
 	private int price;
@@ -22,10 +22,16 @@ public class ProductDTO {
 	private int score;
 	private List<FileDTO> file;
 
+	
+	public int getProductNum() {
+		return productNum;
+	}
+
+	public void setProductNum(int productNum) {
+		this.productNum = productNum;
+	}
+
 	public String getProductCode() {
-		if (productCode == null || productCode == "") {
-			productCode = UUID.randomUUID().toString();
-		}
 		return productCode;
 	}
 

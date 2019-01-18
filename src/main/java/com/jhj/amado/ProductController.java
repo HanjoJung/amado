@@ -33,8 +33,8 @@ public class ProductController {
 	}
 
 	@RequestMapping("product")
-	public ModelAndView product(String productCode) throws Exception {
-		return productService.selectOne(productCode);
+	public ModelAndView product(int productNum) throws Exception {
+		return productService.selectOne(productNum);
 	}
 
 	@RequestMapping("insert")
