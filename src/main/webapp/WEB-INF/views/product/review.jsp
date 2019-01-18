@@ -54,7 +54,6 @@
 		var name = $(this).attr("data-writer");
 		var firstName = name.substring(0, 1);
 		var lastName = name.substring(name.length-1, name.length);
-		console.log(name.length);
 		if(name.length <= 2){
 			lastName = "";
 		}
