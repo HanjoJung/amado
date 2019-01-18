@@ -13,7 +13,11 @@
 	<select id="list" parameterType="HashMap" resultType="ReviewDTO">
 		select * from
 			(select rownum R, r.* from
-				(select * from review
+				(select m.name writer, r.* from member m
+					inner JOIN (
+						select * from review 
+					)r
+					on (m.id = r.id)
 				where productCode = #{productCode}
 				order by num desc) r
 			)

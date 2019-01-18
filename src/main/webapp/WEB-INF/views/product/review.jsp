@@ -21,7 +21,7 @@
 						<p class="mt-15">${dto.contents}</p>
 					</div>
 					<div class="review-rihgt">
-						<div class="user" data-writer="${dto.name}">
+						<div class="user" data-writer="${dto.writer}">
 							<span></span>
 						</div>
 						<p>${dto.reg_date}</p>
@@ -39,6 +39,8 @@
 </div>
 <script type="text/javascript">
 	$(".user").each(function() {
+		// E-mail
+		/* 
 		var email = $(this).attr("data-writer");
 		var userId = email.substring(0, email.indexOf("@"));
 		var blind = "*";
@@ -46,7 +48,22 @@
 			blind += "*";
 		}
 		var domain = email.substring(email.indexOf("@"), email.length);
-		$(this).children().text(email.substring(0, 3) + blind + domain);
+		$(this).children().text(email.substring(0, 3) + blind + domain); */
+		
+		// Name
+		var name = $(this).attr("data-writer");
+		var firstName = name.substring(0, 1);
+		var lastName = name.substring(name.length-1, name.length);
+		console.log(name.length);
+		if(name.length <= 2){
+			lastName = "";
+		}
+		var blind = "●";
+		for(i = 2; i < name.length-1; i++){
+			blind += "●";
+		}
+		
+		$(this).children().text(firstName + blind + lastName);
 	});
 
 	$(function() {
