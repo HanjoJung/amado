@@ -241,21 +241,14 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     margin: 5px 10px;
     padding: 0px;
 }
-.list-product-wrapper .product-img img{
-	height: 140px;
+.main-content-wrapper .cart-table-area .container-fluid .clearfix .table-list-product .list-product-img{
+	min-width: 150px;
 }
-.list-product-wrapper div{
-	display: inline-block;
+.main-content-wrapper .cart-table-area .container-fluid .clearfix .table-list-product .list-product-info {
+	width : 100%;
+	max-width: 75%;
 }
-.list-product-wrapper .product-description{
-    position: absolute;
-    padding: 20px 15px 0;
-}
-.list-product-wrapper .ratings-review{
-    top: 0;
-    left: 15px;
-}
-.list-product-wrapper .product-description .amado-btn{
+.table-list-product .list-product-info .amado-btn{
 	min-width : 0;
     width: 50px;
     height: 30px;
@@ -266,10 +259,27 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		display: inline-block;
 		width: 49.7%;
 	}
+	
+	.table-list-product .list-product-info .title{
+		font-size: 24px;;
+	}
+	.table-list-product .list-product-info p{
+		line-height : 1.3;
+		margin-bottom: 0;
+		font-size: 18px;;
+	}
 }
 @media only screen and (max-width: 1085px) {
 	#product-insert .file-left, .file-rihgt{
 	width: 100%;
+	}
+	.table-list-product .list-product-info .title{
+		font-size: 16px;;
+	}
+	.table-list-product .list-product-info p{
+		line-height : 1.3;
+		margin-bottom: 0;
+		font-size: 14px;;
 	}
 }
 @media only screen and (min-width: 768px) {
