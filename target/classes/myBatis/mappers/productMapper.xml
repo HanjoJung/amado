@@ -15,17 +15,16 @@
 				<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> AND 
 			</if>
 			(productCode like '%'||#{search}||'%' or productName like '%'||#{search}||'%') 
-			<if test="kind != null and kind != ''">and kind = #{kind} </if>
-			and price between #{minPrice} and #{maxPrice}
+			<if test="kind != null and kind != ''"> and kind = #{kind} </if>
+			<if test="minPrice != 0 and maxPrice != 0"> and price between #{minPrice} and #{maxPrice} </if>
 	</select>
 	
 	<select id="list" parameterType="Pager" resultType="ProductDTO">
 		select * from
 			(select ROWNUM R, p.* from
-				(select productNum, productCode, productName, price, kind, score, good, reg_date from 
-					(select * from product 
-					where price between #{minPrice} and #{maxPrice}
-					and
+				(select productNum, productCode, productName, price, kind, score, hit, sale, good, reg_date from 
+					(select * from product where
+					<if test="minPrice != 0 and maxPrice != 0">price between #{minPrice} and #{maxPrice} and</if>
 					<if test="brand  != null and brand  != ''"> brand in 
 						<foreach collection="brand" item="brand" open="(" close=")" separator=",">#{brand}</foreach> AND 
 					</if>

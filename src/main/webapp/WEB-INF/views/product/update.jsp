@@ -22,51 +22,59 @@
 						<div class="checkout_details_area mt-50 clearfix">
 
 							<div class="cart-title">
-								<h2>상품 등록</h2>
+								<h2>상품 수정</h2>
 							</div>
 
 							<form class="frm" action="./insert" method="post"
 								id="product-insert" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-12 mb-3">
-										<select name="brand" class="category">
-											<option>Amado</option>
-											<option>Ikea</option>
-											<option>Furniture Inc</option>
-											<option>The factory</option>
-											<option>Artdeco</option>
+										<select name="brand" class="category" >
+										<c:forEach items="${brand}" var="brand">
+											<c:choose>
+												<c:when test="${brand eq productDTO.brand}">
+													<option selected="selected">${brand}</option>
+												</c:when>
+												<c:otherwise>
+													<option>${brand}</option>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 										</select>
 										<div class="productName">
-											<input type="text" class="form-control porduct-insert-form" name="productCode"
-												placeholder="상품코드">
+											<input type="text" class="form-control porduct-insert-form" 
+											name="productCode" placeholder="상품코드" value="${productDTO.productCode}">
 											<p class="message"></p>
 										</div>
 									</div>
 									<div class="col-12 mb-3">
 										<select name="kind" class="category">
-											<option>chair</option>
-											<option>beds</option>
-											<option>accesories</option>
-											<option>furniture</option>
-											<option>homeDeco</option>
-											<option>table</option>
-											<option>kid</option>
+										<c:forEach items="${category}" var="category">
+											<c:choose>
+												<c:when test="${category eq productDTO.kind}">
+													<option selected="selected">${category}</option>
+												</c:when>
+												<c:otherwise>
+													<option>${category}</option>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 										</select>
 										<div class="productName">
-											<input type="text" class="form-control porduct-insert-form" name="productName"
-												placeholder="상품이름">
+											<input type="text" class="form-control porduct-insert-form" 
+											name="productName" placeholder="상품이름" value="${productDTO.productName}">
 											<p class="message"></p>
 										</div>
 									</div>
 									<div class="col-12 mb-3">
 											<input type="number" class="form-control porduct-insert-form" name="price"
-												placeholder="가격 (1만원 이상 기입하세요.)">
+												placeholder="가격 (1만원 이상 기입하세요.)" value="${productDTO.price}">
 											<p class="message"></p>
 									</div>
 									<input type="hidden" name="kind" value="p">
 									<div class="col-12 mb-3">
 										<textarea type="text" class="form-control porduct-insert-form" name="contents"
-											placeholder="상품설명"></textarea>
+											placeholder="상품설명">${productDTO.contents}</textarea>
 										<p class="message"></p>
 									</div>
 									<div class="col-12 mb-3 file-area">
@@ -86,10 +94,10 @@
 									</div>
 									<div class="col-12 mb-3">
 										<input type="number" class="form-control porduct-insert-form" name="stock"
-											placeholder="재고량">
+											placeholder="재고량" value="${productDTO.stock}">
 										<p class="message"></p>
 									</div>
-								<button type="button" class="btn amado-btn porduct-insert-form-btn col-12">상품추가</button>
+								<button type="button" class="btn amado-btn porduct-insert-form-btn col-12">상품수정</button>
 								</div>
 							</form>
 						</div>

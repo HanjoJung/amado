@@ -20,7 +20,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/1.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
@@ -33,7 +33,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/2.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
@@ -46,7 +46,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/3.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
@@ -59,7 +59,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/4.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
@@ -72,7 +72,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/5.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
@@ -85,7 +85,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/6.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
@@ -98,7 +98,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/7.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
@@ -111,7 +111,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/8.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
@@ -124,7 +124,7 @@
 
                 <!-- Single category -->
                 <div class="single-products-category clearfix">
-                    <a href="shop.html">
+                    <a href="product/shop">
                         <img src="${pageContext.request.contextPath}/resources/img/bg-img/9.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">

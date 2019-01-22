@@ -1,5 +1,6 @@
 package com.jhj.product;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -44,11 +45,15 @@ public class ProductService {
 	public ModelAndView selectOne(int productNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		ProductDTO productDTO = productDAO.selectOne(productNum);
+		String[] brand = { "Amado", "Ikea", "Furniture Inc", "The factory", "Artdeco" };
+		String[] category = { "chair", "beds", "accesories", "furniture", "homeDeco", "table", "kid" };
 		if (productDTO != null) {
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setNum(productDTO.getProductNum());
 			fileDTO.setKind("p");
 			mv.addObject("fileList", fileDAO.list(fileDTO));
+			mv.addObject("brand", brand);
+			mv.addObject("category", category);
 			mv.addObject("productDTO", productDTO);
 			mv.setViewName("product/select");
 		} else {
@@ -90,14 +95,59 @@ public class ProductService {
 		return mv;
 	}
 
-	public int update(ProductDTO productDTO) throws Exception {
-		return productDAO.update(productDTO);
+	public ModelAndView update(ProductDTO productDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
+		int result = productDAO.update(productDTO);
+
+		FileSaver fs = new FileSaver();
+		String realPath = session.getServletContext().getRealPath("resources/img/product-img");
+		System.out.println(realPath);
+
+		if (result > 0) {
+			for (MultipartFile data : f1) {
+				if (data.isEmpty()) {
+					continue;
+				}
+				FileDTO fileDTO = new FileDTO();
+				fileDAO.delete(fileDTO);
+				fileDTO.setNum(productDTO.getProductNum());
+				fileDTO.setOname(data.getOriginalFilename());
+				fileDTO.setFname(fs.saveFile(realPath, data));
+				fileDTO.setKind("p");
+
+				result = fileDAO.insert(fileDTO);
+
+				if (result < 1) {
+					throw new SQLException();
+				}
+			}
+		}
+		ModelAndView mv = new ModelAndView();
+		return mv;
 	}
 
-	public int delete(int productNum) throws Exception {
-		return productDAO.delete(productNum);
+	public String delete(int productNum, HttpSession session) throws Exception {
+		int result = productDAO.delete(productNum);
+		if (result > 0) {
+
+			FileDTO fileDTO = new FileDTO();
+			fileDTO.setNum(productNum);
+			fileDTO.setKind("p");
+			List<FileDTO> ar = fileDAO.list(fileDTO);
+
+			if (ar.size() != 0) {
+				result = fileDAO.deleteAll(fileDTO);
+
+				String realPath = session.getServletContext().getRealPath("resources/img/product-img");
+				for (FileDTO fileDTO2 : ar) {
+					File file = new File(realPath, fileDTO2.getFname());
+					file.delete();
+				}
+			}
+		}
+
+		return "삭제 성공";
 	}
-	
+
 	@RequestMapping(value = "checkout", method = RequestMethod.GET)
 	public ModelAndView checkout() throws Exception {
 		ModelAndView mv = new ModelAndView();

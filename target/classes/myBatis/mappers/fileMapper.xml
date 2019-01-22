@@ -6,9 +6,9 @@
 <mapper namespace="fileMapper">
 	
 	<select id="list" parameterType="FileDTO" resultType="FileDTO">
-	select * from image
-	where kind = #{kind} and num = #{num}
-	order by fnum asc
+		select * from image
+		where kind = #{kind} and num = #{num}
+		order by fnum asc
 	</select>
 	
 	<insert id="insert" parameterType="FileDTO">
@@ -17,6 +17,10 @@
 	</insert>
 	
 	<delete id="delete" parameterType="FileDTO">
+		delete image
+		where
+		<if test="fnum != null and fnum !=0">fnum = #{fnum}</if>
+		<if test="num != null and num !=0">num = #{num}</if>
 	</delete>
 	
 </mapper>

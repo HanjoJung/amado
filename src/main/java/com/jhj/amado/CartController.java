@@ -28,7 +28,6 @@ public class CartController {
 	
 	@RequestMapping("list")
 	public ModelAndView list(HttpSession session) throws Exception {
-		System.out.println("list");
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		ModelAndView mv = cartService.list(memberDTO.getId());
 		mv.setViewName("product/cart");
@@ -44,18 +43,12 @@ public class CartController {
 	@RequestMapping(value = "insert", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String insert(CartDTO cartDTO) throws Exception {
-		System.out.println("insert");
-		System.out.println(cartDTO.getId());
-		System.out.println(cartDTO.getProductNum());
 		String str = cartService.insert(cartDTO);
 		return str;
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public ModelAndView delete(CartDTO cartDTO) throws Exception {
-		System.out.println("delete");
-		System.out.println(cartDTO.getId());
-		System.out.println(cartDTO.getProductNum());
 		ModelAndView mv = cartService.delete(cartDTO);
 		mv.setViewName("redirect:./list");
 		return mv;

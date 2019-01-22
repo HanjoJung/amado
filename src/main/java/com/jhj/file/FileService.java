@@ -17,13 +17,12 @@ public class FileService {
 	@Inject
 	private FileDAO fileDAO;
 
-	public ModelAndView delete(int fnum, HttpSession session) throws Exception {
+	public ModelAndView delete(FileDTO fileDTO, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		FileDTO fileDTO = fileDAO.select(fnum);
 		String realPath = session.getServletContext().getRealPath("resources/notice");
 		File file = new File(realPath, fileDTO.getFname());
 		file.delete();
-		int result = fileDAO.delete(fnum);
+		int result = fileDAO.delete(fileDTO);
 		mv.setViewName("common/result");
 		mv.addObject("result", result);
 		return mv;
