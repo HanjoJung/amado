@@ -32,7 +32,7 @@ public class ProductController {
 		return mv;
 	}
 
-	@RequestMapping("product")
+	@RequestMapping("select")
 	public ModelAndView product(int productNum) throws Exception {
 		return productService.selectOne(productNum);
 	}
@@ -50,13 +50,6 @@ public class ProductController {
 
 	@RequestMapping("update")
 	public void update() throws Exception {
-	}
-
-	@RequestMapping(value = "checkout", method = RequestMethod.GET)
-	public ModelAndView checkout() throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("product/checkout");
-		return mv;
 	}
 
 	@RequestMapping("wishList")

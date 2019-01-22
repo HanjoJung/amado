@@ -59,11 +59,6 @@ public class dbTest extends AbstractTestCase{
 		ar.add("6");
 		Map<String, List<String>> mapar = new HashMap<String, List<String>>();
 		map.put("cart", s);
-		List<ProductDTO> list = dao.cart(mapar);
-		assertNotNull(list);
-		for (ProductDTO productDTO : list) {
-			System.out.println(productDTO.getProductCode());
-		}
 		
 	}
 }

@@ -85,10 +85,8 @@
 <!-- Active js -->
 <script src="${pageContext.request.contextPath}/resources/js/active.js"></script>
 
-<script
-	src="${pageContext.request.contextPath}/resources/js/frmCheck.js"></script>
-<script
-	src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/frmCheck.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
 <script type="text/javascript">
 	$(function() {

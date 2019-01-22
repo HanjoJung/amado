@@ -9,6 +9,7 @@
 		<typeAlias type="com.jhj.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.jhj.review.ReviewDTO" alias="ReviewDTO"/>
 		<typeAlias type="com.jhj.file.FileDTO" alias="FileDTO"/>
+		<typeAlias type="com.jhj.cart.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.jhj.util.Pager" alias="Pager"/>
 	</typeAliases>
 </configuration>

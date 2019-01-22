@@ -1,7 +1,6 @@
 package com.jhj.product;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -50,9 +49,5 @@ public class ProductDAO {
 
 	public int delete(int productNum) throws Exception {
 		return sqlSession.delete(NAMESPACE + "delete", productNum);
-	}
-
-	public List<ProductDTO> cart(Map<String, List<String>> cart) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "cart", cart);
 	}
 }

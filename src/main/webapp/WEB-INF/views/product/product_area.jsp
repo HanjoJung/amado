@@ -8,7 +8,7 @@
 		<div class="single-product-wrapper">
 			<!-- Product Image -->
 			<div class="product-img">
-				<a href="product?productNum=${dto.productNum}"> 
+				<a href="./select?productNum=${dto.productNum}"> 
 					<img src="${pageContext.request.contextPath}/resources/img/product-img/${dto.file.get(0).fname}"> <!-- Hover Thumb --> 
 					<img class="hover-img" src="${pageContext.request.contextPath}/resources/img/product-img/${dto.file.get(1).fname}">
 				</a>
@@ -21,7 +21,7 @@
 				<div class="product-meta-data">
 					<div class="line"></div>
 					<p class="product-price">${dto.price}원</p>
-					<a href="product?productNum=${dto.productNum}">
+					<a href="./select?productNum=${dto.productNum}">
 						<h6>${dto.productName}</h6>
 					</a>
 				</div>
@@ -32,10 +32,10 @@
 						<div class="ratings-active" style="width: ${dto.score}%"></div>
 					</div>
 					<div class="cart">
-						<a href="cart.html" data-toggle="tooltip" data-placement="left"
-							title="Add to Cart"><img
-							src="${pageContext.request.contextPath}/resources/img/core-img/cart.png"
-							alt=""></a>
+						<a data-toggle="tooltip" data-placement="left" title="장바구니에 담기">
+							<img class="cart-insert-btn" style="cursor: pointer;" 
+							data-product="${dto.productNum}" data-id="${member.id}"
+							src="${pageContext.request.contextPath}/resources/img/core-img/cart.png"></a>
 					</div>
 				</div>
 			</div>
@@ -77,3 +77,5 @@
 		</nav>
 	</div>
 </c:if>
+
+<script src="${pageContext.request.contextPath}/resources/js/cart.js"></script>

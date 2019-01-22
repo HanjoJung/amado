@@ -123,8 +123,8 @@
 											class="fa fa-caret-up" aria-hidden="true"></i></span>
 									</div>
 								</div>
-								<button type="button" class="btn amado-btn cart-btn mt-15">장바구니
-									담기</button>
+								<button type="button" class="btn amado-btn cart-insert-btn mt-15"
+								data-product="${productDTO.productNum}" data-id="${member.id}">장바구니 담기</button>
 								<button type="button" class="btn amado-btn checkout-btn mt-15">구매하기</button>
 							</form>
 						</div>
@@ -183,6 +183,7 @@
 	<c:import url="${pageContext.request.contextPath}/layout/footer"/>
 </body>
 
+<script src="${pageContext.request.contextPath}/resources/js/cart.js"></script>
 <script type="text/javascript">
 
 	var page = 3;
@@ -270,8 +271,6 @@ $(".review-view").on("click",".review-delete",function() {
 		}
 	})
 })
-$(".cart-btn").click(function() {
-	console.log("cart-btn");
-})
+
 </script>
 </html>

@@ -1,10 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/cart/count",
+		data: {
+			id : "${member.id}"
+		},
+		success : function(result) {
+			$(".cart-count").text("("+result+")");
+		}
+	})
+})
+</script>
         <!-- Mobile Nav (max width 767px)-->
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="/"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png" alt=""></a>
+                <a href="/"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png"></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -27,15 +42,17 @@
                 <ul>
                     <li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
                     <li><a href="${pageContext.request.contextPath}/product/shop">Shop</a></li>
-                    <li><a href="${pageContext.request.contextPath}/product/product">Product</a></li>
+                    <li><a href="${pageContext.request.contextPath}/product/select?productNum=5">Product</a></li>
                     <li><a href="${pageContext.request.contextPath}/product/cart">Cart</a></li>
                     <li><a href="${pageContext.request.contextPath}/product/checkout">Checkout</a></li>
                 </ul>
             </nav>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-70">
-                <a href="${pageContext.request.contextPath}/product/cart" class="cart-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png" alt=""> 장바구니 <span>(0)</span></a>
-                <a href="${pageContext.request.contextPath}/product/wishList" class="fav-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/favorites.png" alt=""> 위시리스트</a>
+                <a href="${pageContext.request.contextPath}/cart/list" class="cart-nav">
+                <img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png"> 장바구니 <span class="cart-count"></span></a>
+                <a href="${pageContext.request.contextPath}/product/wishList" class="fav-nav">
+                <img src="${pageContext.request.contextPath}/resources/img/core-img/favorites.png"> 위시리스트</a>
                 <%-- <a href="#" class="search-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""> 검색</a> --%>
             </div>
             
@@ -68,3 +85,4 @@
             </div>
         </header>
         <!-- Header Area End -->
+</html>

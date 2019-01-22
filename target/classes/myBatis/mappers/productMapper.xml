@@ -82,10 +82,4 @@
 		where productNum = #{productNum}
 	</delete>
 	
-	<select id="cart" parameterType="Map" resultType="ProductDTO">
-	select productNum, productName, price from product
-	where productNum in
-	<foreach collection="cart" item="code" open="(" close=")" separator=","> #{code} </foreach>
-	</select>
-	
 </mapper>

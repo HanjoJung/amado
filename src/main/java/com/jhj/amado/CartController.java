@@ -1,0 +1,63 @@
+package com.jhj.amado;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.jhj.cart.CartDTO;
+import com.jhj.cart.CartService;
+import com.jhj.member.MemberDTO;
+
+@Controller
+@RequestMapping(value = "cart/*")
+public class CartController {
+
+	@Inject
+	private CartService cartService;
+
+	@RequestMapping("count")
+	@ResponseBody
+	public int count(String id) throws Exception {
+		return cartService.count(id);
+	}
+	
+	@RequestMapping("list")
+	public ModelAndView list(HttpSession session) throws Exception {
+		System.out.println("list");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		ModelAndView mv = cartService.list(memberDTO.getId());
+		mv.setViewName("product/cart");
+		return mv;
+	}
+
+	@RequestMapping("check")
+	@ResponseBody
+	public int check(CartDTO cartDTO) throws Exception {
+		return cartService.check(cartDTO);
+	}
+
+	@RequestMapping(value = "insert", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String insert(CartDTO cartDTO) throws Exception {
+		System.out.println("insert");
+		System.out.println(cartDTO.getId());
+		System.out.println(cartDTO.getProductNum());
+		String str = cartService.insert(cartDTO);
+		return str;
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public ModelAndView delete(CartDTO cartDTO) throws Exception {
+		System.out.println("delete");
+		System.out.println(cartDTO.getId());
+		System.out.println(cartDTO.getProductNum());
+		ModelAndView mv = cartService.delete(cartDTO);
+		mv.setViewName("redirect:./list");
+		return mv;
+	}
+}

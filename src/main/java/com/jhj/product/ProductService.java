@@ -1,15 +1,14 @@
 package com.jhj.product;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,7 +50,7 @@ public class ProductService {
 			fileDTO.setKind("p");
 			mv.addObject("fileList", fileDAO.list(fileDTO));
 			mv.addObject("productDTO", productDTO);
-			mv.setViewName("product/product");
+			mv.setViewName("product/select");
 		} else {
 			mv.addObject("msg", "존제하지 않는 상품입니다.");
 			mv.setViewName("redirect:./shop");
@@ -98,17 +97,12 @@ public class ProductService {
 	public int delete(int productNum) throws Exception {
 		return productDAO.delete(productNum);
 	}
-
-	public List<ProductDTO> cart() throws Exception {
-		List<String> ar = new ArrayList<String>();
-		ar.add("1");
-		ar.add("2");
-		ar.add("3");
-		ar.add("4");
-		ar.add("5");
-		ar.add("6");
-		Map<String, List<String>> map = new HashMap<String, List<String>>();
-		map.put("cart", ar);
-		return productDAO.cart(map);
+	
+	@RequestMapping(value = "checkout", method = RequestMethod.GET)
+	public ModelAndView checkout() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("product/checkout");
+		return mv;
 	}
+
 }

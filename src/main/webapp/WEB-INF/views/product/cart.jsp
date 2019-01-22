@@ -33,15 +33,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach items="${list}" var="product">
                                     <tr>
                                         <td class="cart_product_img">
-                                            <a href="#"><img src="${pageContext.request.contextPath}/resources/img/bg-img/cart1.jpg" alt="Product"></a>
+                                            <a href="../product/select?productNum=${product.productNum}">
+                                            <img src="${pageContext.request.contextPath}/resources/img/product-img/${product.file.get(0).fname}"></a>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <h5>White Modern Chair</h5>
+                                            <h5>${product.productName}</h5>
                                         </td>
                                         <td class="price">
-                                            <span>$130</span>
+                                            <span class="price">${product.price}원</span>
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
@@ -51,50 +53,13 @@
                                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
                                             </div>
+                                   	    	<button class="cart-delete-btn btn" data-num="${product.num}">삭제</button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="${pageContext.request.contextPath}/resources/img/bg-img/cart2.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10</span>
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty2" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="${pageContext.request.contextPath}/resources/img/bg-img/cart3.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10</span>
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty3" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
+                            <button class="cart-delete-btn btn" data-id="${product.id}">전체 삭제</button>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
@@ -102,6 +67,7 @@
                             <h5>총 금액</h5>
                             <ul class="summary-table">
                                 <li><span>제품가 : </span> <span>$140.00</span></li>
+                                <li><span>할인액 : </span> <span>0원</span></li>
                                 <li><span>배송비 : </span> <span>무료</span></li>
                                 <li><span>총금액 : </span> <span>$140.00</span></li>
                             </ul>
@@ -118,5 +84,5 @@
 
 <c:import url="${pageContext.request.contextPath}/layout/footer"/>
 </body>
-
+<script src="${pageContext.request.contextPath}/resources/js/cart.js"></script>
 </html>
