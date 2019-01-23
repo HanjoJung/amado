@@ -130,7 +130,7 @@ function checkPasswordFrom() {
 					password : $("#password2").val()
 				},
 				success : function(result) {
-					alert(result)
+					alert("비밀번호가 " + result)
 					location.reload();
 				}
 		}
@@ -145,7 +145,7 @@ function checkPasswordFrom() {
 					address : $("#address").val()
 				},
 				success : function(result) {
-					alert(result)
+					alert("회원정보가 " + result)
 					location.reload();
 				}
 		}
