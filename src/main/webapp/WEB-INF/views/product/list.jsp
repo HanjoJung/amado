@@ -17,7 +17,7 @@
 		<div class="cart-table-area section-padding-100">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-12">
+					<div class="col-12 col-sm-6 col-md-12 col-xl-6">
 						<div class="cart-title mt-50">
 							<h2>상품 리스트</h2>
 						</div>
