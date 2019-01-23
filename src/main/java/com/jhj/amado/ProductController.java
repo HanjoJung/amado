@@ -81,10 +81,7 @@ public class ProductController {
 		return productService.delete(productNum, session);
 	}
 
-	@RequestMapping("wishList")
-	public ModelAndView wishList() throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("product/wishList");
-		return mv;
+	@RequestMapping("checkout")
+	public void checkout() throws Exception {
 	}
 }

@@ -11,7 +11,7 @@
 	</select>
 
 	<select id="list" parameterType="java.lang.String" resultType="CartDTO">
-		select p.productNum, p.productName, p.price, c.num, c.id from product p
+		select p.productNum, p.productName, p.productCode, p.price, c.num, c.id from product p
 		join cart c
 		on (p.productNum = c.productNum)
 		where id = #{id}
