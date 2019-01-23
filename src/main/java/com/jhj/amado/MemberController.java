@@ -95,4 +95,8 @@ public class MemberController {
 	public String delete(MemberDTO memberDTO, HttpSession session) throws Exception {
 		return memberService.delete(memberDTO, session);
 	}
+	
+	@RequestMapping("manager")
+	public void manager() throws Exception {
+	}
 }

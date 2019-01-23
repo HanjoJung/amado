@@ -31,7 +31,7 @@
 		dataView = 8;
 		dataSort = "";
 		dataCategorie = "";
-		dataSearch = "";
+		dataSearch = "${param.search}";
 		dataBrand = [];
 		dataMinPrice = 10000;
 		dataMaxPrice = 1000000;

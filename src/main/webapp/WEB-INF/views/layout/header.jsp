@@ -59,7 +59,7 @@ $(function() {
             <!-- Button Group -->
             <div class="amado-btn-group mt-50 mb-100">
                     <div class="search-content mb-15">
-                        <form action="#" method="get">
+                        <form action="${pageContext.request.contextPath}/product/shop">
                             <input type="search" name="search" id="search" placeholder="검색">
                             <button type="submit"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""></button>
                         </form>
@@ -75,6 +75,9 @@ $(function() {
                			<a href="${pageContext.request.contextPath}/member/logout" class="btn amado-btn mb-15">로그아웃</a>
                 	</c:otherwise>
                 </c:choose>
+                <c:if test="${member.name eq 'manager'}">
+           			<a href="${pageContext.request.contextPath}/member/manager" class="btn amado-btn">관리자</a>
+              	</c:if>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">

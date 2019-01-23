@@ -180,7 +180,7 @@ function checkPasswordFrom() {
 		}
 	})
 }
-	function passwordUpdate() {
+	function infoUpdate() {
 		checkForm = true;
 		$(".password-form-control").each(function() {
 			if(!checkNull($(this))){
@@ -194,9 +194,9 @@ function checkPasswordFrom() {
 		}
 	}
 	
-$(".myInfo-btn").click(passwordUpdate);
+$(".myInfo-btn").click(infoUpdate);
 
-$(".form-btn-update").click(function passwordUpdate() {
+$(".form-btn-update").click(function infoUpdate() {
 	checkForm = true;
 	$(".form-control").each(function() {
 		if(!checkNull($(this))){
@@ -247,7 +247,7 @@ function porductForm() {
 				}else if($(this).attr("id") == "login-password"){
 					checkLoginForm();
 				}else if($(this).attr("id") == "password2"){
-					passwordUpdate();
+					infoUpdate();
 				}
 			}else{
 				$(this).parent().next().find(".form-control").focus();

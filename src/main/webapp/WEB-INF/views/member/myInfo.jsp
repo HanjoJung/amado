@@ -25,7 +25,7 @@
 								<h2>내 정보</h2>
 							</div>
 
-							<form class="frm" action="./update" method="post">
+							<form>
 								<div class="row">
 									<div class="col-12 mb-3">
 										<input type="email" class="form-control" id="id" name="id"
