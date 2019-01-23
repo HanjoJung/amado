@@ -125,8 +125,12 @@
 								</div>
 								<button type="button" class="btn amado-btn cart-insert-btn mt-15"
 								data-product="${productDTO.productNum}" data-id="${member.id}">장바구니 담기</button>
-								<button type="button" class="btn amado-btn checkout-btn mt-15">구매하기</button>
+								<button type="button" class="btn amado-btn checkout-submit-btn mt-15">구매하기</button>
 							</form>
+								<form id="checkout-frm" action="./checkout">
+									<input type="hidden" name="code" value="${productDTO.productCode}">
+									<input type="hidden" name="price" value="${productDTO.price}">
+								</form>
 						</div>
 					</div>
 				</div>
@@ -272,5 +276,8 @@ $(".review-view").on("click",".review-delete",function() {
 	})
 })
 
+	$(".checkout-submit-btn").click(function() {
+		$("#checkout-frm").submit();
+	})
 </script>
 </html>
