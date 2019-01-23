@@ -120,8 +120,51 @@ $(function() {
 	
 // 패스워드 폼 체크 후 패스워드 수정
 function checkPasswordFrom() {
+	action = $("#action").val();
+	if(action == 'password'){
+		ajax = {
+				url : "./update",
+				type : "POST",
+				data : {
+					id : $("#id").val(),
+					password : $("#password2").val()
+				},
+				success : function(result) {
+					alert(result)
+					location.reload();
+				}
+		}
+	} else if(action == 'update'){
+		ajax = {
+				url : "./update",
+				type : "POST",
+				data : {
+					id : $("#id").val(),
+					name : $("#name").val(),
+					phone : $("#phone").val(),
+					address : $("#address").val()
+				},
+				success : function(result) {
+					alert(result)
+					location.reload();
+				}
+		}
+	} else if(action == 'delete'){
+		ajax = {
+				url : "./delete",
+				type : "POST",
+				data : {
+					id : $("#id").val(),
+					password : $("#curPassword").val()
+				},
+				success : function(result) {
+					alert(result)
+					location.href="/amado/";
+				}
+		}
+	} 
 	$.ajax({
-		url : "./rewordPassword",
+		url : "./password",
 		type : "POST",
 		data : {
 			id : $("#id").val(),
@@ -131,18 +174,7 @@ function checkPasswordFrom() {
 			checkResult = check($("#curPassword"), result != 0, "비밀번호가 맞지 않습니다.");
 			if(checkResult){
 				if(checkPassword()){
-					$.ajax({
-						url : "./update",
-						type : "POST",
-						data : {
-							id : $("#id").val(),
-							password : $("#password2").val()
-						},
-						success : function(result) {
-							alert(result)
-							location.reload();
-						}
-					})
+					$.ajax(ajax);
 				}
 			}
 		}
@@ -162,8 +194,37 @@ function checkPasswordFrom() {
 		}
 	}
 	
-$(".password-btn").click(passwordUpdate);
+$(".myInfo-btn").click(passwordUpdate);
 
+$(".form-btn-update").click(function passwordUpdate() {
+	checkForm = true;
+	$(".form-control").each(function() {
+		if(!checkNull($(this))){
+			checkForm = false;
+		}else if(!checkPattern($(this))){
+			checkForm = false;
+		}
+	})
+	if(checkForm){
+		$.ajax({
+			url : "./update",
+			type : "POST",
+			data : {
+				id : $("#id").val(),
+				name : $("#name").val(),
+				phone : $("#phone").val(),
+				address : $("#address").val()
+			},
+			success : function(date) {
+				alert(data);
+				location.reload();
+			}
+		})
+	}
+});
+
+
+// 상품 추가
 $(".porduct-insert-form-btn").click(porductForm);
 function porductForm() {
 	checkForm = true;

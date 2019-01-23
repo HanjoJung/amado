@@ -6,30 +6,6 @@
 
 <head>
 <c:import url="${pageContext.request.contextPath}/layout/head" />
-<script type="text/javascript">
-	$(function() {
-		$(".form-btn-delete").click(function() {
-			deletePassword = prompt("비밀번호를 입력하세요.");
-			if (deletePassword != "" && deletePassword != null) {
-				$.ajax({
-					url : "./delete",
-					type : "POST",
-					data : {
-						id : "${member.id}",
-						password : deletePassword
-					},
-					success : function(data) {
-						data = data.trim();
-						alert(data);
-						if(data == "탈퇴 되었습니다."){
-							location.href = "${pageContext.request.contextPath}/"
-						}
-					}
-				})
-			}
-		})
-	})
-</script>
 </head>
 
 <body>
@@ -59,14 +35,14 @@
 										<p class="message"></p>
 									</div>
 									<div class="col-12 mb-3">
-										<input type="text" class="form-control" name="name"
+										<input type="text" class="form-control" id="name" name="name"
 											placeholder="이름" data-parsley-pattern="^[가-힣|a-z|A-Z].{1,}$"
 											data-parsley-message="한글과 영문만 입력 가능합니다."
 											value="${member.name}">
 										<p class="message"></p>
 									</div>
 									<div class="col-12 mb-3">
-										<input type="text" class="form-control" name="phone"
+										<input type="text" class="form-control" id="phone" name="phone"
 											placeholder="전화번호 ( - 없이)" draggable="false"
 											data-parsley-pattern="^(01[0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$"
 											data-parsley-message="-없이 번호로만 전부 입력해주세요."
@@ -74,7 +50,7 @@
 										<p class="message"></p>
 									</div>
 									<div class="col-12 mb-15">
-										<input type="text" class="form-control" name="address"
+										<input type="text" class="form-control" id="address" name="address"
 											placeholder="주소" data-parsley-pattern="^[]*.{10,}$"
 											data-parsley-message="너무 짧습니다." value="${member.address}">
 										<p class="message"></p>
@@ -86,9 +62,11 @@
 							</form>
 							<div style="text-align: right;">
 								<a data-toggle="modal" data-target="#myModal" 
-								href="${pageContext.request.contextPath}/member/password" class="btn amado-btn mb-3">비밀번호 변경</a>
-								<button type="button" class="btn amado-btn mb-3 form-btn">정보수정</button>
-								<button type="button" class="btn amado-btn mb-3 form-btn-delete">회원탈퇴</button>
+								href="${pageContext.request.contextPath}/member/password?action=password" class="btn amado-btn mb-3">비밀번호 변경</a>
+								<a data-toggle="modal" data-target="#myModal" 
+								href="${pageContext.request.contextPath}/member/password?action=update" class="btn amado-btn mb-3">정보수정</a>
+								<a data-toggle="modal" data-target="#myModal" 
+								href="${pageContext.request.contextPath}/member/password?action=delete" class="btn amado-btn mb-3">회원탈퇴</a>
 							</div>
 						</div>
 					</div>

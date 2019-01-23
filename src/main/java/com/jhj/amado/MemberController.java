@@ -47,11 +47,15 @@ public class MemberController {
 	@RequestMapping("password")
 	public void password() throws Exception {
 	}
-
-	@RequestMapping(value = "rewordPassword", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "password", method = RequestMethod.POST)
 	@ResponseBody
-	public int rewordPassword(MemberDTO memberDTO) throws Exception {
+	public int password(MemberDTO memberDTO) throws Exception {
 		return memberService.rewordPassword(memberDTO);
+	}
+	
+	@RequestMapping("rewordPassword")
+	public void rewordPassword() throws Exception {
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)

@@ -48,11 +48,6 @@ public class HomeController {
 	public String footer() {
 		return "layout/footer";
 	}
-	@RequestMapping(value="*/common/result")
-	public String result() {
-		return "common/result";
-	}
-
 	@RequestMapping(value="/kakao")
 	public void kakao() {
 	}
