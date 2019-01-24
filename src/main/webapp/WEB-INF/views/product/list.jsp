@@ -38,7 +38,7 @@
 													<span>판매수 : ${product.sale}</span> 
 												</div>
 												<a class="btn amado-btn col-12"
-												href="./update?productNum=${product.productNum}">수정</a>
+												href="../product/update?productNum=${product.productNum}">수정</a>
 												<button class="product-btn btn amado-btn col-12"
 													data-productNum="${product.productNum}">삭제</button></td>
 										</tr>

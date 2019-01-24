@@ -28,7 +28,7 @@ public class ProductController {
 
 	@RequestMapping("list")
 	public ModelAndView list(Pager pager) throws Exception {
-		if(pager.getCurPage() == 0) {
+		if (pager.getCurPage() == 0) {
 			pager.setCurPage(1);
 		}
 		pager.setPerPage(10);
@@ -50,7 +50,7 @@ public class ProductController {
 		return productService.selectOne(productNum);
 	}
 
-	@RequestMapping("insert")
+	@RequestMapping(value = "insert", method = RequestMethod.GET)
 	public void insert() throws Exception {
 	}
 
@@ -61,21 +61,21 @@ public class ProductController {
 		return mv;
 	}
 
-	@RequestMapping(value="update")
+	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public ModelAndView update(int productNum) throws Exception {
 		ModelAndView mv = productService.selectOne(productNum);
 		mv.setViewName("product/update");
 		return mv;
 	}
-	
-	@RequestMapping(value="update", method=RequestMethod.POST)
-	public ModelAndView update(ProductDTO productDTO, List<MultipartFile> f1,HttpSession session) throws Exception {
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public ModelAndView update(ProductDTO productDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
 		ModelAndView mv = productService.update(productDTO, f1, session);
 		mv.setViewName("product/update");
 		return mv;
 	}
-	
-	@RequestMapping(value="delete", method=RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "delete", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String delete(int productNum, HttpSession session) throws Exception {
 		return productService.delete(productNum, session);
