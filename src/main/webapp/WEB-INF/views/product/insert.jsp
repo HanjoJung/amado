@@ -63,7 +63,6 @@
 												placeholder="가격 (1만원 이상 기입하세요.)">
 											<p class="message"></p>
 									</div>
-									<input type="hidden" name="kind" value="p">
 									<div class="col-12 mb-3">
 										<textarea type="text" class="form-control porduct-insert-form" name="contents"
 											placeholder="상품설명"></textarea>
