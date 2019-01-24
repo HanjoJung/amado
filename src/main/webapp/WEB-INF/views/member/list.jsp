@@ -50,7 +50,7 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="cart-title mt-50">
-							<h2>회원 리스트</h2>
+							<h2>회원 리스트(${count})</h2>
 						</div>
 
 						<div class="cart-table clearfix">

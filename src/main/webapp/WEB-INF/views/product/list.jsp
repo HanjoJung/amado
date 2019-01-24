@@ -12,7 +12,7 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="cart-title mt-50">
-							<h2>상품 리스트</h2>
+							<h2>상품 리스트(${count})</h2>
 							<a href="${pageContext.request.contextPath}/product/insert"
 								class="btn amado-btn" style="width: 160px;">상품추가</a>
 						</div>

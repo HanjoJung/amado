@@ -15,10 +15,12 @@ public class MemberService {
 	private MemberDAO memberDAO;
 
 	public ModelAndView list(Pager pager) throws Exception {
-		pager.makePage(memberDAO.getCount());
+		int totalCount = memberDAO.getCount();
 		pager.makeRow();
+		pager.makePage(totalCount);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", memberDAO.list(pager));
+		mv.addObject("count", totalCount);
 		return mv;
 	}
 

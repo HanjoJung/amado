@@ -28,7 +28,8 @@ public class ProductService {
 
 	public ModelAndView list(Pager pager) throws Exception {
 		pager.makeRow();
-		pager.makePage(productDAO.getCount(pager));
+		int totalCount = productDAO.getCount(pager);
+		pager.makePage(totalCount);
 		ModelAndView mv = new ModelAndView();
 		List<ProductDTO> list = productDAO.list(pager);
 		FileDTO fileDTO = new FileDTO();
@@ -39,6 +40,7 @@ public class ProductService {
 		}
 		mv.addObject("pager", pager);
 		mv.addObject("list", list);
+		mv.addObject("count", totalCount);
 		return mv;
 	}
 
