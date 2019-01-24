@@ -189,12 +189,22 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/cart.js"></script>
 <script type="text/javascript">
+  var productNum = '${productDTO.productNum}';
 	$(function() {
+		var todayView = getCookie("todayView").trim();
+		var search = todayView.search(productNum);
+		
+		if(todayView.search(productNum) != -1){ 
+			todayView = todayView.replace(productNum + ",", "");
+		}
+		todayView = productNum + "," + todayView;
+		setCookie("todayView", todayView, 1);
+		
 		$.ajax({
 			url : "./update",
 			type : "POST",
 			data : {
-				productNum : "${productDTO.productNum}",
+				productNum : productNum,
 				hit : 1
 			}
 		})
@@ -206,7 +216,7 @@
 		$.ajax({
 			url : "./review/list",
 			data : {
-				productNum : "${productDTO.productNum}",
+				productNum : productNum,
 				perPage : page
 			},
 			success : function(review) {
@@ -245,7 +255,7 @@
 				url : "./review/insert",
 				type : "POST",
 				data : {
-					productNum : "${productDTO.productNum}",
+					productNum : productNum,
 					id : $("#writer").val(),
 					title : $("#title").val(),
 					contents : $("#contents").val(),

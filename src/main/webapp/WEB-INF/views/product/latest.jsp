@@ -19,7 +19,7 @@
 				<div class="row">
 					<div class="col-12 col-lg-8">
 						<div class="cart-title mt-50">
-							<h2>장바구니</h2>
+							<h2>최근 본 상품</h2>
 						</div>
 
 						<div class="cart-table clearfix">
@@ -60,13 +60,13 @@
 													</div>
 												</div>
 												<button class="cart-delete-btn btn"
-													data-num="${product.num}">삭제</button>
+													data-num="${product.productNum}">삭제</button>
 											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
-							<button class="cart-delete-btn btn" data-id="${product.id}">전체
+							<button class="cart-delete-btn btn" data-num="all">전체
 								삭제</button>
 						</div>
 					</div>
@@ -161,17 +161,15 @@ $(function() {
 })
 
 $(".cart-delete-btn").click(function() {
-	$.ajax({
-		url : "./delete",
-		type : "POST",
-		data : {
-			num : $(this).attr("data-num"),
-			id : $(this).attr("data-id")
-		},
-		success : function() {
-			location.reload();
-		}
-	})
+	dataNum = $(this).attr("data-num");
+	if(dataNum == "all"){
+		removeCookie("todayView");		
+		location.reload();
+	}else{
+		todayView = getCookie("todayView").replace(dataNum+",","").trim();
+		setCookie("todayView", todayView, 1);
+		location.reload();
+	}
 })
 </script>
 </html>

@@ -1,10 +1,15 @@
 package com.jhj.product;
 
 import java.io.File;
+import java.net.URLDecoder;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
@@ -160,4 +165,43 @@ public class ProductService {
 		return mv;
 	}
 
+	public ModelAndView latest(HttpServletRequest request) throws Exception {
+		Cookie[] cookies = request.getCookies();
+		String[] cookieValues = null;
+		String value = "";
+
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("todayView")) {
+					value = cookies[i].getValue();
+					cookieValues = (URLDecoder.decode(value, "UTF-8")).split(",");
+					break;
+				}
+			}
+		}
+
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put("productNum", cookieValues);
+		List<ProductDTO> list = productDAO.latest(map);
+		FileDTO fileDTO = new FileDTO();
+		for (ProductDTO productDTO : list) {
+			fileDTO.setNum(productDTO.getProductNum());
+			fileDTO.setKind("p");
+			productDTO.setFile(fileDAO.list(fileDTO));
+		}
+		
+		for (int i = 0; i < cookieValues.length; i++) {
+			for (int j = i; j < list.size(); j++) {
+				if (Integer.parseInt(cookieValues[i]) == list.get(j).getProductNum()) {
+					ProductDTO temp = list.get(i);
+					list.set(i, list.get(j));
+					list.set(j, temp);
+				}
+			}
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		return mv;
+	}
 }

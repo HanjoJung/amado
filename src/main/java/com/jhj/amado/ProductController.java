@@ -3,6 +3,7 @@ package com.jhj.amado;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -83,5 +84,12 @@ public class ProductController {
 
 	@RequestMapping("checkout")
 	public void checkout() throws Exception {
+	}
+	
+	@RequestMapping("latest")
+	public ModelAndView list(HttpServletRequest request) throws Exception {
+		ModelAndView mv = productService.latest(request);
+		mv.setViewName("product/latest");
+		return mv;
 	}
 }

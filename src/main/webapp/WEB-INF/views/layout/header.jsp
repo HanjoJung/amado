@@ -51,8 +51,8 @@ $(function() {
             <div class="cart-fav-search mb-70">
                 <a href="${pageContext.request.contextPath}/cart/list" class="cart-nav">
                 <img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png"> 장바구니 <span class="cart-count"></span></a>
-                <a href="${pageContext.request.contextPath}/product/wishList" class="fav-nav">
-                <img src="${pageContext.request.contextPath}/resources/img/core-img/favorites.png"> 위시리스트</a>
+                <a href="${pageContext.request.contextPath}/product/latest" class="fav-nav">
+                <img src="${pageContext.request.contextPath}/resources/img/core-img/favorites.png">최근 본 상품</a>
                 <%-- <a href="#" class="search-nav"><img src="${pageContext.request.contextPath}/resources/img/core-img/search.png" alt=""> 검색</a> --%>
             </div>
             

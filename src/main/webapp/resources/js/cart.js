@@ -26,17 +26,3 @@ $(".cart-insert-btn").click(function() {
 		}
 	})
 })
-
-$(".cart-delete-btn").click(function() {
-	$.ajax({
-		url : "./delete",
-		type : "POST",
-		data : {
-			num : $(this).attr("data-num"),
-			id : $(this).attr("data-id")
-		},
-		success : function() {
-			location.reload();
-		}
-	})
-})
