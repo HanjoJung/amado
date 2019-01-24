@@ -67,11 +67,11 @@
 	  		<if test="kind != null and kind != ''"> kind = #{kind},</if>
 	  		<if test="contents != null and contents != ''"> contents = #{contents},</if>
 	  		<if test="brand != null and brand != ''"> brand = #{brand},</if>
-	  		<if test="price != null"> price = #{price},</if>
-	  		<if test="hit != null"> hit = #{hit},</if>
-	  		<if test="sale != null"> sale = #{sale},</if>
-	  		<if test="good != null"> good = #{good},</if>
-	  		<if test="stock != null"> stock = #{stock}</if> 
+	  		<if test="price != null and price != 0"> price = #{price},</if>
+	  		<if test="hit != null and hit != 0"> hit = hit+#{hit},</if>
+	  		<if test="sale != null and sale != 0"> sale = sale+#{sale},</if>
+	  		<if test="good != null and good != 0"> good = good+#{good},</if>
+	  		<if test="stock != null and stock != 0"> stock = stock+#{stock}</if> 
 		</set>
 		where productNum = #{productNum}
 	</update>

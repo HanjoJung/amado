@@ -101,26 +101,28 @@ public class ProductService {
 	public ModelAndView update(ProductDTO productDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
 		int result = productDAO.update(productDTO);
 
-		FileSaver fs = new FileSaver();
-		String realPath = session.getServletContext().getRealPath("resources/img/product-img");
-		System.out.println(realPath);
+		if (f1 != null) {
+			FileSaver fs = new FileSaver();
+			String realPath = session.getServletContext().getRealPath("resources/img/product-img");
+			System.out.println(realPath);
 
-		if (result > 0) {
-			for (MultipartFile data : f1) {
-				if (data.isEmpty()) {
-					continue;
-				}
-				FileDTO fileDTO = new FileDTO();
-				fileDAO.delete(fileDTO);
-				fileDTO.setNum(productDTO.getProductNum());
-				fileDTO.setOname(data.getOriginalFilename());
-				fileDTO.setFname(fs.saveFile(realPath, data));
-				fileDTO.setKind("p");
+			if (result > 0) {
+				for (MultipartFile data : f1) {
+					if (data.isEmpty()) {
+						continue;
+					}
+					FileDTO fileDTO = new FileDTO();
+					fileDAO.delete(fileDTO);
+					fileDTO.setNum(productDTO.getProductNum());
+					fileDTO.setOname(data.getOriginalFilename());
+					fileDTO.setFname(fs.saveFile(realPath, data));
+					fileDTO.setKind("p");
 
-				result = fileDAO.insert(fileDTO);
+					result = fileDAO.insert(fileDTO);
 
-				if (result < 1) {
-					throw new SQLException();
+					if (result < 1) {
+						throw new SQLException();
+					}
 				}
 			}
 		}

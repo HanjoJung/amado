@@ -189,6 +189,16 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/cart.js"></script>
 <script type="text/javascript">
+	$(function() {
+		$.ajax({
+			url : "./update",
+			type : "POST",
+			data : {
+				productNum : "${productDTO.productNum}",
+				hit : 1
+			}
+		})
+	})
 
 	var page = 3;
 	

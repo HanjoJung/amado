@@ -71,7 +71,7 @@ public class ProductController {
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public ModelAndView update(ProductDTO productDTO, List<MultipartFile> f1,HttpSession session) throws Exception {
 		ModelAndView mv = productService.update(productDTO, f1, session);
-		mv.setViewName("./update");
+		mv.setViewName("product/update");
 		return mv;
 	}
 	
