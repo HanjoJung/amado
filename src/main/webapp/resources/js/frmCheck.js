@@ -154,8 +154,7 @@ function checkPasswordFrom() {
 				url : "./delete",
 				type : "POST",
 				data : {
-					id : $("#id").val(),
-					password : $("#curPassword").val()
+					id : $("#id").val()
 				},
 				success : function(result) {
 					alert(result)

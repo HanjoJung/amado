@@ -92,6 +92,7 @@ public class ProductService {
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("msg", "작성 성공");
+		mv.addObject("reload", "product");
 		return mv;
 	}
 

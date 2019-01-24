@@ -34,7 +34,7 @@ public class ProductController {
 		pager.setPerPage(10);
 		pager.setSearch("");
 		ModelAndView mv = productService.list(pager);
-		mv.setViewName("product/list");
+		mv.setViewName("/product/list");
 		return mv;
 	}
 
@@ -57,7 +57,7 @@ public class ProductController {
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public ModelAndView insert(ProductDTO productDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
 		ModelAndView mv = productService.insert(productDTO, f1, session);
-		mv.setViewName("redirect:./shop");
+		mv.setViewName("redirect:../member/manager");
 		return mv;
 	}
 

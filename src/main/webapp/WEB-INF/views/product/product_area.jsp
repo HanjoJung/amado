@@ -54,7 +54,6 @@
 		<!-- Pagination -->
 		<nav aria-label="navigation">
 			<ul class="pagination justify-content-end mt-50">
-
 				<c:if test="${pager.curBlock > 1}">
 					<li class="page-item"><a class="page-link"
 						data-curPage="${pager.startNum-1}">◀</a></li>

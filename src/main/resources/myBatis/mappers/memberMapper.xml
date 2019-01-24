@@ -54,7 +54,7 @@
 	
 	<delete id="delete">
 		delete member
-		where id = #{id} and password = #{password}
+		where id = #{id}
 	</delete>
 	
 </mapper>
