@@ -3,7 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<script type="text/javascript">
+	var member = "${member.id}";
+	if(member != ""){
+		location.href = "${pageContext.request.contextPath}/";
+	}
+</script>
 <head>
 <c:import url="${pageContext.request.contextPath}/layout/head" />
 </head>

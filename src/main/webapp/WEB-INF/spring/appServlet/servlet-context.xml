@@ -21,6 +21,55 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<beans:bean class="com.jhj.interceptor.BoardInterceptor" id="BoradInterceptor">
+	</beans:bean >
+	<interceptors>
+	 	<interceptor>
+	 		<mapping path="/notice/*"/>
+	 		<mapping path="/qna/*"/>
+	 		<exclude-mapping path="/*/*List"/>
+	 		<exclude-mapping path="/*/*Write"/>
+	 		<exclude-mapping path="/*/*Select"/>
+	 		<beans:ref bean="BoradInterceptor"/>
+	 	</interceptor>
+	</interceptors>
+	
+	<beans:bean class="com.jhj.interceptor.LoginInterceptor" id="LoginInterceptor">
+	</beans:bean >
+	<interceptors>
+	 	<interceptor>
+	 		<mapping path="/member/*"/>
+	 		<mapping path="/cart/*"/>
+	 		<mapping path="/product/*"/>
+	 		<exclude-mapping path="/product/shop"/>
+	 		<exclude-mapping path="/product/product_area"/>
+	 		<exclude-mapping path="/product/select"/>
+	 		<exclude-mapping path="/product/checkout"/>
+	 		<exclude-mapping path="/product/latest"/>
+	 		<exclude-mapping path="/member/join"/>
+	 		<exclude-mapping path="/member/checkId"/>
+	 		<exclude-mapping path="/member/password"/>
+	 		<exclude-mapping path="/member/login"/>
+	 		<exclude-mapping path="/member/loginForm"/>
+	 		<exclude-mapping path="/cart/count"/>
+	 		<beans:ref bean="LoginInterceptor"/>
+	 	</interceptor>
+	</interceptors>
+	
+	<beans:bean class="com.jhj.interceptor.ManagerInterceptor" id="ManagerInterceptor">
+	</beans:bean >
+	<interceptors>
+	 	<interceptor>
+	 		<mapping path="/product/list"/>
+	 		<mapping path="/product/insert"/>
+	 		<mapping path="/product/update"/>
+	 		<mapping path="/product/delete"/>
+	 		<mapping path="/member/list"/>
+	 		<mapping path="/member/manager"/>
+	 		<beans:ref bean="ManagerInterceptor"/>
+	 	</interceptor>
+	</interceptors>
+	
 	<context:component-scan base-package="com.jhj.amado" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
