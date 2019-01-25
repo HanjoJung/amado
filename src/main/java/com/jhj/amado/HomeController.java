@@ -55,4 +55,8 @@ public class HomeController {
 	public void facebook() {
 	}
 	
+	@RequestMapping(value="/test")
+	public void test() {
+	}
+	
 }

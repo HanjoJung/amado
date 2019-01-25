@@ -70,25 +70,23 @@
 	</div>
 </div>
 <!-- ##### Footer Area End ##### -->
-
-<!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery/jquery-2.2.4.min.js"></script>
-<!-- Popper js -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-<!-- Bootstrap js -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<!-- Plugins js -->
-<script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
-<!-- Active js -->
-<script src="${pageContext.request.contextPath}/resources/js/active.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/js/frmCheck.js"></script>
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/cookie.js"></script>
-
+	<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
+	<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<!-- Plugins js -->
+	<script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
+	
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+    
+	<!-- Active js -->
+	<script src="${pageContext.request.contextPath}/resources/js/active.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/js/frmCheck.js"></script>
+	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/cookie.js"></script>
 <script type="text/javascript">
 	$(function() {
 		message = "${param.msg}";

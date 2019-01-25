@@ -43,8 +43,8 @@ $(function() {
                     <li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
                     <li><a href="${pageContext.request.contextPath}/product/shop">Shop</a></li>
                     <li><a href="${pageContext.request.contextPath}/product/select?productNum=5">Product</a></li>
-                    <li><a href="${pageContext.request.contextPath}/cart/list">Cart</a></li>
-                    <li><a href="${pageContext.request.contextPath}/product/checkout">Checkout</a></li>
+                    <li><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a></li>
+                    <li><a href="${pageContext.request.contextPath}/qna/qnaList">QnA</a></li>
                 </ul>
             </nav>
             <!-- Cart Menu -->

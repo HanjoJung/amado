@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +20,8 @@ import com.jhj.util.FileSaver;
 import com.jhj.util.Pager;
 
 @Service
-public class NoticeService implements BoardService{
+@Transactional
+public class NoticeService implements BoardService {
 	@Inject
 	private NoticeDAO noticeDAO;
 	@Inject
@@ -31,7 +33,6 @@ public class NoticeService implements BoardService{
 		int totalCount = noticeDAO.totalCount(pager);
 		pager.makePage(totalCount);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/boardList");
 		mv.addObject("list", noticeDAO.list(pager));
 		mv.addObject("pager", pager);
 		return mv;
@@ -91,7 +92,6 @@ public class NoticeService implements BoardService{
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("msg", "작성 성공");
-		mv.setViewName("redirect:./noticeList");
 		return mv;
 	}
 
@@ -120,7 +120,6 @@ public class NoticeService implements BoardService{
 			result = fileDAO.insert(fileDTO);
 		}
 
-		mv.setViewName("redirect:./noticeSelect?num=" + boardDTO.getNum());
 		mv.addObject("msg", "수정 성공");
 		return mv;
 	}
@@ -152,7 +151,6 @@ public class NoticeService implements BoardService{
 			}
 		}
 
-		mv.setViewName("redirect:./noticeList");
 		mv.addObject("msg", "삭제 성공");
 		return mv;
 	}
