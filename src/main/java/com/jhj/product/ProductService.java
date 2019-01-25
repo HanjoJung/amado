@@ -75,26 +75,28 @@ public class ProductService {
 		productDTO.setProductNum(seq);
 		int result = productDAO.insert(productDTO);
 
+		if (result < 1) {
+			throw new SQLException();
+		}
+
 		FileSaver fs = new FileSaver();
 		String realPath = session.getServletContext().getRealPath("resources/img/product-img");
 		System.out.println(realPath);
 
-		if (result > 0) {
-			for (MultipartFile data : f1) {
-				if (data.isEmpty()) {
-					continue;
-				}
-				FileDTO fileDTO = new FileDTO();
-				fileDTO.setNum(productDTO.getProductNum());
-				fileDTO.setOname(data.getOriginalFilename());
-				fileDTO.setFname(fs.saveFile(realPath, data));
-				fileDTO.setKind("p");
+		for (MultipartFile data : f1) {
+			if (data.isEmpty()) {
+				continue;
+			}
+			FileDTO fileDTO = new FileDTO();
+			fileDTO.setNum(productDTO.getProductNum());
+			fileDTO.setOname(data.getOriginalFilename());
+			fileDTO.setFname(fs.saveFile(realPath, data));
+			fileDTO.setKind("p");
 
-				result = fileDAO.insert(fileDTO);
+			result = fileDAO.insert(fileDTO);
 
-				if (result < 1) {
-					throw new SQLException();
-				}
+			if (result < 1) {
+				throw new SQLException();
 			}
 		}
 		ModelAndView mv = new ModelAndView();
@@ -111,7 +113,10 @@ public class ProductService {
 			String realPath = session.getServletContext().getRealPath("resources/img/product-img");
 			System.out.println(realPath);
 
-			if (result > 0) {
+			if (result < 1) {
+				throw new SQLException();
+			}
+
 				for (MultipartFile data : f1) {
 					if (data.isEmpty()) {
 						continue;
@@ -128,7 +133,6 @@ public class ProductService {
 					if (result < 1) {
 						throw new SQLException();
 					}
-				}
 			}
 		}
 		ModelAndView mv = new ModelAndView();
@@ -137,7 +141,10 @@ public class ProductService {
 
 	public String delete(int productNum, HttpSession session) throws Exception {
 		int result = productDAO.delete(productNum);
-		if (result > 0) {
+		
+		if (result < 1) {
+			throw new SQLException();
+		}
 
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setNum(productNum);
@@ -152,7 +159,6 @@ public class ProductService {
 					File file = new File(realPath, fileDTO2.getFname());
 					file.delete();
 				}
-			}
 		}
 
 		return "삭제 성공";
@@ -189,7 +195,7 @@ public class ProductService {
 			fileDTO.setKind("p");
 			productDTO.setFile(fileDAO.list(fileDTO));
 		}
-		
+
 		for (int i = 0; i < cookieValues.length; i++) {
 			for (int j = i; j < list.size(); j++) {
 				if (Integer.parseInt(cookieValues[i]) == list.get(j).getProductNum()) {
@@ -199,7 +205,7 @@ public class ProductService {
 				}
 			}
 		}
-		
+
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
 		return mv;

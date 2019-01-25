@@ -70,6 +70,7 @@ public class NoticeService implements BoardService{
 		// 3. HDD에 File Save
 		FileSaver fs = new FileSaver();
 		String realPath = session.getServletContext().getRealPath("resources/notice");
+		System.out.println(realPath);
 
 		for (MultipartFile mFile : f1) {
 			if (mFile.isEmpty()) {
