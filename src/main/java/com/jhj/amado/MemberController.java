@@ -60,7 +60,6 @@ public class MemberController {
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void login() throws Exception {
-		System.out.println("login get");
 	}
 
 	@RequestMapping("loginForm")
@@ -70,7 +69,6 @@ public class MemberController {
 	@RequestMapping(value = "login", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String login(MemberDTO memberDTO, HttpSession session) throws Exception {
-		System.out.println("login post");
 		return memberService.login(memberDTO, session);
 	}
 	
