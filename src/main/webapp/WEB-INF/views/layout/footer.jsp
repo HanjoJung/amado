@@ -77,10 +77,6 @@
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<!-- Plugins js -->
 	<script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
-	
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
-    
 	<!-- Active js -->
 	<script src="${pageContext.request.contextPath}/resources/js/active.js"></script>
 	

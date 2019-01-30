@@ -82,8 +82,16 @@
 	</delete>
 	
 	<select id="latest" parameterType="Map" resultType="productDTO">
+	
 		select productNum, productName, productCode, price from product
 		where productNum in
-		<foreach collection="productNum" item="productNum" open="(" close=")" separator=",">#{productNum}</foreach>
+		<choose>
+			<when test="productNum != null">
+				<foreach collection="productNum" item="productNum" open="(" close=")" separator=",">#{productNum}</foreach>
+			</when>
+			<otherwise>
+			(0)
+			</otherwise>
+		</choose>
 	</select>
 </mapper>

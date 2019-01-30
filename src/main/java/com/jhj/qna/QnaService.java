@@ -1,6 +1,5 @@
 package com.jhj.qna;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -59,7 +58,7 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public ModelAndView insert(BoardDTO boardDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
+	public int insert(BoardDTO boardDTO, HttpSession session) throws Exception {
 		// 1. sequence num 가져오기
 		int num = qnaDAO.getNum();
 
@@ -71,7 +70,7 @@ public class QnaService implements BoardService {
 		if (result < 1) {
 			throw new SQLException();
 		}
-
+		/*
 		// 3. HDD에 File Save
 		FileSaver fs = new FileSaver();
 		String realPath = session.getServletContext().getRealPath("resources/qna");
@@ -92,21 +91,21 @@ public class QnaService implements BoardService {
 			if (result < 1) {
 				throw new SQLException();
 			}
-		}
+		}*/
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("msg", "작성 성공");
 		mv.setViewName("redirect:./qnaList");
-		return mv;
+		return 0;
 	}
 
 	@Override
-	public ModelAndView update(BoardDTO boardDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
+	public int update(BoardDTO boardDTO, HttpSession session) throws Exception {
 		int result = qnaDAO.update(boardDTO);
 
 		if (result < 1) {
 			throw new SQLException();
 		}
-
+		/*
 		FileSaver fs = new FileSaver();
 		String realPath = session.getServletContext().getRealPath("resources/qna");
 
@@ -126,15 +125,15 @@ public class QnaService implements BoardService {
 				throw new SQLException();
 			}
 		}
-
+*/
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:./qnaSelect?num=" + boardDTO.getNum());
 		mv.addObject("msg", "수정 성공");
-		return mv;
+		return 0;
 	}
 
 	@Override
-	public ModelAndView delete(int num, HttpSession session) throws Exception {
+	public int delete(int num, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		// 1. notice Delete
 		int result = qnaDAO.delete(num);
@@ -142,7 +141,7 @@ public class QnaService implements BoardService {
 			throw new SQLException();
 		}
 
-		// 2. HDD Delete 준비
+		/*// 2. HDD Delete 준비
 		FileDTO fileDTO = new FileDTO();
 		fileDTO.setNum(num);
 		fileDTO.setKind("q");
@@ -158,11 +157,11 @@ public class QnaService implements BoardService {
 				File file = new File(realPath, fileDTO2.getFname());
 				file.delete();
 			}
-		}
+		}*/
 
 		mv.setViewName("redirect:./qnaList");
 		mv.addObject("msg", "삭제 성공");
-		return mv;
+		return 0;
 	}
 
 	public ModelAndView reply(QnaDTO qnaDTO, List<MultipartFile> f1, HttpSession session) throws Exception {

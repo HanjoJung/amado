@@ -4,79 +4,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-img {
-	width: 250px;
-	height: 250px;
-}
-
-.files, .del {
-	color: red;
-	cursor: pointer;
-}
-</style>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/SE2/js/HuskyEZCreator.js"
-	charset="utf-8"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	var oEditors = [];
-	$(function() {
-
-		setCount(${dto.files.size()+0});
-		
-		nhn.husky.EZCreator.createInIFrame({
-			oAppRef : oEditors,
-			elPlaceHolder : "contents",
-			// SmartEditor2Skin.html 파일이 존재하는 경로
-			sSkinURI : "/s6/resources/SE2/SmartEditor2Skin.html",
-			htParams : {
-				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-				bUseToolbar : true,
-				// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-				bUseVerticalResizer : true,
-				// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-				bUseModeChanger : true,
-				fOnBeforeUnload : function() {
-
-				}
-			}
-		});
-
-		// 저장버튼 클릭시 form 전송
-		$("#save").click(function() {
-			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
-			$("#frm").submit();
-		});
-	});
-</script>
+<c:import url="${pageContext.request.contextPath}/layout/head" />
 </head>
-<body>
-	<h1>${board}Update</h1>
+<body id="board" data-board="${board}">
+	<!-- ##### Main Content Wrapper Start ##### -->
+	<div class="main-content-wrapper d-flex clearfix">
 
-	<form id="frm" action="./${board}Update" method="post"
-		enctype="multipart/form-data">
-		<input type="hidden" name="num" value="${dto.num}"> <input
-			type="text" name="title" value="${dto.title}"> <input
-			type="text" name="writer" value="${dto.writer}">
-		<textarea id="contents" name="contents" rows="20" cols="100">${dto.contents}</textarea>
-		<div id="addFile"></div>
-		<div>
-			<c:forEach items="${dto.files}" var="file" varStatus="i">
-				<c:if test="${file.fnum ne 0}">
-					<div id="f${i.index}">
-						<span> ${file.oname} </span> <span title="f${i.index}"
-							class="files" id="${file.fnum}">X</span>
+		<c:import url="${pageContext.request.contextPath}/layout/header" />
+
+		<div class="cart-table-area" id="manager-list">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="cart-title mt-50">
+							<h2>${board} 수정</h2>
+						</div>
+
+						<div class="cart-table clearfix">
+							<form action="./${board}Write" method="post" id="frm" enctype="multipart/form-data">
+								<div  class="tool-message">
+									<span class="tooltiptext">제목을 입력하세요.</span>
+									<input type="text" class="form-control form-value mb-15" id="title"
+										placeholder="제목" value="${dto.title}">
+									<textarea id="contents" class="form-control form-value"></textarea>
+								</div>
+								<input type="hidden" id="num" value="${dto.num}">
+								<input type="hidden" id="writer" value="${member.id}">
+								<button type="button" class="btn amado-btn board-btn mb-15 mt-15" data-action="Update">수정</button>
+							</form>
+						</div>
 					</div>
-				</c:if>
-			</c:forEach>
+				</div>
+			</div>
 		</div>
-		<input id="btn" type="button" value="ADD">
-		<button type="button" id="save">Update</button>
-	</form>
-	<script type="text/javascript" src="../resources/js/fileAdd.js"></script>
+	</div>
+	<!-- ##### Main Content Wrapper End ##### -->
+	<c:import url="${pageContext.request.contextPath}/layout/footer" />
+	
 </body>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/summernote/summernote-ko-KR.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/boradFileRollback.js"></script>
+<script type="text/javascript">
+	var HTMLstring = '${dto.contents}';
+	$('#contents').summernote('pasteHTML', HTMLstring);
+	while($('#contents').val().search("<p><br></p>") != -1){
+		$('#contents').val($('#contents').val().replace("<p><br></p>", ""));
+		$('.note-editable').html($('#contents').val().replace("<p><br></p>", ""));
+	}
+</script>
 </html>

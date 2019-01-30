@@ -119,22 +119,22 @@ public class ProductService {
 				throw new SQLException();
 			}
 
-				for (MultipartFile data : f1) {
-					if (data.isEmpty()) {
-						continue;
-					}
-					FileDTO fileDTO = new FileDTO();
-					fileDAO.delete(fileDTO);
-					fileDTO.setNum(productDTO.getProductNum());
-					fileDTO.setOname(data.getOriginalFilename());
-					fileDTO.setFname(fs.saveFile(realPath, data));
-					fileDTO.setKind("p");
+			for (MultipartFile data : f1) {
+				if (data.isEmpty()) {
+					continue;
+				}
+				FileDTO fileDTO = new FileDTO();
+				fileDAO.delete(fileDTO);
+				fileDTO.setNum(productDTO.getProductNum());
+				fileDTO.setOname(data.getOriginalFilename());
+				fileDTO.setFname(fs.saveFile(realPath, data));
+				fileDTO.setKind("p");
 
-					result = fileDAO.insert(fileDTO);
+				result = fileDAO.insert(fileDTO);
 
-					if (result < 1) {
-						throw new SQLException();
-					}
+				if (result < 1) {
+					throw new SQLException();
+				}
 			}
 		}
 		ModelAndView mv = new ModelAndView();
@@ -143,24 +143,24 @@ public class ProductService {
 
 	public String delete(int productNum, HttpSession session) throws Exception {
 		int result = productDAO.delete(productNum);
-		
+
 		if (result < 1) {
 			throw new SQLException();
 		}
 
-			FileDTO fileDTO = new FileDTO();
-			fileDTO.setNum(productNum);
-			fileDTO.setKind("p");
-			List<FileDTO> ar = fileDAO.list(fileDTO);
+		FileDTO fileDTO = new FileDTO();
+		fileDTO.setNum(productNum);
+		fileDTO.setKind("p");
+		List<FileDTO> ar = fileDAO.list(fileDTO);
 
-			if (ar.size() != 0) {
-				result = fileDAO.deleteAll(fileDTO);
+		if (ar.size() != 0) {
+			result = fileDAO.deleteAll(fileDTO);
 
-				String realPath = session.getServletContext().getRealPath("resources/img/product-img");
-				for (FileDTO fileDTO2 : ar) {
-					File file = new File(realPath, fileDTO2.getFname());
-					file.delete();
-				}
+			String realPath = session.getServletContext().getRealPath("resources/img/product-img");
+			for (FileDTO fileDTO2 : ar) {
+				File file = new File(realPath, fileDTO2.getFname());
+				file.delete();
+			}
 		}
 
 		return "삭제 성공";
@@ -174,6 +174,7 @@ public class ProductService {
 	}
 
 	public ModelAndView latest(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		Cookie[] cookies = request.getCookies();
 		String[] cookieValues = null;
 		String value = "";
@@ -198,18 +199,19 @@ public class ProductService {
 			productDTO.setFile(fileDAO.list(fileDTO));
 		}
 
-		for (int i = 0; i < cookieValues.length; i++) {
-			for (int j = i; j < list.size(); j++) {
-				if (Integer.parseInt(cookieValues[i]) == list.get(j).getProductNum()) {
-					ProductDTO temp = list.get(i);
-					list.set(i, list.get(j));
-					list.set(j, temp);
+		if (cookieValues != null) {
+			for (int i = 0; i < cookieValues.length; i++) {
+				for (int j = i; j < list.size(); j++) {
+					if (Integer.parseInt(cookieValues[i]) == list.get(j).getProductNum()) {
+						ProductDTO temp = list.get(i);
+						list.set(i, list.get(j));
+						list.set(j, temp);
+					}
 				}
 			}
 		}
-
-		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
+
 		return mv;
 	}
 }

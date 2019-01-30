@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<c:import url="${pageContext.request.contextPath}/layout/head" />
+<c:import url="${pageContext.request.contextPath}/layout/head" />
 </head>
-<body>
+<body id="board" data-board="${board}">
 	<!-- ##### Main Content Wrapper Start ##### -->
 	<div class="main-content-wrapper d-flex clearfix">
 
@@ -17,18 +17,20 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="cart-title mt-50">
-							<h2>${board}글쓰기</h2>
+							<h2>${board} 글쓰기</h2>
 						</div>
 
 						<div class="cart-table clearfix">
-							<form action="./${board}Write" method="post" id="frm"
-								enctype="multipart/form-data">
-								<input type="email" class="form-control mb-15" id="id"
-									name="title" placeholder="제목"> <input type="hidden"
-									name="writer">
-								<textarea id="contents" name="contents"></textarea>
-								
-								<button class="btn amado-btn mt-15 mb-15">작성</button>
+							<form action="./${board}Write" method="post" id="frm" enctype="multipart/form-data">
+								<div  class="tool-message">
+									<span class="tooltiptext">제목을 입력해주세요.</span>
+									<input type="text" class="form-control form-value mb-15" id="title"
+										placeholder="제목">
+									<textarea id="contents" class="form-control form-value"></textarea>
+								</div>
+								<input type="hidden" id="num" value="0">
+								<input type="hidden" id="writer" value="${member.id}">
+								<button type="button" class="btn amado-btn board-btn mb-15 mt-15" data-action="Write">작성</button>
 							</form>
 						</div>
 					</div>
@@ -37,20 +39,11 @@
 		</div>
 	</div>
 	<!-- ##### Main Content Wrapper End ##### -->
-	
-  <script type="text/javascript">
-      	$(function() {
-
-			$('#contents').summernote({
-				placeholder : '내용',
-				tabsize : 2,
-				height : 400,
-				minHeight : 200,
-				maxHeight : 600
-			});
-		});
-      </script>
-
 	<c:import url="${pageContext.request.contextPath}/layout/footer" />
 </body>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<script src="${pageContext.request.contextPath}/resources/summernote/summernote-ko-KR.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/boradFileRollback.js"></script>
 </html>

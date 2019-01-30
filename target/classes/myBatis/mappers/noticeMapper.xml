@@ -5,10 +5,6 @@
 
 <mapper namespace="noticeMapper">
 
-  	<select id="getNum" resultType="java.lang.Integer" >
-  		select notice_seq.nextval from dual
-  	</select>
-
   	<select id="totalCount" parameterType="Pager" resultType="java.lang.Integer">
   		select count(num) from notice where 
   		<choose>
@@ -63,13 +59,7 @@
 	</resultMap>
 	
   	<select id="select" resultMap="noticeResult" parameterType="java.lang.Integer">
-  		<!-- select * from notice where num=#{num} -->
-  		<!-- select n.*, f.fnum, f.fname, f.oname from notice n
-		inner join files f
-		on n.num = f.num and f.kind = 'n' and n.num = #{num} -->
-		select n.*, f.fnum, f.fname, f.oname , f.kind from notice n
-		left join files f
-		on n.num = f.num and f.kind = 'n' where n.num = #{num}
+  		select * from notice where num=#{num}
   	</select>
 
   	<delete id="delete" parameterType="java.lang.Integer" >
@@ -77,15 +67,14 @@
   	</delete>
 
   	<insert id="insert" parameterType="NoticeDTO">
-  		insert into notice values(#{num}, #{title}, #{writer}, #{contents}, sysdate, 0) 
+  		insert into notice values(notice_seq.nextval, #{title}, #{contents}, #{writer}, sysdate, 0) 
   	</insert>
 
   	<update id="update" parameterType="NoticeDTO">
   		update notice
   		<set>
-  		<if test="title != ''">title = #{title},</if>
-  		<if test="writer != ''">writer = #{writer},</if>
-  		<if test="contents != ''">contents = #{contents}</if>
+	  		<if test="title != ''"> title = #{title}, </if>
+	  		<if test="contents != ''"> contents = #{contents} </if>
   		</set>
   		 where num=#{num}
   		<!-- update notice set title = #{title}, contents = #{contents} where num=#{num} -->

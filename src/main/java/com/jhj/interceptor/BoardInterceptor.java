@@ -1,15 +1,13 @@
 package com.jhj.interceptor;
 
-import java.util.Map;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.jhj.board.BoardDTO;
 import com.jhj.member.MemberDTO;
 
 public class BoardInterceptor extends HandlerInterceptorAdapter {
@@ -23,44 +21,20 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 
 		System.out.println("pre Handle");
 		HttpSession session = request.getSession();
-		boolean check = true;
-		if (session.getAttribute("member") != null) {
+		boolean check = false;
+
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		String writer = (String) request.getParameter("writer");
+		System.out.println(memberDTO);
+		System.out.println(writer);
+
+		if (memberDTO != null && memberDTO.getId().equals(writer) || memberDTO.getId().equals("manager")) {
 			check = true;
-		}/* else {
-			response.sendRedirect("../member/login");
-		}*/
+		} else {
+			response.sendRedirect("../member/login?msg="+ URLEncoder.encode("작성자만 접근할 수 있습니다.", "UTF-8"));
+		}
+		System.out.println(check);
 		return check;
 	}
 
-	// Controller를 완료 후
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-
-		String m = request.getMethod();
-		if (m.equals("GET")) {
-			HttpSession session = request.getSession();
-			MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-
-			Map<String, Object> map = modelAndView.getModel();
-			BoardDTO boardDTO = (BoardDTO) map.get("dto");
-
-			if ( memberDTO == null || !memberDTO.getId().equals(boardDTO.getWriter())) {
-				String board = (String) map.get("board");
-				modelAndView.setViewName("redirect:./" + board + "List");
-			}
-		}
-
-		System.out.println("post Handle");
-		String viewName = modelAndView.getViewName();
-		System.out.println("view Name" + viewName);
-		super.postHandle(request, response, handler, modelAndView);
-	}
-	
-	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
-		
-		super.afterCompletion(request, response, handler, ex);
-	}
 }

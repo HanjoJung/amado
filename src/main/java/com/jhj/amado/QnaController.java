@@ -24,7 +24,7 @@ public class QnaController {
 
 	@Inject
 	private QnaService qnaService;
-
+/*
 	// list
 	@RequestMapping(value = "qnaList")
 	public ModelAndView list(Model model, Pager pager) throws Exception {
@@ -50,10 +50,10 @@ public class QnaController {
 
 	// write process
 	@RequestMapping(value = "qnaWrite", method = RequestMethod.POST)
-	public ModelAndView write(BoardDTO boardDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
-		ModelAndView mv = qnaService.insert(boardDTO, f1, session);
-		mv.addObject("board", "qna");
-		return mv;
+	public ModelAndView write(BoardDTO boardDTO, HttpSession session) throws Exception {
+//		ModelAndView mv = qnaService.insert(boardDTO,session);
+//		mv.addObject("board", "qna");
+		return null;
 	}
 
 	// update Form
@@ -67,22 +67,22 @@ public class QnaController {
 
 	// update process
 	@RequestMapping(value = "qnaUpdate", method = RequestMethod.POST)
-	public ModelAndView update(BoardDTO boardDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
-		ModelAndView mv = qnaService.update(boardDTO, f1, session);
-		mv.setViewName("redirect:./qnaSelect?num=" + boardDTO.getNum());
-		mv.addObject("board", "qna");
+	public ModelAndView update(BoardDTO boardDTO, HttpSession session) throws Exception {
+//		ModelAndView mv = qnaService.update(boardDTO, session);
+//		mv.setViewName("redirect:./qnaSelect?num=" + boardDTO.getNum());
+//		mv.addObject("board", "qna");
 
-		return mv;
+		return null;
 	}
 
 	// delete process
 	@RequestMapping(value = "qnaDelete", method = RequestMethod.POST)
 	public ModelAndView delete(int num, HttpSession session) throws Exception {
-		ModelAndView mv = qnaService.delete(num, session);
-		mv.setViewName("redirect:./qnaList");
-		mv.addObject("board", "qna");
+//		ModelAndView mv = qnaService.delete(num, session);
+//		mv.setViewName("redirect:./qnaList");
+//		mv.addObject("board", "qna");
 
-		return mv;
+		return null;
 	}
 
 	// reply Form
@@ -99,5 +99,5 @@ public class QnaController {
 		ModelAndView mv = qnaService.reply(qnaDTO, f1, session);
 		return mv;
 	}
-
+*/
 }

@@ -1,5 +1,7 @@
 package com.jhj.interceptor;
 
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,7 @@ public class ManagerInterceptor extends HandlerInterceptorAdapter {
 		if ( memberDTO != null && memberDTO.getName().equals("manager")) {
 			check = true;
 		} else {
-			response.sendRedirect("../member/login");
+			response.sendRedirect("../member/login?msg="+ URLEncoder.encode("관리자 전용 페이지입니다.", "UTF-8"));
 		}
 		return check;
 	}

@@ -40,8 +40,23 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	width: 20%;
 	word-break:break-word;
 }
+.w-30{
+	width: 30%;
+	max-width: none;
+	word-break:break-word;
+}
 .mobile-table .h-100 .w-80{
 	width: 80%;
+	max-width: none;
+	word-break:break-word;
+}
+.mobile-table .h-100 .w-70{
+	width: 70%;
+	max-width: none;
+	word-break:break-word;
+}
+.mobile-table .h-100 .w-100{
+	width: 70%;
 	max-width: none;
 	word-break:break-word;
 }
@@ -127,8 +142,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     max-width: 70px;
     left: 0px;
 }
-.form-review .form-control{
-	
+.tool-message .form-control{
     height: 41px;
     border: none;
     border-radius: 0;
@@ -194,6 +208,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     background-color: #fbb7108a;
 }
 
+.tool-message {
+    position: relative;
+}
 .tool-message .tooltiptext {
   visibility: hidden;
   width: 200px;
@@ -732,7 +749,6 @@ img {
 /* :: 5.0 Welcome Area CSS */
 .main-content-wrapper {
   position: relative;
-  z-index: 1;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
   -ms-flex-wrap: wrap;
@@ -972,7 +988,6 @@ img {
         padding-top: 50px; } }
   .main-content-wrapper .cart-table-area {
     position: relative;
-    z-index: 1;
     -webkit-box-flex: 0;
     -ms-flex: 0 0 calc(95% - 320px);
     flex: 0 0 calc(95% - 320px);
