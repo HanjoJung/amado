@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,7 +26,7 @@ public class FileController {
 		fileService.delete(fname, session);
 	}
 
-	@PostMapping(value = "fileUpload")
+	@RequestMapping(value = "fileUpload", method = RequestMethod.POST)
 	@ResponseBody
 	public void fileUpload(MultipartFile file, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
