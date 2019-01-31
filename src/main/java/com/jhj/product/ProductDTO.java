@@ -22,7 +22,6 @@ public class ProductDTO {
 	private int score;
 	private List<FileDTO> file;
 
-	
 	public int getProductNum() {
 		return productNum;
 	}

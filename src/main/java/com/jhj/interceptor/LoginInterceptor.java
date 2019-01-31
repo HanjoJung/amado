@@ -19,7 +19,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (session.getAttribute("member") != null) {
 			check = true;
 		} else {
-			response.sendRedirect("../member/login?msg="+ URLEncoder.encode("로그인 후 이용할 수 있습니다.", "UTF-8"));
+			response.sendRedirect("../member/login?msg=" + URLEncoder.encode("로그인 후 이용할 수 있습니다.", "UTF-8"));
 		}
 		return check;
 	}

@@ -17,11 +17,11 @@ public class CartDAO {
 	public int count(String id) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "count", id);
 	}
-	
+
 	public List<CartDTO> list(String id) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "list", id);
 	}
-	
+
 	public int check(CartDTO cartDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "check", cartDTO);
 	}

@@ -17,8 +17,8 @@ public class CartService {
 	private CartDAO cartDAO;
 	@Inject
 	private FileDAO fileDAO;
-	
-	public int count(String id) throws Exception{
+
+	public int count(String id) throws Exception {
 		return cartDAO.count(id);
 	}
 
@@ -34,8 +34,8 @@ public class CartService {
 		mv.addObject("list", list);
 		return mv;
 	}
-	
-	public int check(CartDTO cartDTO) throws Exception{
+
+	public int check(CartDTO cartDTO) throws Exception {
 		return cartDAO.check(cartDTO);
 	}
 

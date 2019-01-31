@@ -26,7 +26,7 @@ public class ReviewServise {
 		map.put("pager", pager);
 		List<ReviewDTO> list = reviewDAO.list(map);
 		boolean next = true;
-		if(pager.getLastRow() >= result) {
+		if (pager.getLastRow() >= result) {
 			next = false;
 		}
 		mv.addObject("next", next);
@@ -37,7 +37,7 @@ public class ReviewServise {
 	public String insert(ReviewDTO reviewDTO) throws Exception {
 		int result = reviewDAO.insert(reviewDTO);
 		String reviewResult = "후기를 작성하지 못하였습니다";
-		if(result > 0) {
+		if (result > 0) {
 			reviewResult = "후기가 작성되었습니다";
 		}
 		return reviewResult;
@@ -46,7 +46,7 @@ public class ReviewServise {
 	public String delete(int num) throws Exception {
 		int result = reviewDAO.delete(num);
 		String reviewResult = "후기를 삭제하지 못하였습니다";
-		if(result > 0) {
+		if (result > 0) {
 			reviewResult = "후기가 삭제되었습니다";
 		}
 		return reviewResult;

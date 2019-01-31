@@ -19,10 +19,10 @@ public class ManagerInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		boolean check = false;
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		if ( memberDTO != null && memberDTO.getName().equals("manager")) {
+		if (memberDTO != null && memberDTO.getName().equals("manager")) {
 			check = true;
 		} else {
-			response.sendRedirect("../member/login?msg="+ URLEncoder.encode("관리자 전용 페이지입니다.", "UTF-8"));
+			response.sendRedirect("../member/login?msg=" + URLEncoder.encode("관리자 전용 페이지입니다.", "UTF-8"));
 		}
 		return check;
 	}

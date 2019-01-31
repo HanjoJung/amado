@@ -116,51 +116,51 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.POST)
-	public void test(String securedUsername, String securedPassword, HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException {
+	public void test(String securedUsername, String securedPassword, HttpServletRequest request,
+			HttpServletResponse response) throws ServletException {
 		System.out.println("securedUsername : " + securedUsername);
 		System.out.println("securedPassword : " + securedPassword);
-		
-		 HttpSession session = request.getSession();
-	        PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
-	        session.removeAttribute("__rsaPrivateKey__");
 
-	        if (privateKey == null) {
-	            throw new RuntimeException("암호화 비밀키 정보를 찾을 수 없습니다.");
-	        }
-	        try {
-	            String username = decryptRsa(privateKey, securedUsername);
-	            String password = decryptRsa(privateKey, securedPassword);
-	            System.out.println("username : " + username);
-	            System.out.println("password : " + password);
-	            request.setAttribute("username", username);
-	            request.setAttribute("password", password);
-	            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
-	        } catch (Exception ex) {
-	            throw new ServletException(ex.getMessage(), ex);
-	        }
-	    }
+		HttpSession session = request.getSession();
+		PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
+		session.removeAttribute("__rsaPrivateKey__");
 
-	    private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
-	        System.out.println("will decrypt : " + securedValue);
-	        Cipher cipher = Cipher.getInstance("RSA");
-	        byte[] encryptedBytes = hexToByteArray(securedValue);
-	        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-	        byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
-	        String decryptedValue = new String(decryptedBytes, "utf-8");
-	        return decryptedValue;
-	    }
+		if (privateKey == null) {
+			throw new RuntimeException("암호화 비밀키 정보를 찾을 수 없습니다.");
+		}
+		try {
+			String username = decryptRsa(privateKey, securedUsername);
+			String password = decryptRsa(privateKey, securedPassword);
+			System.out.println("username : " + username);
+			System.out.println("password : " + password);
+			request.setAttribute("username", username);
+			request.setAttribute("password", password);
+			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+		} catch (Exception ex) {
+			throw new ServletException(ex.getMessage(), ex);
+		}
+	}
 
-	    public static byte[] hexToByteArray(String hex) {
-	        if (hex == null || hex.length() % 2 != 0) {
-	            return new byte[]{};
-	        }
+	private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
+		System.out.println("will decrypt : " + securedValue);
+		Cipher cipher = Cipher.getInstance("RSA");
+		byte[] encryptedBytes = hexToByteArray(securedValue);
+		cipher.init(Cipher.DECRYPT_MODE, privateKey);
+		byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
+		String decryptedValue = new String(decryptedBytes, "utf-8");
+		return decryptedValue;
+	}
 
-	        byte[] bytes = new byte[hex.length() / 2];
-	        for (int i = 0; i < hex.length(); i += 2) {
-	            byte value = (byte)Integer.parseInt(hex.substring(i, i + 2), 16);
-	            bytes[(int) Math.floor(i / 2)] = value;
-	        }
-	        return bytes;
+	public static byte[] hexToByteArray(String hex) {
+		if (hex == null || hex.length() % 2 != 0) {
+			return new byte[] {};
+		}
+
+		byte[] bytes = new byte[hex.length() / 2];
+		for (int i = 0; i < hex.length(); i += 2) {
+			byte value = (byte) Integer.parseInt(hex.substring(i, i + 2), 16);
+			bytes[(int) Math.floor(i / 2)] = value;
+		}
+		return bytes;
 	}
 }

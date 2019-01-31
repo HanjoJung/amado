@@ -30,7 +30,7 @@ public class ReviewController {
 	public String insert(ReviewDTO reviewDTO) throws Exception {
 		return reviewService.insert(reviewDTO);
 	}
-	
+
 	@RequestMapping(value = "delete", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String delete(int num) throws Exception {

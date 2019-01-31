@@ -47,13 +47,13 @@ public class MemberController {
 	@RequestMapping("password")
 	public void password() throws Exception {
 	}
-	
+
 	@RequestMapping(value = "password", method = RequestMethod.POST)
 	@ResponseBody
 	public int password(MemberDTO memberDTO) throws Exception {
 		return memberService.rewordPassword(memberDTO);
 	}
-	
+
 	@RequestMapping("rewordPassword")
 	public void rewordPassword() throws Exception {
 	}
@@ -71,7 +71,7 @@ public class MemberController {
 	public String login(MemberDTO memberDTO, HttpSession session) throws Exception {
 		return memberService.login(memberDTO, session);
 	}
-	
+
 	@RequestMapping("logout")
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
@@ -93,7 +93,7 @@ public class MemberController {
 	public String delete(MemberDTO memberDTO, HttpSession session) throws Exception {
 		return memberService.delete(memberDTO, session);
 	}
-	
+
 	@RequestMapping("manager")
 	public void manager() throws Exception {
 	}

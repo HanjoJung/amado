@@ -16,6 +16,7 @@ public class FileDAO {
 	public int insert(FileDTO fileDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "insert", fileDTO);
 	}
+
 //임시
 	public int deleteAll(FileDTO fileDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE + "deleteAll", fileDTO);

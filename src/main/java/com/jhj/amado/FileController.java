@@ -28,8 +28,8 @@ public class FileController {
 
 	@RequestMapping(value = "fileUpload", method = RequestMethod.POST)
 	@ResponseBody
-	public void fileUpload(MultipartFile file, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public void fileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		fileService.fileUpload(file, request, response);
 	}
 

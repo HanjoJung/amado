@@ -81,7 +81,7 @@ public class Pager {
 	}
 
 	public String getKind() {
-		if(kind == null) {
+		if (kind == null) {
 			kind = "";
 		}
 		return kind;
@@ -92,7 +92,7 @@ public class Pager {
 	}
 
 	public String getSearch() {
-		if(search == null) {
+		if (search == null) {
 			search = "";
 		}
 		return search;

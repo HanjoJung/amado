@@ -15,9 +15,10 @@ import com.jhj.product.ProductDAO;
 import com.jhj.product.ProductDTO;
 import com.jhj.util.Pager;
 
-public class dbTest extends AbstractTestCase{
+public class dbTest extends AbstractTestCase {
 	@Inject
 	private ProductDAO dao;
+
 	@Test
 	public void test() throws Exception {
 //		Pager pager = new Pager();
@@ -47,8 +48,8 @@ public class dbTest extends AbstractTestCase{
 //		
 //		result = dao.delete("054cd9eb-8191-4a8c-a325-e25909029033");
 //		assertNotEquals(0, result);
-		
-		String [] s = {"1","2","3","4","5","6"};
+
+		String[] s = { "1", "2", "3", "4", "5", "6" };
 		List<String> ar = new ArrayList<String>();
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		ar.add("1");
@@ -59,6 +60,6 @@ public class dbTest extends AbstractTestCase{
 		ar.add("6");
 		Map<String, List<String>> mapar = new HashMap<String, List<String>>();
 		map.put("cart", s);
-		
+
 	}
 }

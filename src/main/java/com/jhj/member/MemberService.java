@@ -48,9 +48,9 @@ public class MemberService {
 			memberDAO.update(memberDTO);
 			session.setAttribute("member", memberDTO);
 			str = "로그인 하였습니다.";
-/*		} else {
-			throw new Exception();
-*/		}
+			/*
+			 * } else { throw new Exception();
+			 */ }
 		return str;
 	}
 

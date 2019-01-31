@@ -85,7 +85,7 @@ public class ProductController {
 	@RequestMapping("checkout")
 	public void checkout() throws Exception {
 	}
-	
+
 	@RequestMapping("latest")
 	public ModelAndView list(HttpServletRequest request) throws Exception {
 		ModelAndView mv = productService.latest(request);

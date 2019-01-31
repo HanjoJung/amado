@@ -31,7 +31,7 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 		if (memberDTO != null && memberDTO.getId().equals(writer) || memberDTO.getId().equals("manager")) {
 			check = true;
 		} else {
-			response.sendRedirect("../member/login?msg="+ URLEncoder.encode("작성자만 접근할 수 있습니다.", "UTF-8"));
+			response.sendRedirect("../member/login?msg=" + URLEncoder.encode("작성자만 접근할 수 있습니다.", "UTF-8"));
 		}
 		System.out.println(check);
 		return check;
