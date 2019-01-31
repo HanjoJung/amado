@@ -90,12 +90,11 @@
 </body>
 <script type="text/javascript">
 	$(".product-btn").click(function() {
-		dataProductNum = $(this).attr("data-productNum");
 		$.ajax({
-			url : "./delete",
+			url : "../product/delete",
 			type : "POST",
 			data : {
-				productNum : dataProductNum
+				productNum : $(this).attr("data-productNum")
 			},
 			success : function(data) {
 				alert(data);

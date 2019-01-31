@@ -5,8 +5,10 @@
   
   <mapper namespace="qnaMapper">
   	
-  	<select id="getNum" resultType="java.lang.Integer" >
-  		select qna_seq.nextval from dual
+  	<select id="hitUp" resultType="java.lang.Integer" >
+		update qna 
+		set hit = hit+1
+		where num = #{num} 
   	</select>
   
   	<select id="totalCount" parameterType="Pager" resultType="java.lang.Integer">
@@ -54,26 +56,15 @@
 		<result property="ref" column="ref" />
 		<result property="step" column="step" />
 		<result property="depth" column="depth" />
-		<collection resultMap="fileResult" property="files" javaType="java.util.ArrayList" ofType="FileDTO">
-		</collection>
-	</resultMap>
-	<resultMap type="FileDTO" id="fileResult">
-			<id property="fnum" column="fnum"/>
-			<result property="num" column="num"/>
-			<result property="fname" column="fname"/>
-			<result property="oname" column="oname"/>
-			<result property="kind" column="kind"/>
 	</resultMap>
   
   	<select id="select" resultMap="qnaResult" parameterType="java.lang.Integer">
-		select q.*, f.fnum, f.fname, f.oname , f.kind from qna q
-		left join files f
-		on q.num = f.num and f.kind = 'q' where q.num = #{num}
+		select * from qna where num=#{num}
   	</select>
   
   	<insert id="insert" parameterType="QnaDTO">
   		insert into qna values
-  		(#{num}, #{title}, #{writer}, #{contents}, sysdate, 0, #{num}, 0, 0)
+  		(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, #{num}, 0, 0)
   	</insert>
   	
   	<update id="update" parameterType="QnaDTO">
@@ -85,13 +76,13 @@
   	</delete>
   
   	<update id="replyUpdate" parameterType="QnaDTO">
-  		update qna set step=step+1 where ref = #{ref} and step > #{step}
+  		update qna set step = step + 1 where ref = #{ref} and step > #{step}
   	</update>
   	
   	<insert id="reply" parameterType="QnaDTO">
   		insert into qna values
   		(
-  			#{num}, #{title}, #{writer}, #{contents},sysdate,0,
+  			#{num}, #{title}, #{writer}, #{contents}, sysdate, 0,
   			#{ref}, #{step}, #{depth}
   		)
   	</insert>

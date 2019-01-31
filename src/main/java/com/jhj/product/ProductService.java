@@ -163,7 +163,7 @@ public class ProductService {
 			}
 		}
 
-		return "삭제 성공";
+		return "삭제 하였습니다.";
 	}
 
 	@RequestMapping(value = "checkout", method = RequestMethod.GET)

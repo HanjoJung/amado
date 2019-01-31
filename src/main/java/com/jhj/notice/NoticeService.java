@@ -12,14 +12,16 @@ import com.jhj.util.Pager;
 
 @Service
 public class NoticeService implements BoardService {
+
 	@Inject
 	private NoticeDAO noticeDAO;
 
 	@Override
 	public ModelAndView list(Pager pager) throws Exception {
-		pager.makeRow();
 		int totalCount = noticeDAO.totalCount(pager);
 		pager.makePage(totalCount);
+		pager.makeRow();
+
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", noticeDAO.list(pager));
 		mv.addObject("pager", pager);
@@ -31,14 +33,13 @@ public class NoticeService implements BoardService {
 		ModelAndView mv = new ModelAndView();
 		BoardDTO boardDTO = noticeDAO.select(num);
 		if (boardDTO != null) {
+			noticeDAO.hitUp(num);
 			mv.addObject("dto", boardDTO);
 			mv.setViewName("board/boardSelect");
 		} else {
-			mv.addObject("msg", "해당 글은 없습니다.");
+			mv.addObject("msg", "해당 글이 존재하지않습니다.");
 			mv.setViewName("redirect:./noticeList");
 		}
-
-		mv.addObject("board", "notice");
 		return mv;
 	}
 

@@ -24,14 +24,15 @@ public class NoticeController {
 	@RequestMapping(value = "noticeList")
 	public ModelAndView list(Pager pager) throws Exception {
 		ModelAndView mv = noticeService.list(pager);
-		mv.addObject("board", "notice");
 		mv.setViewName("board/boardList");
+		mv.addObject("board", "notice");
 		return mv;
 	}
 
 	@RequestMapping(value = "noticeSelect")
 	public ModelAndView select(int num) throws Exception {
 		ModelAndView mv = noticeService.select(num);
+		mv.addObject("board", "notice");
 		return mv;
 	}
 
@@ -49,9 +50,9 @@ public class NoticeController {
 
 	@RequestMapping(value = "noticeUpdate", method = RequestMethod.GET)
 	public ModelAndView update(int num) throws Exception {
-		System.out.println("get update");
 		ModelAndView mv = noticeService.select(num);
 		mv.setViewName("board/boardUpdate");
+		mv.addObject("board", "notice");
 		return mv;
 	}
 

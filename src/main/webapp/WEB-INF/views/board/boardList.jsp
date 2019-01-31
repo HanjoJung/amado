@@ -20,54 +20,54 @@
 							<h2>${board}게시판</h2>
 						</div>
 
-						<div class="cart-table clearfix">
+						<div class="board-table clearfix">
 							<table class="table table-striped">
 								<thead class="mb-15 pc-table">
 									<tr style="height: 100%;">
-										<th style="width: 5%;"><input class="check-all-pc"
-											type="checkbox"></th>
-										<th style="width: 10%;">글번호</th>
-										<th style="width: 45%;">제목</th>
-										<th style="width: 20%;">작성자</th>
-										<th style="width: 15%;">작성날짜</th>
-										<th style="width: 10%;">조회수</th>
+										<th class="col-lg-1 col-xl-1"><input class="check-all-pc" type="checkbox"></th>
+										<th class="col-lg-2 col-xl-1">글번호</th>
+										<th class="col-lg-3 col-xl-5">제목</th>
+										<th class="col-lg-2 col-xl-2">작성자</th>
+										<th class="col-lg-2 col-xl-2">작성날짜</th>
+										<th class="col-lg-2 col-xl-1">조회수</th>
 									</tr>
 								</thead>
 								<c:forEach items="${list}" var="dto" varStatus="i">
 									<thead class="mb-15 pc-table">
 										<tr style="height: 100%;">
-											<th style="width: 5%;"><input class="check-pc"
-												type="checkbox" data-num="${dto.num}"></th>
-											<th style="width: 10%;">${dto.num}</th>
-											<th style="width: 45%;"><a
+											<th class="col-lg-1 col-xl-1">
+												<input class="check-pc" type="checkbox" data-num="${dto.num}">
+											</th>
+											<th class="col-lg-2 col-xl-1">${dto.num}</th>
+											<th class="col-lg-3 col-xl-5" style="word-break: break-word;"><a
 												href="./${board}Select?num=${dto.num}">${dto.title}</a></th>
-											<th style="width: 20%;">${dto.writer}</th>
-											<th style="width: 15%;">${dto.reg_date}</th>
-											<th style="width: 10%;">${dto.hit}</th>
+											<th class="col-lg-2 col-xl-2" style="word-break: break-word;">${dto.writer}</th>
+											<th class="col-lg-2 col-xl-2">${dto.reg_date}</th>
+											<th class="col-lg-2 col-xl-1">${dto.hit}</th>
 										</tr>
 									</thead>
 									<thead class="mb-15 mobile-table">
 										<tr class="h-100">
-											<th class="w-20">글번호</th>
-											<th class="w-80">${dto.num}<input class="check-m"
+											<th class="w-30">글번호</th>
+											<th class="w-70">${dto.num}<input class="check-m"
 												type="checkbox" style="float: right;" data-num="${dto.num}"></th>
 										</tr>
 										<tr class="h-100">
-											<th class="w-20">제목</th>
-											<th class="w-80"><a
-												href="./${board}select?num=${dto.num}">${dto.num}</a></th>
+											<th class="w-30">제목</th>
+											<th class="w-70"><a
+												href="./${board}select?num=${dto.num}">${dto.title}</a></th>
 										</tr>
 										<tr class="h-100">
-											<th class="w-20">작성자</th>
-											<th class="w-80">${dto.num}</th>
+											<th class="w-30">작성자</th>
+											<th class="w-70">${dto.writer}</th>
 										</tr>
 										<tr class="h-100">
-											<th class="w-20">작성날짜</th>
-											<th class="w-80">${dto.num}</th>
+											<th class="w-30">작성날짜</th>
+											<th class="w-70">${dto.reg_date}</th>
 										</tr>
 										<tr class="h-100">
-											<th class="w-20">조회수</th>
-											<th class="w-80">${dto.num}</th>
+											<th class="w-30">조회수</th>
+											<th class="w-70">${dto.hit}</th>
 										</tr>
 									</thead>
 								</c:forEach>
@@ -120,6 +120,18 @@
 
 <script type="text/javascript">
 	$(function() {
+
+		/* 
+		var email = $(this).attr("data-writer");
+		var userId = email.substring(0, email.indexOf("@"));
+		var blind = "*";
+		for(i = 4; i < userId.length; i++){
+			blind += "*";
+		}
+		var domain = email.substring(email.indexOf("@"), email.length);
+		$(this).children().text(email.substring(0, 3) + blind + domain); */
+		
+		
 		$(".check-all-pc").click(function() {
 			$(".check-pc").each(function() {
 				$(this).prop("checked", $(".check-all-pc").prop("checked"));

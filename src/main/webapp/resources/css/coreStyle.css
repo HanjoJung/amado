@@ -40,7 +40,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	width: 20%;
 	word-break:break-word;
 }
-.w-30{
+.mobile-table .h-100 .w-30{
 	width: 30%;
 	max-width: none;
 	word-break:break-word;
@@ -62,7 +62,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 }
 .mobile-table .h-100 th{
 	line-height: 1.15;
-
+}
+.main-content-wrapper .cart-table-area .container-fluid .board-table table thead tr th{
+	max-width: none;
 }
 .form-group{
     width: 100%;

@@ -5,6 +5,12 @@
 
 <mapper namespace="noticeMapper">
 
+	<update id="hitUp" parameterType="java.lang.Integer">
+		update notice 
+		set hit = hit+1
+		where num = #{num} 
+	</update>
+
   	<select id="totalCount" parameterType="Pager" resultType="java.lang.Integer">
   		select count(num) from notice where 
   		<choose>
@@ -47,15 +53,6 @@
 		<result property="contents" column="contents" />
 		<result property="reg_date" column="reg_date" />
 		<result property="hit" column="hit" />
-		<collection resultMap="fileResult" property="files" javaType="java.util.ArrayList" ofType="FileDTO">
-		</collection>
-	</resultMap>
-	<resultMap type="FileDTO" id="fileResult">
-			<id property="fnum" column="fnum"/>
-			<result property="num" column="num"/>
-			<result property="fname" column="fname"/>
-			<result property="oname" column="oname"/>
-			<result property="kind" column="kind"/>
 	</resultMap>
 	
   	<select id="select" resultMap="noticeResult" parameterType="java.lang.Integer">

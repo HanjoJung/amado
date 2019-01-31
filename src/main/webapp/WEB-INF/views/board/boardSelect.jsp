@@ -82,8 +82,6 @@
 		curFiles.push(middel);
 		temp = temp.replace('src="../resources/notice/' + middel + '&#13;&#10;', "");
 	}
-
-	console.log(curFiles);
 	
 	function checkFile() {
 		$.each(curFiles, function(index, item) {

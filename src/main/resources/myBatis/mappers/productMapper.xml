@@ -76,7 +76,7 @@
 		where productNum = #{productNum}
 	</update>
 	
-	<delete id="delete">
+	<delete id="delete" parameterType="java.lang.Integer">
 		delete product 
 		where productNum = #{productNum}
 	</delete>
