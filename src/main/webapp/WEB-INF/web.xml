@@ -3,17 +3,24 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
+	<!-- 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error/error404.jsp</location>
+	</error-page>
+	 	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>  -->
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			/WEB-INF/spring/root-context.xml
-		</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
 	<!-- Encoding Filter -->
 	<filter>
 		<filter-name>encode</filter-name>
