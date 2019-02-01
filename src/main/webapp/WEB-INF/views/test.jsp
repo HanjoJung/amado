@@ -17,8 +17,7 @@
 		<label for="password">비밀번호 : <input type="password" id="password" size="16" /></label> 
 		<input type="text" id="rsaPublicKeyModulus" value="${publicKeyModulus}" /> 
 		<input type="text" id="rsaPublicKeyExponent" value="${publicKeyExponent}" />
-		<a href="<%=request.getContextPath()%>/loginFailure.jsp"
-			onclick="validateEncryptedForm(); return false;">로그인</a>
+		<a onclick="validateEncryptedForm(); return false;">로그인</a>
 	</div>
 	<form id="securedLoginForm" name="securedLoginForm"
 		action="<%=request.getContextPath()%>/test" method="post" style="display: none;">

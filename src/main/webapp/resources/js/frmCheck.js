@@ -1,4 +1,28 @@
 $(function() {
+
+	// Id, password를 암호화하기 위해 데이터를 불러들임
+	function validateEncryptedForm() {
+	    var password = document.getElementById("password").value;
+	    console.log(password);
+
+        var rsaPublicKeyModulus = document.getElementById("rsaPublicKeyModulus").value;
+        var rsaPublicKeyExponent = document.getElementById("rsaPublicKeyExponent").value;
+        submitEncryptedForm(password, rsaPublicKeyModulus, rsaPublicKeyExponent);
+	}
+
+	//암호화
+	function submitEncryptedForm(password, rsaPublicKeyModulus, rsaPpublicKeyExponent) {
+	    var rsa = new RSAKey();
+	    rsa.setPublic(rsaPublicKeyModulus, rsaPpublicKeyExponent);
+
+	    // 사용자ID와 비밀번호를 RSA로 암호화한다.
+	    var securedPassword = rsa.encrypt(password);
+
+	    // POST 폼에 값을 설정
+	    var securedLoginForm = document.getElementById("rsa-frm");
+	    securedLoginForm.securedPassword.value = securedPassword;
+	}
+	
 // 폼 공동 체크	
 	function check(data, comparison, message) {
 		if(comparison){
@@ -40,7 +64,7 @@ $(function() {
 	};
 	
 	function checkPassword() {
-		data = $("#password2");
+		data = $("#password");
 		return check(data, data.val() == $("#password1").val(), "비밀번호가 일치하지 않습니다");
 	};
 // 약관동의 체크박스
@@ -64,12 +88,13 @@ $(function() {
 		if(!checkPassword()){
 			checkForm = false;
 		}
-		if($(".frm").attr("id") == "join" && checkForm){
+		if($(".frm").attr("data-form") == "join" && checkForm){
 			if(!checkClause() || !resultCheckId){
 				checkForm = false;
 				checkId();
 			}
 		}
+		checkForm = validateEncryptedForm();
 		if(checkForm){
 			$(".frm").submit();
 		}else{
@@ -127,7 +152,7 @@ function checkPasswordFrom() {
 				type : "POST",
 				data : {
 					id : $("#id").val(),
-					password : $("#password2").val()
+					password : $("#password").val()
 				},
 				success : function(result) {
 					alert("비밀번호가 " + result)
@@ -241,11 +266,11 @@ function porductForm() {
 	$('.form-control').keyup(function(e){
 		if(e.keyCode == 13){
 			if($(this).attr("id") == $(".form-control:last").attr("id")){
-				if($(".frm") == "join"){
+				if($(".frm").attr("data-form") == "join"){
 					submitJoinForm();
-				}else if($(this).attr("id") == "login-password"){
+				}else if($(this).attr("data-form") == "login-password"){
 					checkLoginForm();
-				}else if($(this).attr("id") == "password2"){
+				}else if($(this).attr("data-form") == "reword-password"){
 					infoUpdate();
 				}
 			}else{
