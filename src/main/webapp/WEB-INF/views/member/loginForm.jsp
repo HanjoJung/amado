@@ -24,6 +24,7 @@
 							<form class="frm-login" id="rsa-frm" action="./login" method="post">
 								<input type="hidden" id="rsaPublicKeyModulus" value="${publicKeyModulus}"> 
 								<input type="hidden" id="rsaPublicKeyExponent" value="${publicKeyExponent}">
+                                <input type="hidden" name="password" id="securedPassword">
 								<div class="row">
 									<div class="col-12 mb-3">
 										<input type="text" class="form-control login-form-control" id="login-id"
@@ -34,8 +35,8 @@
 										<p class="message"></p>
 									</div>
 									<div class="col-12 mb-3">
-										<input type="password" class="form-control login-form-control password-data"
-											id="password" name="password" placeholder="비밀번호" data-form="login-password"
+										<input type="password" class="form-control login-form-control"
+											id="password" placeholder="비밀번호" data-form="login-password"
 											data-parsley-message="영문/숫자/특수문자 조합 8~16자 조합으로 입력해주세요."
 											data-parsley-pattern="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,16}$">
 										<p class="message"></p>

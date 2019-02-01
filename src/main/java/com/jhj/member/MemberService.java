@@ -41,16 +41,16 @@ public class MemberService {
 		String kakao = memberDTO.getKakao();
 		String facebook = memberDTO.getFacebook();
 		memberDTO = memberDAO.selectOne(memberDTO);
-		String str = "";
+		String str = "로그인에 실패했습니다";
 		if (memberDTO != null) {
 			memberDTO.setKakao(kakao);
 			memberDTO.setFacebook(facebook);
 			memberDAO.update(memberDTO);
 			session.setAttribute("member", memberDTO);
-			str = "로그인 하였습니다.";
-			/*
-			 * } else { throw new Exception();
-			 */ }
+			str = "로그인 됐습니다.";
+		} else {
+			throw new Exception();
+		}
 		return str;
 	}
 

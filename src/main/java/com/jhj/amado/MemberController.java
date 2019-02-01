@@ -6,12 +6,11 @@ import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
+import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -41,7 +40,7 @@ public class MemberController {
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public ModelAndView join(MemberDTO memberDTO, HttpSession session) throws Exception {
-		System.out.println(memberDTO.getPassword());
+		memberDTO.setPassword(rsa(memberDTO.getPassword(), session));
 		ModelAndView mv = memberService.join(memberDTO, session);
 		mv.setViewName("redirect:/");
 		return mv;
@@ -49,7 +48,7 @@ public class MemberController {
 
 	@RequestMapping(value = "checkId", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String checkId(MemberDTO memberDTO) throws Exception {
+	public String checkId(MemberDTO memberDTO, HttpSession session) throws Exception {
 		return memberService.checkId(memberDTO);
 	}
 
@@ -61,17 +60,26 @@ public class MemberController {
 	}
 
 	@RequestMapping("password")
-	public void password() throws Exception {
+	public ModelAndView password(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv = rsa(session, mv);
+		mv.setViewName("member/password");
+		return mv;
 	}
 
 	@RequestMapping(value = "password", method = RequestMethod.POST)
 	@ResponseBody
-	public int password(MemberDTO memberDTO) throws Exception {
-		return memberService.rewordPassword(memberDTO);
-	}
+	public Map<String, Object> password(MemberDTO memberDTO, HttpSession session) throws Exception {
+		memberDTO.setPassword(rsa(memberDTO.getPassword(), session));
+		int result = memberService.rewordPassword(memberDTO);
 
-	@RequestMapping("rewordPassword")
-	public void rewordPassword() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv = rsa(session, mv);
+		Map<String, Object> map = mv.getModel();
+		map.put("result", result);
+
+		return map;
+
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
@@ -89,6 +97,9 @@ public class MemberController {
 	@RequestMapping(value = "login", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String login(MemberDTO memberDTO, HttpSession session) throws Exception {
+		if (memberDTO.getPassword() != null) {
+			memberDTO.setPassword(rsa(memberDTO.getPassword(), session));
+		}
 		return memberService.login(memberDTO, session);
 	}
 
@@ -105,6 +116,9 @@ public class MemberController {
 	@RequestMapping(value = "update", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String update(MemberDTO memberDTO, HttpSession session) throws Exception {
+		if (memberDTO.getPassword() != null) {
+			memberDTO.setPassword(rsa(memberDTO.getPassword(), session));
+		}
 		return memberService.update(memberDTO, session);
 	}
 
@@ -135,7 +149,8 @@ public class MemberController {
 			// 개인키를 가져온다
 			PrivateKey privateKey = keyPair.getPrivate();
 
-			// 세션에 공개키의 문자열을 키로하여 개인키를 저장한다.
+			// 세션에 공개키의 문자열을 키로하여 개인키를 저장한다
+
 			session.setAttribute("__rsaPrivateKey__", privateKey);
 
 			// 공개키를 문자열로 변환하여 JavaScript RSA 라이브러리 넘겨준다.
@@ -154,11 +169,7 @@ public class MemberController {
 		return mv;
 	}
 
-	public void rsa(String securedPassword, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException {
-		System.out.println("securedPassword : " + securedPassword);
-
-		HttpSession session = request.getSession();
+	public String rsa(String securedPassword, HttpSession session) throws ServletException {
 		PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
 		session.removeAttribute("__rsaPrivateKey__");
 
@@ -167,16 +178,13 @@ public class MemberController {
 		}
 		try {
 			String password = decryptRsa(privateKey, securedPassword);
-			System.out.println("password : " + password);
-			request.setAttribute("password", password);
-			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+			return password;
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage(), ex);
 		}
 	}
 
 	private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
-		System.out.println("will decrypt : " + securedValue);
 		Cipher cipher = Cipher.getInstance("RSA");
 		byte[] encryptedBytes = hexToByteArray(securedValue);
 		cipher.init(Cipher.DECRYPT_MODE, privateKey);

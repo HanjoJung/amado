@@ -25,9 +25,10 @@
                                 <h2>회원가입</h2>
                             </div>
 
-                            <form class="frm" id="rsa-frm" action="./join" method="post" data-form="join" >
+                            <form class="frm" action="./join" method="post">
 								<input type="hidden" id="rsaPublicKeyModulus" value="${publicKeyModulus}"> 
 								<input type="hidden" id="rsaPublicKeyExponent" value="${publicKeyExponent}">
+                                <input type="hidden" name="password" id="securedPassword">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <input type="email" class="form-control" 
@@ -45,8 +46,8 @@
 										<p class="message"></p>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="password" class="form-control password-data" 
-                                        id="password" name="password" placeholder="비밀번호 확인"
+                                        <input type="password" class="form-control"
+                                        id="password" placeholder="비밀번호 확인"
 										data-parsley-equalto-message="입력값이 일치하지 않습니다."
 										data-parsley-pattern="^[]*.{1,}$"
 										data-parsley-message="너무 짧습니다.">
@@ -68,7 +69,7 @@
 										<p class="message"></p>
                                     </div>
                                     <div class="col-12 mb-15">
-                                        <input type="text" class="form-control" 
+                                        <input type="text" class="form-control" data-form="join"
                                         name="address" placeholder="주소"
 										data-parsley-pattern="^[]*.{10,}$"
 										data-parsley-message="너무 짧습니다.">

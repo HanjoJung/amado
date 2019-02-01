@@ -19,21 +19,17 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 		// return이 ture면 controller로 전송
 		// false라면 controller 이동 안함
 
-		System.out.println("pre Handle");
 		HttpSession session = request.getSession();
 		boolean check = false;
 
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		String writer = (String) request.getParameter("writer");
-		System.out.println(memberDTO);
-		System.out.println(writer);
 
 		if (memberDTO != null && memberDTO.getId().equals(writer) || memberDTO.getId().equals("manager")) {
 			check = true;
 		} else {
 			response.sendRedirect("../member/login?msg=" + URLEncoder.encode("작성자만 접근할 수 있습니다.", "UTF-8"));
 		}
-		System.out.println(check);
 		return check;
 	}
 

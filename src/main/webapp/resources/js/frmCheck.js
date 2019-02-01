@@ -1,26 +1,26 @@
 $(function() {
+	function fn_GetContextRoot() {
+		var offset=location.href.indexOf(location.host)+location.host.length;
+		var UniPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+		return UniPath;
+	};
 
-	// Id, password를 암호화하기 위해 데이터를 불러들임
-	function validateEncryptedForm() {
-	    var password = document.getElementById("password").value;
-	    console.log(password);
-
-        var rsaPublicKeyModulus = document.getElementById("rsaPublicKeyModulus").value;
-        var rsaPublicKeyExponent = document.getElementById("rsaPublicKeyExponent").value;
-        submitEncryptedForm(password, rsaPublicKeyModulus, rsaPublicKeyExponent);
+	// password를 암호화하기 위해 데이터를 불러들임
+	if(!!document.getElementById("rsaPublicKeyModulus")){
+		var rsaPublicKeyModulus = document.getElementById("rsaPublicKeyModulus").value;
+		var rsaPublicKeyExponent = document.getElementById("rsaPublicKeyExponent").value;
 	}
 
 	//암호화
-	function submitEncryptedForm(password, rsaPublicKeyModulus, rsaPpublicKeyExponent) {
+	function submitEncryptedForm(password, rsaPublicKeyModulus, rsaPublicKeyExponent) {
 	    var rsa = new RSAKey();
-	    rsa.setPublic(rsaPublicKeyModulus, rsaPpublicKeyExponent);
+	    rsa.setPublic(rsaPublicKeyModulus, rsaPublicKeyExponent);
 
 	    // 사용자ID와 비밀번호를 RSA로 암호화한다.
 	    var securedPassword = rsa.encrypt(password);
 
 	    // POST 폼에 값을 설정
-	    var securedLoginForm = document.getElementById("rsa-frm");
-	    securedLoginForm.securedPassword.value = securedPassword;
+	    $("#securedPassword").val(securedPassword);
 	}
 	
 // 폼 공동 체크	
@@ -94,8 +94,9 @@ $(function() {
 				checkId();
 			}
 		}
-		checkForm = validateEncryptedForm();
 		if(checkForm){
+		    var password = document.getElementById("password").value;
+			submitEncryptedForm(password, rsaPublicKeyModulus, rsaPublicKeyExponent);
 			$(".frm").submit();
 		}else{
 			$(".focus:first").prev().focus();
@@ -107,16 +108,16 @@ $(function() {
 // 로그인 폼 체크 후 세션활성화
 	function login() {
 		$.ajax({
-			url : "${pageContext.request.contestPath}/../member/login",
+			url : fn_GetContextRoot() + "/member/login",
 			type : "POST",
 			data : {
 				id : $("#login-id").val(),
-				password : $("#login-password").val(),
+				password : $("#securedPassword").val(),
 				kakao : $("#login-kakao").val(),
 				facebook : $("#login-facebook").val()
 			},
-			success : function(data) {
-				alert(data);
+			success : function(result) {
+				alert(result);
 				location.reload();
 			},
 			error : function() {
@@ -137,67 +138,77 @@ $(function() {
 			}
 		})
 		if(checkForm){
+		    var password = document.getElementById("password").value;
+			submitEncryptedForm(password, rsaPublicKeyModulus, rsaPublicKeyExponent);
 			login();
 		}
 	}
 	
 	$(".form-login-btn").click(checkLoginForm);
 	
-// 패스워드 폼 체크 후 패스워드 수정
+// 패스워드 폼 체크 후 수정, 탈퇴
 function checkPasswordFrom() {
 	action = $("#action").val();
-	if(action == 'password'){
-		ajax = {
-				url : "./update",
-				type : "POST",
-				data : {
-					id : $("#id").val(),
-					password : $("#password").val()
-				},
-				success : function(result) {
-					alert("비밀번호가 " + result)
-					location.reload();
-				}
-		}
-	} else if(action == 'update'){
-		ajax = {
-				url : "./update",
-				type : "POST",
-				data : {
-					id : $("#id").val(),
-					name : $("#name").val(),
-					phone : $("#phone").val(),
-					address : $("#address").val()
-				},
-				success : function(result) {
-					alert("회원정보가 " + result)
-					location.reload();
-				}
-		}
-	} else if(action == 'delete'){
-		ajax = {
-				url : "./delete",
-				type : "POST",
-				data : {
-					id : $("#id").val()
-				},
-				success : function(result) {
-					alert(result)
-					location.href="/amado/";
-				}
-		}
-	} 
+
+    var password = document.getElementById("curPassword").value;
+	submitEncryptedForm(password, rsaPublicKeyModulus, rsaPublicKeyExponent);
 	$.ajax({
 		url : "./password",
 		type : "POST",
 		data : {
 			id : $("#id").val(),
-			password : $("#curPassword").val()
+			password : $("#securedPassword").val()
 		},
 		success : function(result) {
-			checkResult = check($("#curPassword"), result != 0, "비밀번호가 맞지 않습니다.");
+			rsaPublicKeyModulus = result.publicKeyModulus.toString();
+			rsaPublicKeyExponent = result.publicKeyExponent.toString();
+			checkResult = check($("#curPassword"), result.result != 0, "비밀번호가 맞지 않습니다.");
 			if(checkResult){
 				if(checkPassword()){
+					if(action == 'password'){
+					    var password = $("#password").val();
+						submitEncryptedForm(password, rsaPublicKeyModulus, rsaPublicKeyExponent);
+						ajax = {
+								url : "./update",
+								type : "POST",
+								data : {
+									id : $("#id").val(),
+									password : $("#securedPassword").val()
+								},
+								success : function(result) {
+									alert("비밀번호가 " + result)
+									location.reload();
+								}
+						}
+					} else if(action == 'update'){
+						ajax = {
+								url : "./update",
+								type : "POST",
+								data : {
+									id : $("#id").val(),
+									name : $("#name").val(),
+									phone : $("#phone").val(),
+									address : $("#address").val()
+								},
+								success : function(result) {
+									alert("회원정보가 " + result)
+									location.reload();
+								}
+						}
+					} else if(action == 'delete'){
+						ajax = {
+								url : "./delete",
+								type : "POST",
+								data : {
+									id : $("#id").val()
+								},
+								success : function(result) {
+									alert(result)
+									location.href="/amado/";
+								}
+						}
+					} 
+					
 					$.ajax(ajax);
 				}
 			}
@@ -266,7 +277,7 @@ function porductForm() {
 	$('.form-control').keyup(function(e){
 		if(e.keyCode == 13){
 			if($(this).attr("id") == $(".form-control:last").attr("id")){
-				if($(".frm").attr("data-form") == "join"){
+				if($(this).attr("data-form") == "join"){
 					submitJoinForm();
 				}else if($(this).attr("data-form") == "login-password"){
 					checkLoginForm();

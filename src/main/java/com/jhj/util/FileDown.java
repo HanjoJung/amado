@@ -23,7 +23,6 @@ public class FileDown extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("fileDown");
 
 		FileDTO fileDTO = (FileDTO) model.get("file");
 		String realPath = request.getSession().getServletContext().getRealPath("resources/notice");
