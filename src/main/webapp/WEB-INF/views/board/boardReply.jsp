@@ -1,86 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-img {
-	width: 250px;
-	height: 250px;
-}
-
-.files, .del {
-	color: red;
-	cursor: pointer;
-}
-</style>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
-<script type="text/javascript">
-var oEditors = [];
-	$(function() {
-		nhn.husky.EZCreator
-				.createInIFrame({
-					oAppRef : oEditors,
-					elPlaceHolder : "contents",
-					//SmartEditor2Skin.html 파일이 존재하는 경로
-					sSkinURI : "${pageContext.request.contextPath}/resources/SE2/SmartEditor2Skin.html",
-					htParams : {
-						// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-						bUseToolbar : true,
-						// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-						bUseVerticalResizer : true,
-						// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-						bUseModeChanger : true,
-						fOnBeforeUnload : function() {
-						}
-					}
-				});
-
-		//저장버튼 클릭시 form 전송
-		$("#save").click(function() {
-			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
-			$("#frm").submit();
-		});
-	});
-</script>
-<script type="text/javascript">
-	$(function() {
-		var file = '<div><input type="file" name="f1"><span class="files">X</span></div>';
-		var count = 0;
-		$("#fileAdd").click(function() {
-			if (count < 5) {
-				$("#files").append(file);
-				count++;
-			} else {
-				alert("파일은 5개까지만 등록가능합니다");
-			}
-		})
-		
-		$("#files").on("click", ".files", function() {
-			$(this).parent().remove();
-			count--;
-		})
-
-	})
-</script>
+<c:import url="${pageContext.request.contextPath}/layout/head" />
 </head>
-<body>
-	<h1>${board} Reply</h1>
+<body id="board" data-board="${board}">
+	<!-- ##### Main Content Wrapper Start ##### -->
+	<div class="main-content-wrapper d-flex clearfix">
 
-	<form action="./${board}Reply" method="post" id="frm"
-		enctype="multipart/form-data">
-		<input type="hidden" name="num" value="${num}">
-		<input type="text" name="title"> <input type="text"
-			name="writer">
-		<textarea id="contents" name="contents" rows="20" cols="100"></textarea>
-		<div id="files"></div>
-		<input id="fileAdd" type="button" value="ADD">
-		<button id="save">Reply</button>
-	</form>
+		<c:import url="${pageContext.request.contextPath}/layout/header" />
+
+		<div class="cart-table-area" id="manager-list">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="cart-title mt-50">
+							<h2>${board} 글쓰기</h2>
+						</div>
+
+						<div class="cart-table clearfix">
+							<form action="./${board}Reply" method="post" id="frm" enctype="multipart/form-data">
+								<div  class="tool-message">
+									<span class="tooltiptext">제목을 입력해주세요.</span>
+									<input type="text" class="form-control form-value mb-15" id="title"
+										placeholder="제목">
+									<textarea id="contents" class="form-control form-value"></textarea>
+								</div>
+								<input type="hidden" id="num" value="${num}">
+								<input type="hidden" id="writer" value="${member.id}">
+								<button type="button" class="btn amado-btn board-btn mb-15 mt-15" data-action="Reply">작성</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ##### Main Content Wrapper End ##### -->
+	<c:import url="${pageContext.request.contextPath}/layout/footer" />
 </body>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<script src="${pageContext.request.contextPath}/resources/summernote/summernote-ko-KR.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/boradFileRollback.js"></script>
 </html>

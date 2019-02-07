@@ -35,6 +35,7 @@
 			<mapping path="/qna/*" />
 			<exclude-mapping path="/*/*List" />
 			<exclude-mapping path="/*/*Write" />
+			<exclude-mapping path="/*/*Reply" />
 			<exclude-mapping path="/*/*Select" />
 			<beans:ref bean="BoradInterceptor" />
 		</interceptor>
@@ -48,6 +49,8 @@
 			<mapping path="/member/*" />
 			<mapping path="/cart/*" />
 			<mapping path="/product/*" />
+			<mapping path="/*/*Write" />
+			<mapping path="/*/*Reply" />
 			<exclude-mapping path="/product/shop" />
 			<exclude-mapping path="/product/product_area" />
 			<exclude-mapping path="/product/select" />

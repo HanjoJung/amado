@@ -20,7 +20,7 @@ public class QnaDAO implements BoardDAO {
 
 	@Override
 	public int hitUp(int num) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getNum", num);
+		return sqlSession.update(NAMESPACE + "hitUp", num);
 	}
 
 	@Override

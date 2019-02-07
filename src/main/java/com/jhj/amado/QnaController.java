@@ -70,10 +70,12 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "qnaReply", method = RequestMethod.GET)
-	public String reply(Model model, int num) {
-		model.addAttribute("board", "qna");
-		model.addAttribute("num", num);
-		return "board/boardReply";
+	public ModelAndView reply(int num) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", "qna");
+		mv.addObject("num", num);
+		mv.setViewName("board/boardReply");
+		return mv;
 	}
 
 	@RequestMapping(value = "qnaReply", method = RequestMethod.POST)
