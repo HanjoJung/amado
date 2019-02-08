@@ -1635,7 +1635,9 @@ img {
   z-index: 1;
   background-color: #252525;
   padding: 80px 0; 
-  width: 100%}
+  width: 100%;
+  height: auto;
+  }
   .footer_area .single_widget_area .copywrite {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.4);

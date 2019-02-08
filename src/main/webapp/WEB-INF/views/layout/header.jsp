@@ -19,7 +19,7 @@ $(function() {
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="/"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png"></a>
+                <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png"></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -34,9 +34,9 @@ $(function() {
                 <i class="fa fa-close" aria-hidden="true"></i>
             </div>
             <!-- Logo -->
-            <div class="logo">
-                <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png" alt=""></a>
-            </div>
+            <a class="logo" href="${pageContext.request.contextPath}">
+            	<img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png">
+           	</a>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
