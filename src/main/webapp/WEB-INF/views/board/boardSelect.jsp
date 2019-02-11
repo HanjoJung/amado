@@ -30,7 +30,7 @@
 											조회수 : ${dto.hit}</td>
 									</tr>
 									<tr style="height: 100%; max-width: 100%;">
-										<th>${dto.contents}</th>
+										<th style="width: 100%; max-width: 100%">${dto.contents}</th>
 									</tr>
 								</thead>
 								<thead class="mb-15 mobile-table">

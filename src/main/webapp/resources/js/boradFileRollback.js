@@ -30,7 +30,7 @@ function sendFile(file, editor) {
     	enctype: 'multipart/form-data',
         success : function(img_name) {
         	$(editor).summernote('editor.insertImage', img_name);
-        	filesArr.push(img_name.replace("../resources/notice/","").trim());
+        	filesArr.push(img_name.replace("../resources/img/board/","").trim());
         }
     });
 }
@@ -41,12 +41,12 @@ $(function() {
 	var checkSubmit = false;
 	var temp = $("#contents").val();
 	
-	while(temp.indexOf('src="../resources/notice/') > 0){
-		var first = temp.indexOf('src="../resources/notice/')+25;
+	while(temp.indexOf('src="../resources/img/board/') > 0){
+		var first = temp.indexOf('src="../resources/img/board/')+25;
 		var last = temp.indexOf('&#13;&#10;');
 		var middel = temp.substring(first, last);
 		curFiles.push(middel);
-		temp = temp.replace('src="../resources/notice/' + middel + '&#13;&#10;', "");
+		temp = temp.replace('src="../resources/img/board/' + middel + '&#13;&#10;', "");
 	}
 	
 	$("#frm").on("blur",".note-editable", function() {
@@ -63,8 +63,6 @@ $(function() {
 	function nullCheck() {
 		check = true;
 		$(".form-value").each(function() {
-			console.log($(this).val().length);
-			console.log($(this).val());
 			if($(this).val().length == 0){
 				$(this).focus();
 				$(this).prev(".tooltiptext").css({

@@ -34,9 +34,7 @@ $(function() {
                 <i class="fa fa-close" aria-hidden="true"></i>
             </div>
             <!-- Logo -->
-            <div class="logo">
-                <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png" alt=""></a>
-            </div>
+                <a class="logo" href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png" alt=""></a>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>

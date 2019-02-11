@@ -54,15 +54,11 @@ public class ProductService {
 	public ModelAndView selectOne(int productNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		ProductDTO productDTO = productDAO.selectOne(productNum);
-		String[] brand = { "Amado", "Ikea", "Furniture Inc", "The factory", "Artdeco" };
-		String[] category = { "chair", "beds", "accesories", "furniture", "homeDeco", "table", "kid" };
 		if (productDTO != null) {
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setNum(productDTO.getProductNum());
 			fileDTO.setKind("p");
 			mv.addObject("fileList", fileDAO.list(fileDTO));
-			mv.addObject("brand", brand);
-			mv.addObject("category", category);
 			mv.addObject("productDTO", productDTO);
 			mv.setViewName("product/select");
 		} else {

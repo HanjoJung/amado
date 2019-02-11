@@ -40,7 +40,13 @@
 											</th>
 											<th class="col-lg-2 col-xl-1">${dto.num}</th>
 											<th class="col-lg-3 col-xl-5" style="word-break: break-word;"><a
-												href="./${board}Select?num=${dto.num}">${dto.title}</a></th>
+												href="./${board}Select?num=${dto.num}">
+												<c:if test="${board ne 'notice'}">
+													<c:forEach begin="1" end="${dto.depth}">
+														<img src="${pageContext.request.contextPath}/resources/img/core-img/reply.png">
+													</c:forEach>
+												</c:if>
+												${dto.title}</a></th>
 											<th class="col-lg-2 col-xl-2" style="word-break: break-word;">${dto.writer}</th>
 											<th class="col-lg-2 col-xl-2">${dto.reg_date}</th>
 											<th class="col-lg-2 col-xl-1">${dto.hit}</th>

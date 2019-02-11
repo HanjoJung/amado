@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService {
 
 	public void delete(String fname, HttpSession session) throws Exception {
-		String realPath = session.getServletContext().getRealPath("resources/notice");
+		String realPath = session.getServletContext().getRealPath("resources/img/board");
 		System.out.println(realPath);
 		System.out.println(fname);
 		File file = new File(realPath, fname);
@@ -27,7 +27,7 @@ public class FileService {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-		String realFolder = request.getSession().getServletContext().getRealPath("resources/notice");
+		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board");
 		UUID uuid = UUID.randomUUID();
 
 		String org_filename = file.getOriginalFilename();
@@ -41,7 +41,7 @@ public class FileService {
 		}
 		file.transferTo(f);
 
-		out.println("../resources/notice/" + str_filename);
+		out.println("../resources/img/board/" + str_filename);
 		out.close();
 	}
 

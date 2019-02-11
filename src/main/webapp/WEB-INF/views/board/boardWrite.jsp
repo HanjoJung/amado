@@ -28,7 +28,6 @@
 										placeholder="제목">
 									<textarea id="contents" class="form-control form-value"></textarea>
 								</div>
-								<input type="hidden" id="num" value="0">
 								<input type="hidden" id="writer" value="${member.id}">
 								<button type="button" class="btn amado-btn board-btn mb-15 mt-15" data-action="Write">작성</button>
 							</form>

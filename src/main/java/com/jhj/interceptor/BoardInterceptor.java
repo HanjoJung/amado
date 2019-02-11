@@ -25,7 +25,7 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		String writer = (String) request.getParameter("writer");
 
-		if (memberDTO != null && memberDTO.getId().equals(writer) || memberDTO.getId().equals("manager")) {
+		if (memberDTO != null && (memberDTO.getId().equals(writer) || memberDTO.getId().equals("manager"))) {
 			check = true;
 		} else {
 			response.sendRedirect("../member/login?msg=" + URLEncoder.encode("작성자만 접근할 수 있습니다.", "UTF-8"));

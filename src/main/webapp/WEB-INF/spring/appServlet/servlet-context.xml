@@ -36,6 +36,7 @@
 			<exclude-mapping path="/*/*List" />
 			<exclude-mapping path="/*/*Write" />
 			<exclude-mapping path="/*/*Select" />
+			<exclude-mapping path="/*/*Reply" />
 			<beans:ref bean="BoradInterceptor" />
 		</interceptor>
 	</interceptors>

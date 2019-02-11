@@ -19,7 +19,7 @@ public class NoticeDAO implements BoardDAO {
 	private static final String NAMESPACE = "noticeMapper.";
 
 	public int hitUp(int num) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "hitUp", num);
+		return sqlSession.update(NAMESPACE + "hitUp", num);
 	}
 
 	@Override
