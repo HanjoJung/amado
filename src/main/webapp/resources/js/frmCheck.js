@@ -23,7 +23,7 @@ $(function() {
 	    $("#securedPassword").val(securedPassword);
 	}
 	
-// 폼 공동 체크	
+// 피드백 메세지
 	function check(data, comparison, message) {
 		if(comparison){
 			data.next(".message").css({display : "none"});	
@@ -36,7 +36,7 @@ $(function() {
 			return false;
 		}
 	};
-// id 중복체크
+// id 중복검사
 	resultCheckId = false;
 	function checkId() {
 		data = $("#id");
@@ -52,21 +52,24 @@ $(function() {
 		})
 	};
 
-// 패턴 체크
+// 패턴 검사
 	function checkPattern(data) {
 		pat = (RegExp)(data.attr("data-parsley-pattern"));
 		text = data.val();
 		return check(data, pat.test(text), data.attr("data-parsley-message"));
 	};
 
+// null 검사
 	function checkNull(data) {
 		return check(data, data.val().length > 0, "필수 입력사항입니다");
 	};
-	
+
+// 비밀번호 일치여부 검사
 	function checkPassword() {
 		data = $("#password");
 		return check(data, data.val() == $("#password1").val(), "비밀번호가 일치하지 않습니다");
 	};
+	
 // 약관동의 체크박스
 	function checkClause() {
 		clause1 = $("#customCheck1");
@@ -75,7 +78,7 @@ $(function() {
 		return check(data, clause1.prop("checked") && clause2.prop("checked"), "약관에 동의해주세요");
 	}
 	
-// 가입 폼 체크 후 submit()
+// 가입 폼 검사 후 submit()
 	function submitJoinForm() {
 		var checkForm = true;
 		$(".form-control").each(function() {
@@ -105,7 +108,7 @@ $(function() {
 	
 	$(".form-btn").click(submitJoinForm);
 	
-// 로그인 폼 체크 후 세션활성화
+// 로그인 폼 검사 후 세션활성화
 	function login() {
 		$.ajax({
 			url : fn_GetContextRoot() + "/member/login",
@@ -146,7 +149,7 @@ $(function() {
 	
 	$(".form-login-btn").click(checkLoginForm);
 	
-// 패스워드 폼 체크 후 수정, 탈퇴
+// 패스워드 폼 검사 후 수정, 탈퇴
 function checkPasswordFrom() {
 	action = $("#action").val();
 
@@ -290,7 +293,7 @@ function porductForm() {
 		}
 	});
 
-//	폼 값변동시 체크
+//	폼 값변동시 검사
 	$(".form-control").change(function() {
 		if($(this).attr("id") == "id"){
 				checkId();
