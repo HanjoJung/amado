@@ -24,7 +24,6 @@
 							<ol class="breadcrumb mt-50">
 								<li class="breadcrumb-item"><a href="/">Home</a></li>
 								<li class="breadcrumb-item"><a href="./shop">Shop</a></li>
-								<li class="breadcrumb-item"><a href="./shop">${productDTO.kind}</a></li>
 								<li class="breadcrumb-item active">${productDTO.productName}</li>
 							</ol>
 						</nav>
