@@ -5,11 +5,11 @@
   
   <mapper namespace="qnaMapper">
   	
-  	<update id="hitUp" parameterType="java.lang.Integer" >
+  	<select id="hitUp" resultType="java.lang.Integer" >
 		update qna 
 		set hit = hit+1
 		where num = #{num} 
-  	</update>
+  	</select>
   
   	<select id="totalCount" parameterType="Pager" resultType="java.lang.Integer">
   		select count(num) from qna where 
@@ -64,7 +64,7 @@
   
   	<insert id="insert" parameterType="QnaDTO">
   		insert into qna values
-  		(qna_seq.nextval, #{title}, #{contents}, #{writer}, sysdate, 0, #{num}, 0, 0)
+  		(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, #{num}, 0, 0)
   	</insert>
   	
   	<update id="update" parameterType="QnaDTO">
@@ -82,7 +82,7 @@
   	<insert id="reply" parameterType="QnaDTO">
   		insert into qna values
   		(
-  			qna_seq.nextval, #{title}, #{contents}, #{writer}, sysdate, 0,
+  			#{num}, #{title}, #{writer}, #{contents}, sysdate, 0,
   			#{ref}, #{step}, #{depth}
   		)
   	</insert>

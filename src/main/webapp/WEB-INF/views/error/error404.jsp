@@ -21,7 +21,7 @@
 				<ul class="contect" style="margin-top: -15px">
 					<li>관련문의사항은 고객센터에 문의해주시면 친절히 안내해드리겠습니다.</li>
 					<li>고객상담전화 : 010-????-????</li>
-					<li style="margin-top: 10px"><a href="/amado" class="btn">홈페이지</a>
+					<li style="margin-top: 10px"><a href="/" class="btn">홈페이지</a>
 					</li>
 				</ul>
 			</footer>

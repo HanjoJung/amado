@@ -40,14 +40,7 @@
 											</th>
 											<th class="col-lg-2 col-xl-1">${dto.num}</th>
 											<th class="col-lg-3 col-xl-5" style="word-break: break-word;"><a
-												href="./${board}Select?num=${dto.num}">
-												<c:if test="${board ne 'notice'}">
-													<c:forEach begin="1" end="${dto.depth}">
-														<img src="${pageContext.request.contextPath}/resources/img/core-img/reply.png" 
-														style="height: 15px;"> 
-													</c:forEach>
-												</c:if>
-												${dto.title}</a></th>
+												href="./${board}Select?num=${dto.num}">${dto.title}</a></th>
 											<th class="col-lg-2 col-xl-2" style="word-break: break-word;">${dto.writer}</th>
 											<th class="col-lg-2 col-xl-2">${dto.reg_date}</th>
 											<th class="col-lg-2 col-xl-1">${dto.hit}</th>
@@ -127,6 +120,18 @@
 
 <script type="text/javascript">
 	$(function() {
+
+		/* 
+		var email = $(this).attr("data-writer");
+		var userId = email.substring(0, email.indexOf("@"));
+		var blind = "*";
+		for(i = 4; i < userId.length; i++){
+			blind += "*";
+		}
+		var domain = email.substring(email.indexOf("@"), email.length);
+		$(this).children().text(email.substring(0, 3) + blind + domain); */
+		
+		
 		$(".check-all-pc").click(function() {
 			$(".check-pc").each(function() {
 				$(this).prop("checked", $(".check-all-pc").prop("checked"));
