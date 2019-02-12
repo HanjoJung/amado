@@ -47,7 +47,7 @@ $(function() {
             </nav>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-70">
-                <a href="${pageContext.request.contextPath}/cart/list" class="cart-nav">
+                <a href="${pageContext.request.contextPath}/cart/cartList" class="cart-nav">
                 <img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png"> 장바구니 <span class="cart-count"></span></a>
                 <a href="${pageContext.request.contextPath}/product/latest" class="fav-nav">
                 <img src="${pageContext.request.contextPath}/resources/img/core-img/favorites.png">최근 본 상품</a>

@@ -48,7 +48,7 @@ public class MemberService {
 			memberDAO.update(memberDTO);
 			session.setAttribute("member", memberDTO);
 			str = "로그인 됐습니다.";
-		} else {
+		}else {
 			throw new Exception();
 		}
 		return str;
@@ -85,9 +85,12 @@ public class MemberService {
 	public String delete(MemberDTO memberDTO, HttpSession session) throws Exception {
 		String msg = "탈퇴하지 못하였습니다.";
 		int result = memberDAO.delete(memberDTO);
+		MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("member");
 		if (result > 0) {
 			msg = "탈퇴 되었습니다.";
-			session.invalidate();
+			if(memberDTO.getId().equals(memberDTO2.getId())) {
+				session.invalidate();
+			}
 		}
 		return msg;
 	}

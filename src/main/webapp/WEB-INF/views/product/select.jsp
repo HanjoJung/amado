@@ -90,8 +90,8 @@
 								<h4>${productDTO.productName}</h4>
 								<!-- Ratings & Review -->
 								<div class="ratings-review">
-									<div class="ratings"></div>
-									<div class="ratings-active" style="width: ${productDTO.score}%"></div>
+									<span class="ratings"></span>
+									<span class="ratings-active" style="width: ${productDTO.score}%"></span>
 								</div>
 								<!-- Avaiable -->
 								<p class="avaibility">
@@ -217,7 +217,6 @@
 	})
 
 	var page = 3;
-	
 	function review() {
 		$.ajax({
 			url : "./review/list",
@@ -230,13 +229,14 @@
 			}
 		})
 	}
-	
+
 	review()
 	
 	$(".review-view").on("click",".btn-more-review",function() {
 		page += 3;
 		review();
 	})
+	
 	$(".icon-star").click(function() {
 		$(this).nextAll().attr("class", "icon-star");
 		$(this).prevAll().attr("class", "icon-star active");

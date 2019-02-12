@@ -22,7 +22,7 @@ public class CartService {
 		return cartDAO.count(id);
 	}
 
-	public ModelAndView list(String id) throws Exception {
+	public ModelAndView cartList(String id) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		FileDTO fileDTO = new FileDTO();
 		List<CartDTO> list = cartDAO.list(id);

@@ -3,7 +3,7 @@
 
     var $window = $(window);
 
-    // :: 1.0 Masonary Gallery Active Code
+    // :: 1.0 Masonry Gallery Active Code
 
     var proCata = $('.amado-pro-category');
     var singleProCata = ".single-products-category";

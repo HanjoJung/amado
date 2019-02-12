@@ -49,6 +49,8 @@
 			<mapping path="/member/*" />
 			<mapping path="/cart/*" />
 			<mapping path="/product/*" />
+			<mapping path="/qna/*Write" />
+			<mapping path="/qna/*Reply" />
 			<exclude-mapping path="/product/shop" />
 			<exclude-mapping path="/product/product_area" />
 			<exclude-mapping path="/product/select" />
@@ -69,6 +71,7 @@
 	</beans:bean>
 	<interceptors>
 		<interceptor>
+			<mapping path="/notice/*Write" />
 			<mapping path="/product/list" />
 			<mapping path="/product/insert" />
 			<mapping path="/product/update" />

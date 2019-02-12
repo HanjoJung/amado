@@ -67,20 +67,18 @@
 <script type="text/javascript">
 //kakao
 $(".kakao-btn").click(loginWithKakao)
-// 사용할 앱의 JavaScript 키를 설정해 주세요.
 Kakao.init('8416a80649dbb8e8550db5abd37833cd');
 function loginWithKakao() {
-	// 로그인 창을 띄웁니다.
 	Kakao.Auth.login({
 		success : function(authObj) {
 			Kakao.API.request({
 				url : '/v2/user/me',
 				success : function(res) {
-					var userID = res.id; // 유저의 카카오톡 고유 id
+					var userID = res.id;
 					if (res.kakao_account.has_email) {
-						var userEmail = res.kakao_account.email; // 유저의 이메일
+						var userEmail = res.kakao_account.email;
 					}
-					var userName = res.properties.nickname; // 유저가 등록한 별명
+					var userName = res.properties.nickname;
 
 					snsLogin(userEmail, userID, userName, "kakao");
 				},
@@ -169,11 +167,14 @@ function snsLogin(id, snsid, name, sns) {
 					data = data.trim();
 					if (data.length > 0) {
 						alert("같은 아이디가 존제합니다.\n로그인하시면 자동으로 연동됩니다.");
-						location.href = "${pageContext.request.contextPath}/member/login?"
-								+ sns + "=" + snsid + "&id=" + id; 
+						location.href = "${pageContext.request.contextPath}/"
+							+ "member/login?"
+							+ sns + "=" + snsid
+							+ "&id=" + id; 
 					} else {
 						if (confirm("연동된 계정이 없습니다.\n가입하시겠습니까?")) {
-							location.href = "${pageContext.request.contextPath}/member/join?"
+							location.href = "${pageContext.request.contextPath}/"
+								+ "member/join?"
 								+ sns + "=" + snsid
 								+ "&id=" + id
 								+ "&name=" + name;
