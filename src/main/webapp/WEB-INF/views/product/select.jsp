@@ -90,8 +90,8 @@
 								<h4>${productDTO.productName}</h4>
 								<!-- Ratings & Review -->
 								<div class="ratings-review">
-									<div class="ratings"></div>
-									<div class="ratings-active" style="width: ${productDTO.score}%"></div>
+									<span class="ratings"></span>
+									<span class="ratings-active" style="width: ${productDTO.score}%"></span>
 								</div>
 								<!-- Avaiable -->
 								<p class="avaibility">
@@ -160,14 +160,13 @@
 										<p class="rating-description">좋아요!</p>
 									</div>
 									<div class="col-12 mb-3 tool-message">
-										<input type="text" class="form-control" id="title"
-											placeholder="제목"> <span class="tooltiptext">제목을
-											입력해주세요.</span>
+										<span class="tooltiptext">제목을 입력해주세요.</span>
+										<input type="text" class="form-control" id="title" placeholder="제목"> 
 									</div>
 									<div class="col-12 mb-3 tool-message">
+										<span class="tooltiptext">내용을 입력해주세요.</span>
 										<textarea class="form-control" id="contents" placeholder="내용"
 											onkeyup="autoSize(this)" style="height: 53px;"></textarea>
-										<span class="tooltiptext">내용을 입력해주세요.</span>
 									</div>
 									<div class="col-12 mb-3">
 										<a class="review-write">리뷰 작성</a>
@@ -191,13 +190,20 @@
 <script type="text/javascript">
   var productNum = '${productDTO.productNum}';
 	$(function() {
-		var todayView = getCookie("todayView").trim();
-		var search = todayView.search(productNum);
 		
-		if(todayView.search(productNum) != -1){ 
-			todayView = todayView.replace(productNum + ",", "");
+		var todayView = null;
+		if(getCookie("todayView") == null){
+			todayView = setCookie("todayView");
+			todayView = productNum + ",";
+		}else{
+			todayView = getCookie("todayView").trim();
+			var search = todayView.search(productNum);
+			
+			if(todayView.search(productNum) != -1){ 
+				todayView = todayView.replace(productNum + ",", "");
+			}
+			todayView = productNum + "," + todayView;
 		}
-		todayView = productNum + "," + todayView;
 		setCookie("todayView", todayView, 1);
 		
 		$.ajax({
@@ -211,7 +217,6 @@
 	})
 
 	var page = 3;
-	
 	function review() {
 		$.ajax({
 			url : "./review/list",
@@ -224,13 +229,14 @@
 			}
 		})
 	}
-	
+
 	review()
 	
 	$(".review-view").on("click",".btn-more-review",function() {
 		page += 3;
 		review();
 	})
+	
 	$(".icon-star").click(function() {
 		$(this).nextAll().attr("class", "icon-star");
 		$(this).prevAll().attr("class", "icon-star active");
@@ -243,7 +249,7 @@
 		$(".form-control").each(function() {
 			if($(this).val().length == 0){
 				$(this).focus();
-				$(this).next(".tooltiptext").css({
+				$(this).prev(".tooltiptext").css({
 					visibility: "visible",
 			  		opacity: 1});
 				checkNull = false;

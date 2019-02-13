@@ -31,7 +31,7 @@ public class MemberDAO {
 	public int checkId(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "checkId", memberDTO);
 	}
-	
+
 	public int join(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "join", memberDTO);
 	}

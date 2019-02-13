@@ -25,12 +25,12 @@ public class CartController {
 	public int count(String id) throws Exception {
 		return cartService.count(id);
 	}
-	
-	@RequestMapping("list")
+
+	@RequestMapping("cartList")
 	public ModelAndView list(HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		ModelAndView mv = cartService.list(memberDTO.getId());
-		mv.setViewName("product/cart");
+		ModelAndView mv = cartService.cartList(memberDTO.getId());
+		mv.setViewName("product/cartList");
 		return mv;
 	}
 

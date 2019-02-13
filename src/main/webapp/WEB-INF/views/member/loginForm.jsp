@@ -21,7 +21,10 @@
 								<h2>로그인</h2>
 							</div>
 
-							<form class="frm-login" action="./login" method="post">
+							<form class="frm-login" id="rsa-frm" action="./login" method="post">
+								<input type="hidden" id="rsaPublicKeyModulus" value="${publicKeyModulus}"> 
+								<input type="hidden" id="rsaPublicKeyExponent" value="${publicKeyExponent}">
+                                <input type="hidden" name="password" id="securedPassword">
 								<div class="row">
 									<div class="col-12 mb-3">
 										<input type="text" class="form-control login-form-control" id="login-id"
@@ -33,7 +36,7 @@
 									</div>
 									<div class="col-12 mb-3">
 										<input type="password" class="form-control login-form-control"
-											id="login-password" name="password" placeholder="비밀번호"
+											id="password" placeholder="비밀번호" data-form="login-password"
 											data-parsley-message="영문/숫자/특수문자 조합 8~16자 조합으로 입력해주세요."
 											data-parsley-pattern="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,16}$">
 										<p class="message"></p>
@@ -64,20 +67,18 @@
 <script type="text/javascript">
 //kakao
 $(".kakao-btn").click(loginWithKakao)
-// 사용할 앱의 JavaScript 키를 설정해 주세요.
 Kakao.init('8416a80649dbb8e8550db5abd37833cd');
 function loginWithKakao() {
-	// 로그인 창을 띄웁니다.
 	Kakao.Auth.login({
 		success : function(authObj) {
 			Kakao.API.request({
 				url : '/v2/user/me',
 				success : function(res) {
-					var userID = res.id; // 유저의 카카오톡 고유 id
+					var userID = res.id;
 					if (res.kakao_account.has_email) {
-						var userEmail = res.kakao_account.email; // 유저의 이메일
+						var userEmail = res.kakao_account.email;
 					}
-					var userName = res.properties.nickname; // 유저가 등록한 별명
+					var userName = res.properties.nickname;
 
 					snsLogin(userEmail, userID, userName, "kakao");
 				},
@@ -165,12 +166,15 @@ function snsLogin(id, snsid, name, sns) {
 				success : function(data) {
 					data = data.trim();
 					if (data.length > 0) {
-						alert("같은 아이디가 존제합니다.\n로그인하시면 자동으로 연동됩니다.");
-						location.href = "${pageContext.request.contextPath}/member/login?"
-								+ sns + "=" + snsid + "&id=" + id; 
+						alert("같은 아이디가 존재합니다.\n로그인하시면 자동으로 연동됩니다.");
+						location.href = "${pageContext.request.contextPath}/"
+							+ "member/login?"
+							+ sns + "=" + snsid
+							+ "&id=" + id; 
 					} else {
 						if (confirm("연동된 계정이 없습니다.\n가입하시겠습니까?")) {
-							location.href = "${pageContext.request.contextPath}/member/join?"
+							location.href = "${pageContext.request.contextPath}/"
+								+ "member/join?"
 								+ sns + "=" + snsid
 								+ "&id=" + id
 								+ "&name=" + name;

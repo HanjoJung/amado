@@ -16,9 +16,14 @@
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/coreStyle.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Kakao API -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/rsa/jsbn.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/rsa/rsa.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/rsa/prng4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/rsa/rng.js"></script>
+	
 </head>

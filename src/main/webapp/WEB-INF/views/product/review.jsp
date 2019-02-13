@@ -45,18 +45,6 @@ $(function() {
 	}
 })
 	$(".user").each(function() {
-		// E-mail
-		/* 
-		var email = $(this).attr("data-writer");
-		var userId = email.substring(0, email.indexOf("@"));
-		var blind = "*";
-		for(i = 4; i < userId.length; i++){
-			blind += "*";
-		}
-		var domain = email.substring(email.indexOf("@"), email.length);
-		$(this).children().text(email.substring(0, 3) + blind + domain); */
-		
-		// Name
 		var name = $(this).attr("data-writer");
 		var firstName = name.substring(0, 1);
 		var lastName = name.substring(name.length-1, name.length);

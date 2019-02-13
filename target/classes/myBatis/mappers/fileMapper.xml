@@ -5,15 +5,20 @@
   
 <mapper namespace="fileMapper">
 	
-	<select id="list" parameterType="FileDTO" resultType="FileDTO">
+	<select id="list" parameterType="java.lang.Integer" resultType="FileDTO">
 		select * from image
-		where kind = #{kind} and num = #{num}
+		where num = #{num}
 		order by fnum asc
 	</select>
 	
 	<insert id="insert" parameterType="FileDTO">
 		insert into image
-		values(image_seq.nextval, #{num}, #{fname}, #{oname}, #{kind})
+		values(image_seq.nextval, #{num}, #{fname}, #{oname})
+	</insert>
+	
+	<insert id="update" parameterType="FileDTO">
+		update image set fname=#{fname}, oname=#{oname}
+		where fnum = #{fnum} 
 	</insert>
 	
 	<delete id="delete" parameterType="FileDTO">

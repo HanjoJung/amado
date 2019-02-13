@@ -15,15 +15,14 @@ import org.springframework.web.servlet.view.AbstractView;
 import com.jhj.file.FileDTO;
 
 public class FileDown extends AbstractView {
-	
+
 	public FileDown() {
-		//setContentType("application/downDown;charset=UTF-8");
+		// setContentType("application/downDown;charset=UTF-8");
 	}
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("fileDown");
 
 		FileDTO fileDTO = (FileDTO) model.get("file");
 		String realPath = request.getSession().getServletContext().getRealPath("resources/notice");
@@ -40,12 +39,12 @@ public class FileDown extends AbstractView {
 
 		response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
 		response.setHeader("Content-Transfer-Encoding", "binary");
-		
+
 		OutputStream os = response.getOutputStream();
 		FileInputStream fi = new FileInputStream(file);
-		
+
 		FileCopyUtils.copy(fi, os);
-		
+
 		fi.close();
 		os.close();
 	}

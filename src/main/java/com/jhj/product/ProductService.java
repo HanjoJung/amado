@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,7 @@ import com.jhj.util.FileSaver;
 import com.jhj.util.Pager;
 
 @Service
+@Transactional
 public class ProductService {
 
 	@Inject
@@ -37,11 +39,8 @@ public class ProductService {
 		pager.makePage(totalCount);
 		ModelAndView mv = new ModelAndView();
 		List<ProductDTO> list = productDAO.list(pager);
-		FileDTO fileDTO = new FileDTO();
 		for (ProductDTO productDTO : list) {
-			fileDTO.setNum(productDTO.getProductNum());
-			fileDTO.setKind("p");
-			productDTO.setFile(fileDAO.list(fileDTO));
+			productDTO.setFile(fileDAO.list(productDTO.getProductNum()));
 		}
 		mv.addObject("pager", pager);
 		mv.addObject("list", list);
@@ -52,15 +51,8 @@ public class ProductService {
 	public ModelAndView selectOne(int productNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		ProductDTO productDTO = productDAO.selectOne(productNum);
-		String[] brand = { "Amado", "Ikea", "Furniture Inc", "The factory", "Artdeco" };
-		String[] category = { "chair", "beds", "accesories", "furniture", "homeDeco", "table", "kid" };
 		if (productDTO != null) {
-			FileDTO fileDTO = new FileDTO();
-			fileDTO.setNum(productDTO.getProductNum());
-			fileDTO.setKind("p");
-			mv.addObject("fileList", fileDAO.list(fileDTO));
-			mv.addObject("brand", brand);
-			mv.addObject("category", category);
+			mv.addObject("fileList", fileDAO.list(productDTO.getProductNum()));
 			mv.addObject("productDTO", productDTO);
 			mv.setViewName("product/select");
 		} else {
@@ -75,26 +67,27 @@ public class ProductService {
 		productDTO.setProductNum(seq);
 		int result = productDAO.insert(productDTO);
 
+		if (result < 1) {
+			throw new SQLException();
+		}
+
 		FileSaver fs = new FileSaver();
 		String realPath = session.getServletContext().getRealPath("resources/img/product-img");
 		System.out.println(realPath);
 
-		if (result > 0) {
-			for (MultipartFile data : f1) {
-				if (data.isEmpty()) {
-					continue;
-				}
-				FileDTO fileDTO = new FileDTO();
-				fileDTO.setNum(productDTO.getProductNum());
-				fileDTO.setOname(data.getOriginalFilename());
-				fileDTO.setFname(fs.saveFile(realPath, data));
-				fileDTO.setKind("p");
+		for (MultipartFile data : f1) {
+			if (data.isEmpty()) {
+				continue;
+			}
+			FileDTO fileDTO = new FileDTO();
+			fileDTO.setNum(productDTO.getProductNum());
+			fileDTO.setOname(data.getOriginalFilename());
+			fileDTO.setFname(fs.saveFile(realPath, data));
 
-				result = fileDAO.insert(fileDTO);
+			result = fileDAO.insert(fileDTO);
 
-				if (result < 1) {
-					throw new SQLException();
-				}
+			if (result < 1) {
+				throw new SQLException();
 			}
 		}
 		ModelAndView mv = new ModelAndView();
@@ -111,20 +104,31 @@ public class ProductService {
 			String realPath = session.getServletContext().getRealPath("resources/img/product-img");
 			System.out.println(realPath);
 
-			if (result > 0) {
-				for (MultipartFile data : f1) {
-					if (data.isEmpty()) {
-						continue;
+			if (result < 1) {
+				throw new SQLException();
+			}
+
+			List<FileDTO> fileList = fileDAO.list(productDTO.getProductNum());
+			for (int i = 0; i < f1.size(); i++) {
+				if (f1.get(i).isEmpty()) {
+					continue;
+				}
+
+				FileDTO fileDTO = new FileDTO();
+				fileDTO.setNum(productDTO.getProductNum());
+				fileDTO.setOname(f1.get(i).getOriginalFilename());
+				fileDTO.setFname(fs.saveFile(realPath, f1.get(i)));
+
+				if (fileList.size() > i) {
+					fileDTO.setFnum(fileList.get(i).getFnum());
+					result = fileDAO.update(fileDTO);
+					if (result < 1) {
+						throw new SQLException();
 					}
-					FileDTO fileDTO = new FileDTO();
-					fileDAO.delete(fileDTO);
-					fileDTO.setNum(productDTO.getProductNum());
-					fileDTO.setOname(data.getOriginalFilename());
-					fileDTO.setFname(fs.saveFile(realPath, data));
-					fileDTO.setKind("p");
-
+					File file = new File(realPath, fileList.get(i).getFname());
+					file.delete();
+				} else {
 					result = fileDAO.insert(fileDTO);
-
 					if (result < 1) {
 						throw new SQLException();
 					}
@@ -136,26 +140,20 @@ public class ProductService {
 	}
 
 	public String delete(int productNum, HttpSession session) throws Exception {
+		List<FileDTO> ar = fileDAO.list(productNum);
 		int result = productDAO.delete(productNum);
-		if (result > 0) {
 
-			FileDTO fileDTO = new FileDTO();
-			fileDTO.setNum(productNum);
-			fileDTO.setKind("p");
-			List<FileDTO> ar = fileDAO.list(fileDTO);
-
-			if (ar.size() != 0) {
-				result = fileDAO.deleteAll(fileDTO);
-
-				String realPath = session.getServletContext().getRealPath("resources/img/product-img");
-				for (FileDTO fileDTO2 : ar) {
-					File file = new File(realPath, fileDTO2.getFname());
-					file.delete();
-				}
-			}
+		if (result < 1) {
+			throw new SQLException();
 		}
 
-		return "삭제 성공";
+		String realPath = session.getServletContext().getRealPath("resources/img/product-img");
+		for (FileDTO fileDTO2 : ar) {
+			File file = new File(realPath, fileDTO2.getFname());
+			file.delete();
+		}
+
+		return "삭제 하였습니다.";
 	}
 
 	@RequestMapping(value = "checkout", method = RequestMethod.GET)
@@ -166,6 +164,7 @@ public class ProductService {
 	}
 
 	public ModelAndView latest(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		Cookie[] cookies = request.getCookies();
 		String[] cookieValues = null;
 		String value = "";
@@ -183,25 +182,23 @@ public class ProductService {
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("productNum", cookieValues);
 		List<ProductDTO> list = productDAO.latest(map);
-		FileDTO fileDTO = new FileDTO();
 		for (ProductDTO productDTO : list) {
-			fileDTO.setNum(productDTO.getProductNum());
-			fileDTO.setKind("p");
-			productDTO.setFile(fileDAO.list(fileDTO));
+			productDTO.setFile(fileDAO.list(productDTO.getProductNum()));
 		}
-		
-		for (int i = 0; i < cookieValues.length; i++) {
-			for (int j = i; j < list.size(); j++) {
-				if (Integer.parseInt(cookieValues[i]) == list.get(j).getProductNum()) {
-					ProductDTO temp = list.get(i);
-					list.set(i, list.get(j));
-					list.set(j, temp);
+
+		if (cookieValues != null) {
+			for (int i = 0; i < cookieValues.length; i++) {
+				for (int j = i; j < list.size(); j++) {
+					if (Integer.parseInt(cookieValues[i]) == list.get(j).getProductNum()) {
+						ProductDTO temp = list.get(i);
+						list.set(i, list.get(j));
+						list.set(j, temp);
+					}
 				}
 			}
 		}
-		
-		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
+
 		return mv;
 	}
 }

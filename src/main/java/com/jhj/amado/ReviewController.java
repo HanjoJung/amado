@@ -28,9 +28,10 @@ public class ReviewController {
 	@RequestMapping(value = "insert", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String insert(ReviewDTO reviewDTO) throws Exception {
+		reviewDTO.setContents(reviewDTO.getContents().replaceAll("\n", "<br>"));
 		return reviewService.insert(reviewDTO);
 	}
-	
+
 	@RequestMapping(value = "delete", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String delete(int num) throws Exception {

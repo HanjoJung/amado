@@ -146,13 +146,9 @@
 				<div class="categories-menu">
 					<ul>
 						<li class="active"><a class="categorie">ALL</a></li>
-						<li><a class="categorie" data-categorie="chair">의자</a></li>
-						<li><a class="categorie" data-categorie="beds">침대</a></li>
-						<li><a class="categorie" data-categorie="accesories">엑세서리</a></li>
-						<li><a class="categorie" data-categorie="furniture">가구</a></li>
-						<li><a class="categorie" data-categorie="homeDeco">홈 데코</a></li>
-						<li><a class="categorie" data-categorie="table">테이블</a></li>
-						<li><a class="categorie" data-categorie="kid">아동</a></li>
+						<c:forEach items="${category}" var="category">
+						<li><a class="categorie" data-categorie="${category}">${category}</a></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -168,31 +164,12 @@
 						<input class="form-check-input" type="checkbox" id="BrandAll">
 						<label class="form-check-label" for="BrandAll">ALL</label>
 					</div>
-					<!-- Single Form Check -->
-					<div class="form-check mb-15">
-						<input class="form-check-input" type="checkbox" id="Amado">
-						<label class="form-check-label" for="Amado">Amado</label>
-					</div>
-					<!-- Single Form Check -->
-					<div class="form-check mb-15">
-						<input class="form-check-input" type="checkbox" id="Ikea">
-						<label class="form-check-label" for="Ikea">Ikea</label>
-					</div>
-					<!-- Single Form Check -->
-					<div class="form-check mb-15">
-						<input class="form-check-input" type="checkbox" id="Furniture Inc">
-						<label class="form-check-label" for="Furniture Inc">Furniture Inc</label>
-					</div>
-					<!-- Single Form Check -->
-					<div class="form-check mb-15">
-						<input class="form-check-input" type="checkbox" id="The factory">
-						<label class="form-check-label" for="The factory">The factory</label>
-					</div>
-					<!-- Single Form Check -->
-					<div class="form-check mb-15">
-						<input class="form-check-input" type="checkbox" id="Artdeco">
-						<label class="form-check-label" for="Artdeco">Artdeco</label>
-					</div>
+					<c:forEach items="${brand}" var="brand">
+						<div class="form-check mb-15">
+							<input class="form-check-input" type="checkbox" id="${brand}">
+							<label class="form-check-label" for="${brand}">${brand}</label>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 

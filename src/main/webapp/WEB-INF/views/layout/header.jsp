@@ -34,22 +34,20 @@ $(function() {
                 <i class="fa fa-close" aria-hidden="true"></i>
             </div>
             <!-- Logo -->
-            <div class="logo">
-                <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png" alt=""></a>
-            </div>
+                <a class="logo" href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/img/core-img/logo.png" alt=""></a>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
                     <li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
                     <li><a href="${pageContext.request.contextPath}/product/shop">Shop</a></li>
-                    <li><a href="${pageContext.request.contextPath}/product/select?productNum=5">Product</a></li>
-                    <li><a href="${pageContext.request.contextPath}/cart/list">Cart</a></li>
-                    <li><a href="${pageContext.request.contextPath}/product/checkout">Checkout</a></li>
+                    <li><a href="${pageContext.request.contextPath}/map">map</a></li>
+                    <li><a href="${pageContext.request.contextPath}/notice/noticeList">notice</a></li>
+                    <li><a href="${pageContext.request.contextPath}/qna/qnaList">QnA</a></li>
                 </ul>
             </nav>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-70">
-                <a href="${pageContext.request.contextPath}/cart/list" class="cart-nav">
+                <a href="${pageContext.request.contextPath}/cart/cartList" class="cart-nav">
                 <img src="${pageContext.request.contextPath}/resources/img/core-img/cart.png"> 장바구니 <span class="cart-count"></span></a>
                 <a href="${pageContext.request.contextPath}/product/latest" class="fav-nav">
                 <img src="${pageContext.request.contextPath}/resources/img/core-img/favorites.png">최근 본 상품</a>

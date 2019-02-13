@@ -9,7 +9,6 @@ function setCookie(name, value, day) {
 	document.cookie = willCookie;
 }
 
-
 function getCookie(name) {
 	var cookies = document.cookie.split(';');
 	

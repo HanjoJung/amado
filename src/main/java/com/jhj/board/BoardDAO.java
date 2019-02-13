@@ -5,21 +5,25 @@ import java.util.List;
 import com.jhj.util.Pager;
 
 public interface BoardDAO {
-	//count
-	public int getNum() throws Exception;
-	//List
+	// count
+	public int hitUp(int num) throws Exception;
+
+	// List
 	public List<BoardDTO> list(Pager pager) throws Exception;
-	//select
+
+	// select
 	public BoardDTO select(int num) throws Exception;
-	//insert
+
+	// insert
 	public int insert(BoardDTO boardDTO) throws Exception;
-	//update
+
+	// update
 	public int update(BoardDTO boardDTO) throws Exception;
-	//delete
+
+	// delete
 	public int delete(int num) throws Exception;
-	//totalCount
+
+	// totalCount
 	public int totalCount(Pager pager) throws Exception;
-	
-	
 
 }

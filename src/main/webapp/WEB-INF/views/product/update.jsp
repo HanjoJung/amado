@@ -25,10 +25,11 @@
 								<h2>상품 수정</h2>
 							</div>
 
-							<form class="frm" action="./insert" method="post"
+							<form class="frm" action="./update" method="post"
 								id="product-insert" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-12 mb-3">
+									<input type="hidden" name="productNum" value="${productDTO.productNum}">
 										<select name="brand" class="category" >
 										<c:forEach items="${brand}" var="brand">
 											<c:choose>
@@ -71,7 +72,6 @@
 												placeholder="가격 (1만원 이상 기입하세요.)" value="${productDTO.price}">
 											<p class="message"></p>
 									</div>
-									<input type="hidden" name="kind" value="p">
 									<div class="col-12 mb-3">
 										<textarea type="text" class="form-control porduct-insert-form" name="contents"
 											placeholder="상품설명">${productDTO.contents}</textarea>
@@ -80,11 +80,8 @@
 									<div class="col-12 mb-3 file-area">
 										<div class="file file-left">
 											<p>메인이미지</p>
-											<input type="file" class="porduct-insert-form"
-												style="padding: 5px 10px;" name="f1">
-											<input type="file" class="porduct-insert-form"
-												style="padding: 5px 10px;" name="f1">
-											<p class="message"></p>
+											<input type="file" style="padding: 5px 10px;" name="f1">
+											<input type="file" style="padding: 5px 10px;" name="f1">
 										</div>
 										<div class="file file-left mb-3">
 											<p>서브이미지</p>

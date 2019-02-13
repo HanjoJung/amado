@@ -28,7 +28,7 @@ public class MemberService {
 		int result = memberDAO.checkId(memberDTO);
 		String str = "";
 		if (result > 0) {
-			str = "이미 존제하는 아이디입니다.";
+			str = "이미 존재하는 아이디입니다.";
 		}
 		return str;
 	}
@@ -41,16 +41,16 @@ public class MemberService {
 		String kakao = memberDTO.getKakao();
 		String facebook = memberDTO.getFacebook();
 		memberDTO = memberDAO.selectOne(memberDTO);
-		String str = "";
+		String str = "로그인에 실패했습니다";
 		if (memberDTO != null) {
 			memberDTO.setKakao(kakao);
 			memberDTO.setFacebook(facebook);
 			memberDAO.update(memberDTO);
 			session.setAttribute("member", memberDTO);
-			str = "로그인 하였습니다.";
-/*		} else {
+			str = "로그인 됐습니다.";
+		}else {
 			throw new Exception();
-*/		}
+		}
 		return str;
 	}
 
@@ -85,9 +85,12 @@ public class MemberService {
 	public String delete(MemberDTO memberDTO, HttpSession session) throws Exception {
 		String msg = "탈퇴하지 못하였습니다.";
 		int result = memberDAO.delete(memberDTO);
+		MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("member");
 		if (result > 0) {
 			msg = "탈퇴 되었습니다.";
-			session.invalidate();
+			if(memberDTO.getId().equals(memberDTO2.getId())) {
+				session.invalidate();
+			}
 		}
 		return msg;
 	}

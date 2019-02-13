@@ -23,7 +23,6 @@
 	</repositories>
 
 	<dependencies>
-        
 	<!-- JSON 데이터 전송 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
@@ -31,7 +30,7 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.6</version>
 		</dependency>
-
+		
 	<!-- AOP 트렌젝션 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
 		<dependency>

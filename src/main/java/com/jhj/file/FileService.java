@@ -1,44 +1,48 @@
 package com.jhj.file;
 
 import java.io.File;
-import java.net.URLEncoder;
+import java.io.PrintWriter;
+import java.util.UUID;
 
-import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.jhj.util.FileSaver;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FileService {
 
-	@Inject
-	private FileDAO fileDAO;
-
-	public ModelAndView delete(FileDTO fileDTO, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		String realPath = session.getServletContext().getRealPath("resources/notice");
-		File file = new File(realPath, fileDTO.getFname());
+	public void delete(String fname, HttpSession session) throws Exception {
+		String realPath = session.getServletContext().getRealPath("resources/img/board");
+		System.out.println(realPath);
+		System.out.println(fname);
+		File file = new File(realPath, fname);
 		file.delete();
-		int result = fileDAO.delete(fileDTO);
-		mv.setViewName("common/result");
-		mv.addObject("result", result);
-		return mv;
 	}
 
-	public String se2(ImageDTO imageDTO, HttpSession session) throws Exception{
-		FileSaver fs = new FileSaver();
-		String realPath = session.getServletContext().getRealPath("resources/upload"); 
-		System.out.println(realPath);
-		String fname = fs.saveFile(realPath, imageDTO.getFiledata());
-		String conTextName = session.getServletContext().getContextPath();
-		String result = "&bNewLine=true&sFileName=" 
-		+ URLEncoder.encode(imageDTO.getFiledata().getOriginalFilename(), "UTF-8");
-		result += "&sFileURL=" + conTextName + "/resources/upload/" + URLEncoder.encode(fname, "UTF-8"); 
+	public void fileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
 
-		return "redirect:" + imageDTO.getCallback() + "?callback_func=" + imageDTO.getCallback_func() + result;
+		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board");
+		UUID uuid = UUID.randomUUID();
+
+		String org_filename = file.getOriginalFilename();
+		String str_filename = uuid.toString() + org_filename;
+		String filepath = realFolder + "\\" + str_filename;
+		System.out.println("파일경로 : " + filepath);
+
+		File f = new File(filepath);
+		if (!f.exists()) {
+			f.mkdirs();
+		}
+		file.transferTo(f);
+
+		out.println("../resources/img/board/" + str_filename);
+		out.close();
 	}
 
 }

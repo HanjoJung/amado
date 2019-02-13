@@ -24,8 +24,15 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping("shop")
-	public void shop() throws Exception {
+	public ModelAndView shop() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("brand", this.brand);
+		mv.addObject("category", this.category);
+		return mv;
 	}
+	
+	String[] brand = { "Amado", "Ikea", "marketb", "The factory", "Artdeco" };
+	String[] category = { "chair", "beds", "furniture", "homeDeco", "table", "kid" };
 
 	@RequestMapping("list")
 	public ModelAndView list(Pager pager) throws Exception {
@@ -52,7 +59,12 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
-	public void insert() throws Exception {
+	public ModelAndView insert() throws Exception {
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("brand", this.brand);
+			mv.addObject("category", this.category);
+			mv.setViewName("product/insert");
+			return mv;
 	}
 
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
@@ -65,6 +77,8 @@ public class ProductController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public ModelAndView update(int productNum) throws Exception {
 		ModelAndView mv = productService.selectOne(productNum);
+		mv.addObject("brand", this.brand);
+		mv.addObject("category", this.category);
 		mv.setViewName("product/update");
 		return mv;
 	}
@@ -72,7 +86,7 @@ public class ProductController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public ModelAndView update(ProductDTO productDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
 		ModelAndView mv = productService.update(productDTO, f1, session);
-		mv.setViewName("product/update");
+		mv.setViewName("redirect:../member/manager");
 		return mv;
 	}
 
@@ -85,7 +99,7 @@ public class ProductController {
 	@RequestMapping("checkout")
 	public void checkout() throws Exception {
 	}
-	
+
 	@RequestMapping("latest")
 	public ModelAndView list(HttpServletRequest request) throws Exception {
 		ModelAndView mv = productService.latest(request);

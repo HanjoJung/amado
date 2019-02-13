@@ -29,7 +29,7 @@
 												</a>
 											</td>
 											<td class="list-product-info">
-											<a class="title" href="./select?productNum=${product.productNum}">
+											<a class="title" href="../product/select?productNum=${product.productNum}">
 													${product.productNum}-${product.productName}(${product.productCode})
 											</a>
 												<div>
@@ -90,12 +90,11 @@
 </body>
 <script type="text/javascript">
 	$(".product-btn").click(function() {
-		dataProductNum = $(this).attr("data-productNum");
 		$.ajax({
-			url : "./delete",
+			url : "../product/delete",
 			type : "POST",
 			data : {
-				productNum : dataProductNum
+				productNum : $(this).attr("data-productNum")
 			},
 			success : function(data) {
 				alert(data);
