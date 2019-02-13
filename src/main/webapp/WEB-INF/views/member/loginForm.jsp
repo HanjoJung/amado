@@ -166,7 +166,7 @@ function snsLogin(id, snsid, name, sns) {
 				success : function(data) {
 					data = data.trim();
 					if (data.length > 0) {
-						alert("같은 아이디가 존제합니다.\n로그인하시면 자동으로 연동됩니다.");
+						alert("같은 아이디가 존재합니다.\n로그인하시면 자동으로 연동됩니다.");
 						location.href = "${pageContext.request.contextPath}/"
 							+ "member/login?"
 							+ sns + "=" + snsid

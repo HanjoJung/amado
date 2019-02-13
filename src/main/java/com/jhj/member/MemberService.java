@@ -28,7 +28,7 @@ public class MemberService {
 		int result = memberDAO.checkId(memberDTO);
 		String str = "";
 		if (result > 0) {
-			str = "이미 존제하는 아이디입니다.";
+			str = "이미 존재하는 아이디입니다.";
 		}
 		return str;
 	}
