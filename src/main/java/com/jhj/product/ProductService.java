@@ -39,11 +39,8 @@ public class ProductService {
 		pager.makePage(totalCount);
 		ModelAndView mv = new ModelAndView();
 		List<ProductDTO> list = productDAO.list(pager);
-		FileDTO fileDTO = new FileDTO();
 		for (ProductDTO productDTO : list) {
-			fileDTO.setNum(productDTO.getProductNum());
-			fileDTO.setKind("p");
-			productDTO.setFile(fileDAO.list(fileDTO));
+			productDTO.setFile(fileDAO.list(productDTO.getProductNum()));
 		}
 		mv.addObject("pager", pager);
 		mv.addObject("list", list);
@@ -55,10 +52,7 @@ public class ProductService {
 		ModelAndView mv = new ModelAndView();
 		ProductDTO productDTO = productDAO.selectOne(productNum);
 		if (productDTO != null) {
-			FileDTO fileDTO = new FileDTO();
-			fileDTO.setNum(productDTO.getProductNum());
-			fileDTO.setKind("p");
-			mv.addObject("fileList", fileDAO.list(fileDTO));
+			mv.addObject("fileList", fileDAO.list(productDTO.getProductNum()));
 			mv.addObject("productDTO", productDTO);
 			mv.setViewName("product/select");
 		} else {
@@ -89,7 +83,6 @@ public class ProductService {
 			fileDTO.setNum(productDTO.getProductNum());
 			fileDTO.setOname(data.getOriginalFilename());
 			fileDTO.setFname(fs.saveFile(realPath, data));
-			fileDTO.setKind("p");
 
 			result = fileDAO.insert(fileDTO);
 
@@ -115,21 +108,30 @@ public class ProductService {
 				throw new SQLException();
 			}
 
-			for (MultipartFile data : f1) {
-				if (data.isEmpty()) {
+			List<FileDTO> fileList = fileDAO.list(productDTO.getProductNum());
+			for (int i = 0; i < f1.size(); i++) {
+				if (f1.get(i).isEmpty()) {
 					continue;
 				}
+
 				FileDTO fileDTO = new FileDTO();
-				fileDAO.delete(fileDTO);
 				fileDTO.setNum(productDTO.getProductNum());
-				fileDTO.setOname(data.getOriginalFilename());
-				fileDTO.setFname(fs.saveFile(realPath, data));
-				fileDTO.setKind("p");
+				fileDTO.setOname(f1.get(i).getOriginalFilename());
+				fileDTO.setFname(fs.saveFile(realPath, f1.get(i)));
 
-				result = fileDAO.insert(fileDTO);
-
-				if (result < 1) {
-					throw new SQLException();
+				if (fileList.size() > i) {
+					fileDTO.setFnum(fileList.get(i).getFnum());
+					result = fileDAO.update(fileDTO);
+					if (result < 1) {
+						throw new SQLException();
+					}
+					File file = new File(realPath, fileList.get(i).getFname());
+					file.delete();
+				} else {
+					result = fileDAO.insert(fileDTO);
+					if (result < 1) {
+						throw new SQLException();
+					}
 				}
 			}
 		}
@@ -138,25 +140,17 @@ public class ProductService {
 	}
 
 	public String delete(int productNum, HttpSession session) throws Exception {
+		List<FileDTO> ar = fileDAO.list(productNum);
 		int result = productDAO.delete(productNum);
 
 		if (result < 1) {
 			throw new SQLException();
 		}
 
-		FileDTO fileDTO = new FileDTO();
-		fileDTO.setNum(productNum);
-		fileDTO.setKind("p");
-		List<FileDTO> ar = fileDAO.list(fileDTO);
-
-		if (ar.size() != 0) {
-			result = fileDAO.deleteAll(fileDTO);
-
-			String realPath = session.getServletContext().getRealPath("resources/img/product-img");
-			for (FileDTO fileDTO2 : ar) {
-				File file = new File(realPath, fileDTO2.getFname());
-				file.delete();
-			}
+		String realPath = session.getServletContext().getRealPath("resources/img/product-img");
+		for (FileDTO fileDTO2 : ar) {
+			File file = new File(realPath, fileDTO2.getFname());
+			file.delete();
 		}
 
 		return "삭제 하였습니다.";
@@ -188,11 +182,8 @@ public class ProductService {
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("productNum", cookieValues);
 		List<ProductDTO> list = productDAO.latest(map);
-		FileDTO fileDTO = new FileDTO();
 		for (ProductDTO productDTO : list) {
-			fileDTO.setNum(productDTO.getProductNum());
-			fileDTO.setKind("p");
-			productDTO.setFile(fileDAO.list(fileDTO));
+			productDTO.setFile(fileDAO.list(productDTO.getProductNum()));
 		}
 
 		if (cookieValues != null) {

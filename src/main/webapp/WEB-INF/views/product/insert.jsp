@@ -30,16 +30,16 @@
 								<div class="row">
 									<div class="col-12 mb-3">
 										<select name="brand" class="category" >
-										<c:forEach items="${brand}" var="brand">
-											<c:choose>
-												<c:when test="${brand eq productDTO.brand}">
-													<option selected="selected">${brand}</option>
-												</c:when>
-												<c:otherwise>
-													<option>${brand}</option>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
+											<c:forEach items="${brand}" var="brand">
+												<c:choose>
+													<c:when test="${brand eq productDTO.brand}">
+														<option selected="selected">${brand}</option>
+													</c:when>
+													<c:otherwise>
+														<option>${brand}</option>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
 										</select>
 										<div class="productName">
 											<input type="text" class="form-control porduct-insert-form" name="productCode"
@@ -49,16 +49,16 @@
 									</div>
 									<div class="col-12 mb-3">
 										<select name="kind" class="category">
-										<c:forEach items="${category}" var="category">
-											<c:choose>
-												<c:when test="${category eq productDTO.kind}">
-													<option selected="selected">${category}</option>
-												</c:when>
-												<c:otherwise>
-													<option>${category}</option>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
+											<c:forEach items="${category}" var="category">
+												<c:choose>
+													<c:when test="${category eq productDTO.kind}">
+														<option selected="selected">${category}</option>
+													</c:when>
+													<c:otherwise>
+														<option>${category}</option>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
 										</select>
 										<div class="productName">
 											<input type="text" class="form-control porduct-insert-form" name="productName"

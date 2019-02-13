@@ -6,7 +6,6 @@ public class FileDTO {
 	private int num;
 	private String fname;
 	private String oname;
-	private String kind;
 
 	public int getFnum() {
 		return fnum;
@@ -38,14 +37,6 @@ public class FileDTO {
 
 	public void setOname(String oname) {
 		this.oname = oname;
-	}
-
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
 	}
 
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jhj.file.FileDAO;
-import com.jhj.file.FileDTO;
 
 @Repository
 public class CartService {
@@ -24,12 +23,9 @@ public class CartService {
 
 	public ModelAndView cartList(String id) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		FileDTO fileDTO = new FileDTO();
 		List<CartDTO> list = cartDAO.list(id);
 		for (CartDTO cartDTO : list) {
-			fileDTO.setKind("p");
-			fileDTO.setNum(cartDTO.getProductNum());
-			cartDTO.setFile(fileDAO.list(fileDTO));
+			cartDTO.setFile(fileDAO.list(cartDTO.getProductNum()));
 		}
 		mv.addObject("list", list);
 		return mv;

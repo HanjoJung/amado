@@ -17,9 +17,8 @@ public class FileDAO {
 		return sqlSession.insert(NAMESPACE + "insert", fileDTO);
 	}
 
-//임시
-	public int deleteAll(FileDTO fileDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE + "deleteAll", fileDTO);
+	public int update(FileDTO fileDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "update", fileDTO);
 	}
 
 	public int delete(FileDTO fileDTO) throws Exception {
@@ -30,8 +29,8 @@ public class FileDAO {
 		return sqlSession.selectOne(NAMESPACE + "select", fnum);
 	}
 
-	public List<FileDTO> list(FileDTO fileDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "list", fileDTO);
+	public List<FileDTO> list(int num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "list", num);
 	}
 
 }
