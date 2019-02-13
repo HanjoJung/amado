@@ -34,6 +34,7 @@ function sendFile(file, editor) {
         }
     });
 }
+
 $(function() {
 	var board = $("#board").attr("data-board");
 	var curFiles = new Array();
