@@ -20,9 +20,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/1.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop">
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/1.jpg">
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 59,000원</p>
@@ -33,9 +32,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/2.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop"> 
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/2.jpg">
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 39,000원</p>
@@ -46,9 +44,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/3.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop"> 
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/3.jpg"> 
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 49,000원</p>
@@ -59,9 +56,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/4.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop"> 
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/4.jpg"> 
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 25,000원</p>
@@ -72,9 +68,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/5.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop"> 
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/5.jpg"> 
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 25,000원</p>
@@ -85,9 +80,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/6.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop"> 
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/6.jpg">
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 139,000원</p>
@@ -98,9 +92,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/7.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop"> 
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/7.jpg"> 
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 99,000원</p>
@@ -111,9 +104,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/8.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop"> 
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/8.jpg">
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 119,000원</p>
@@ -124,9 +116,8 @@
 
 				<!-- Single category -->
 				<div class="single-products-category clearfix">
-					<a href="product/shop"> <img
-						src="${pageContext.request.contextPath}/resources/img/bg-img/9.jpg"
-						alt=""> <!-- Hover Content -->
+					<a href="product/shop"> 
+						<img src="${pageContext.request.contextPath}/resources/img/bg-img/9.jpg"> 
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From 20,000원</p>
